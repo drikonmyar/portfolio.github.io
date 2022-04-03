@@ -550,6 +550,10 @@ body {
     background-color: rgb(13, 110, 253);
 }
 
+.at-right {
+    float: right;
+}
+
 
 
 #progress-autocad {

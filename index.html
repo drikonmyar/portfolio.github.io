@@ -13,7 +13,7 @@
     <link rel="icon" href="./logos/tabicon.png">
 </head>
 
-<body onload="myFunction()">
+<body onload="pingMe()">
 
     <div id="anim">
 
@@ -440,28 +440,32 @@
 
                         </div>
                         <label>AutoCAD</label>
-                        <img src="./logos/autodesk-autocad.png" />
+                        <label class="at-right">95%</label>
+                        <!-- <img src="./logos/autodesk-autocad.png" /> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-autocad"></span>
                         </li>
 
                         <label>STAAD.Pro</label>
-                        <img src="./logos/staadproimg1.png" height="17px" width="17px" alt="">
+                        <label class="at-right">90%</label>
+                        <!-- <img src="./logos/staadproimg1.png" height="17px" width="17px" alt=""> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-staadpro"></span>
                         </li>
 
                         <label>ETABS</label>
-                        <img src="./logos/etabs1.png" height="16px" width="16px" alt="">
+                        <label class="at-right">80%</label>
+                        <!-- <img src="./logos/etabs1.png" height="16px" width="16px" alt=""> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-etabs"></span>
                         </li>
 
                         <label>HyperWorks</label>
-                        <img src="./logos/hyperworks1.png" height="16px" width="16px" alt="">
+                        <label class="at-right">70%</label>
+                        <!-- <img src="./logos/hyperworks1.png" height="16px" width="16px" alt=""> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-cae"></span>
@@ -478,30 +482,32 @@
 
                         </div>
                         <label>Java</label>
-                        <i class="fab fa-java"></i>
+                        <label class="at-right">85%</label>
+                        <!-- <i class="fab fa-java"></i> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-java"></span>
                         </li>
 
                         <label>Python</label>
-                        <i class="fab fa-python"></i>
+                        <label class="at-right">75%</label>
+                        <!-- <i class="fab fa-python"></i> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-python"></span>
                         </li>
 
                         <label>ABAP</label>
-
-                        <img src="./logos/abap.png">
-
+                        <label class="at-right">70%</label>
+                        <!-- <img src="./logos/abap.png"> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-abap"></span>
                         </li>
 
                         <label>SQL</label>
-                        <i class="fa-solid fa-database"></i>
+                        <label class="at-right">60%</label>
+                        <!-- <i class="fa-solid fa-database"></i> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-sql"></span>
@@ -518,28 +524,32 @@
 
                         </div>
                         <label>HTML</label>
-                        <i class="fab fa-html5"></i>
+                        <label class="at-right">70%</label>
+                        <!-- <i class="fab fa-html5"></i> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-html"></span>
                         </li>
 
                         <label>CSS</label>
-                        <i class="fab fa-css3-alt"></i>
+                        <label class="at-right">50%</label>
+                        <!-- <i class="fab fa-css3-alt"></i> -->
                         <span class="percent" id="angular-pourcent"></span>
                         <li>
                             <span class="progressbar" id="progress-css"></span>
                         </li>
 
                         <label>JavaScript</label>
-                        <i class="fab fa-js-square"></i>
+                        <label class="at-right">35%</label>
+                        <!-- <i class="fab fa-js-square"></i> -->
                         <span class="percent" id="angular-pourcent"></span>
                         <li>
                             <span class="progressbar" id="progress-javascript"></span>
                         </li>
 
                         <label>PHP</label>
-                        <i class="fab fa-php"></i>
+                        <label class="at-right">30%</label>
+                        <!-- <i class="fab fa-php"></i> -->
                         <span class="percent"></span>
                         <li>
                             <span class="progressbar" id="progress-php"></span>
@@ -706,9 +716,6 @@
 
 
 
-
-
-
                 </div>
             </div>
         </div>
@@ -818,33 +825,7 @@
     </footer>
 
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script>
-
-        var preloader = document.getElementById("anim");
-
-        function myFunction() {
-
-            setTimeout(function () { preloader.style.display = 'none'; }, 2000);
-
-        }
-
-        function sendEmail() {
-            Email.send({
-                Host: "smtp.gmail.com",
-                Username: "jgecsongs1@gmail.com",
-                Password: "gpnsacsaziycbhhp",
-                To: 'nabyenduojha99@gmail.com',
-                From: document.getElementById('form-email').value,
-                Subject: "New Message Enquiry",
-                Body: "Name: ".bold() + document.getElementById("form-name").value
-                    + "<br> Email: ".bold() + document.getElementById("form-email").value
-                    + "<br> Subject: ".bold() + document.getElementById("form-subject").value
-                    + "<br> Message: ".bold() + document.getElementById("form-message").value
-            }).then(
-                message => alert("Message sent successfully")
-            );
-        }
-    </script>
+    <script src="./script.js"></script>
 
 </body>
 
