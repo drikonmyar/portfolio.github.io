@@ -652,62 +652,21 @@ body {
     transition: all .25s ease-in-out;
 }
 
-.grid2-container div:hover img {
-    filter: grayscale(0);
+
+.grid2-container div:hover {
+    border-color: #EEF2F7;
+    border-width: 10px;
+    transition-duration: 300ms;
+    box-shadow: none;
 }
 
 
-.sketch-grid:hover {
-    border-color: grey;
-}
 
-.civil-grid:hover {
-    border-color: red;
-}
 
-.presentation-grid:hover {
-    border-color: #0044ff;
-}
-
-.jgeccad-grid:hover {
-    border-color: rgb(214, 165, 2);
-}
-
-.civilcad-grid:hover {
-    border-color: coral;
-}
-
-.android-grid:hover {
-    border-color: green;
-}
-
-.ds-grid:hover {
-    border-color: rgb(0, 183, 255);
-}
-
-.bccicad-grid:hover {
-    border-color: rgb(241, 188, 14);
-}
-
-.arduino-grid:hover {
-    border-color: seagreen;
-}
-
-.c-grid:hover {
-    border-color: navy;
-}
-
-.burjcad-grid:hover {
-    border-color: rgb(25, 27, 170);
-}
-
-.python-grid:hover {
-    border-color: rgb(0, 69, 197);
-}
 
 .grid2-container img {
     width: 100%;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
     border-radius: 5px;
     transition: all .25s ease-in-out;
 }
@@ -730,8 +689,43 @@ body {
 }
 
 .civil-exception {
+    padding-top: 30px;
+    padding-bottom: 15px;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.sap-exception {
+    padding-top: 37px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.android-exception {
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.cloud-exception {
+    padding: 18px;
+}
+
+.iot-exception {
     padding: 20px;
 }
+
+.java-exception {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+.ds-exception {
+    padding: 25px 20px 15px 15px;
+}
+
 
 
 
