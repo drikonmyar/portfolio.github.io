@@ -11,7 +11,7 @@ function sendEmail() {
         Host: "smtp.gmail.com",
         Username: "jgecsongs1@gmail.com",
         Password: "gpnsacsaziycbhhp",
-        To: 'nabyenduojha99@gmail.com',
+        To: 'portfolio@nojha.in',
         From: document.getElementById('form-email').value,
         Subject: "New Message Enquiry",
         Body: "<b>Name: </b>" + document.getElementById("form-name").value

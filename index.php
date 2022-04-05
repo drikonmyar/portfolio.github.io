@@ -3,6 +3,15 @@
 
 <head>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3R97FCKD1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-J3R97FCKD1');
+    </script>
+
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -14,6 +23,10 @@
 </head>
 
 <body onload="pingMe()">
+
+    <?php
+        include_once("det.php")
+    ?>
 
     <div id="anim">
 
@@ -49,7 +62,7 @@
     <section class="header fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <div class="navbar-brand"><img src="./logos/text.png" alt=""></div>
+                <div class="navbar-brand"><a href="index.html"><img src="./logos/text.png" alt=""></a></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +72,7 @@
                     <div class="mx-auto"></div>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#goto-about">About</a>
@@ -219,166 +232,29 @@
                 <div id="about-heading-greenline"></div>
             </div>
             <div class="trainings-wrapper">
-                <div class="courses-container">
-                    <div class="course-odd">
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Course</p>
-                            <h5>AutoCAD 2D</h5>
-                            <p>From: 01/06/2018 To: 12/07/2018</p>
-                        </div>
-                        <div class="course-info">
-                            <h6>Description</h6>
-                            <p>Learnt AutoCAD interface, drawing aids & basic objects, complex objects & object
-                                editing, blocks & annotations & plotting.</p>
-                        </div>
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
-                            <p>Mode: Virtual<a href="./pdfs/autocad-internshala.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
-                        </div>
-                    </div>
-                </div>
+
+
                 <div class="courses-container">
                     <div class="course-even">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
-                            <h5>Advance Excel</h5>
-                            <p>From: 21/06/2018 To: 18/07/2018</p>
+                            <h5>Google IT Support</h5>
+                            <p>From: 23/08/2021 To: 07/02/2022</p>
                         </div>
                         <div class="course-info">
                             <h6>Description</h6>
-                            <p>Learnt Excel basics, Excel functions, data visualization & various advanced concepts of
-                                Excel.</p>
+                            <p>Learnt about computer networking, operating systems, IT security, IT infrastructure
+                                services, IT technical support process.</p>
                         </div>
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
-                            <p>Mode: Virtual<a href="./pdfs/advanceexcel-internshala.pdf" target="_blank"><img
+                            <h5><a href="https://www.coursera.org/" target="_blank">Coursera</a></h5>
+                            <p>Mode: Virtual<a href="./pdfs/googleit-coursera.pdf" target="_blank"><img
                                         src="./logos/pdfimg.png" alt=""></a></p>
                         </div>
                     </div>
                 </div>
-                <div class="courses-container">
-                    <div class="course-odd">
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Course</p>
-                            <h5>Building Analysis</h5>
-                            <p>From: 29/09/2018 To: 30/09/2018</p>
-                        </div>
-                        <div class="course-info">
-                            <h6>Description</h6>
-                            <p>Learnt Primavera, ETABS & SAP2000. Also completed one project on
-                                building analysis & planning.</p>
-                        </div>
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="https://www.skyfilabs.com/" target="_blank">Skyfi Labs</a></h5>
-                            <p>Place: JGEC, Jalpaiguri<a href="./pdfs/buildinganalysis-skyfilabs.pdf"
-                                    target="_blank"><img src="./logos/pdfimg.png" alt=""></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="courses-container">
-                    <div class="course-even">
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Course</p>
-                            <h5>AutoCAD 3D</h5>
-                            <p>From: 24/12/2018 To: 23/01/2019</p>
-                        </div>
-                        <div class="course-info">
-                            <h6>Description</h6>
-                            <p>Learnt 3D modeling in Autocad. Also designed plan & elevation of a
-                                2-storeyed building, created 3D view and rendered it.</p>
-                        </div>
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a></h5>
-                            <p>Place: Bonhooghly, Kolkata<a href="./pdfs/autocad-msme.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="courses-container">
-                    <div class="course-odd">
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Course</p>
-                            <h5>Structural Engineering</h5>
-                            <p>From: 17/06/2019 To: 24/06/2019</p>
-                        </div>
-                        <div class="course-info">
-                            <h6>Description</h6>
-                            <p>Created different types of truss & analysed them with given loads using Python (Jupyter
-                                Notebook).</p>
-                        </div>
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="http://www.iitkgp.ac.in/department/CE" target="_blank">CE Dept, IITKGP</a></h5>
-                            <p>Place: IIT, Kharagpur<a href="./pdfs/structure-iitkgp.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="courses-container">
-                    <div class="course-even">
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Course</p>
-                            <h5>STAAD.Pro</h5>
-                            <p>From: 23/12/2019 To: 22/01/2020</p>
-                        </div>
-                        <div class="course-info">
-                            <h6>Description</h6>
-                            <p>Designed 2 RCC structures (G+3 building, Water tank) & 1 steel structure (Transmission
-                                tower) and analysed them with suitable loads.</p>
-                        </div>
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a></h5>
-                            <p>Place: Bonhooghly, Kolkata<a href="./pdfs/staadpro-msme.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="courses-container">
-                    <div class="course-odd">
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Course</p>
-                            <h5>Python Programming</h5>
-                            <p>From: 19/04/2020 To: 31/05/2020</p>
-                        </div>
-                        <div class="course-info">
-                            <h6>Description</h6>
-                            <p>Learnt variables in Python, OOPs, SQLite database, to develop a GUI with PyQT and
-                                application of Python in various disciplines.</p>
-                        </div>
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
-                            <p>Mode: Virtual<a href="./pdfs/python-internshala.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="courses-container">
-                    <div class="course-even">
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Course</p>
-                            <h5>RCC : Basics & Advanced</h5>
-                            <p>From: 01/08/2020 To: 26/08/2020</p>
-                        </div>
-                        <div class="course-info">
-                            <h6>Description</h6>
-                            <p>Learnt about site engineering drawings, site hierarchy, SOP for RCC elements, site
-                                logistics, WBS, various stakeholders & site safety.</p>
-                        </div>
-                        <div class="course-preview">
-                            <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="https://knowhowschools.com/" target="_blank">Know How Schools</a></h5>
-                            <p>Mode: Virtual<a href="./pdfs/rcc-knowhowschools.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="courses-container">
                     <div class="course-odd">
                         <div class="course-preview">
@@ -400,26 +276,177 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="courses-container">
                     <div class="course-even">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
-                            <h5>Google IT Support</h5>
-                            <p>From: 23/08/2021 To: 07/02/2022</p>
+                            <h5>RCC : Basics & Advanced</h5>
+                            <p>From: 01/08/2020 To: 26/08/2020</p>
                         </div>
                         <div class="course-info">
                             <h6>Description</h6>
-                            <p>Learnt about computer networking, operating systems, IT security, IT infrastructure
-                                services, IT technical support process.</p>
+                            <p>Learnt about site engineering drawings, site hierarchy, SOP for RCC elements, site
+                                logistics, WBS, various stakeholders & site safety.</p>
                         </div>
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Organizer</p>
-                            <h5><a href="https://www.coursera.org/" target="_blank">Coursera</a></h5>
-                            <p>Mode: Virtual<a href="./pdfs/googleit-coursera.pdf" target="_blank"><img
+                            <h5><a href="https://knowhowschools.com/" target="_blank">Know How Schools</a></h5>
+                            <p>Mode: Virtual<a href="./pdfs/rcc-knowhowschools.pdf" target="_blank"><img
                                         src="./logos/pdfimg.png" alt=""></a></p>
                         </div>
                     </div>
                 </div>
+
+                <div class="courses-container">
+                    <div class="course-odd">
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Course</p>
+                            <h5>Python Programming</h5>
+                            <p>From: 19/04/2020 To: 31/05/2020</p>
+                        </div>
+                        <div class="course-info">
+                            <h6>Description</h6>
+                            <p>Learnt variables in Python, OOPs, SQLite database, to develop a GUI with PyQT and
+                                application of Python in various disciplines.</p>
+                        </div>
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Organizer</p>
+                            <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
+                            <p>Mode: Virtual<a href="./pdfs/python-internshala.pdf" target="_blank"><img
+                                        src="./logos/pdfimg.png" alt=""></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="courses-container">
+                    <div class="course-even">
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Course</p>
+                            <h5>STAAD.Pro</h5>
+                            <p>From: 23/12/2019 To: 22/01/2020</p>
+                        </div>
+                        <div class="course-info">
+                            <h6>Description</h6>
+                            <p>Designed 2 RCC structures (G+3 building, Water tank) & 1 steel structure (Transmission
+                                tower) and analysed them with suitable loads.</p>
+                        </div>
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Organizer</p>
+                            <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a></h5>
+                            <p>Place: Bonhooghly, Kolkata<a href="./pdfs/staadpro-msme.pdf" target="_blank"><img
+                                        src="./logos/pdfimg.png" alt=""></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="courses-container">
+                    <div class="course-odd">
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Course</p>
+                            <h5>Structural Engineering</h5>
+                            <p>From: 17/06/2019 To: 24/06/2019</p>
+                        </div>
+                        <div class="course-info">
+                            <h6>Description</h6>
+                            <p>Created different types of truss & analysed them with given loads using Python (Jupyter
+                                Notebook).</p>
+                        </div>
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Organizer</p>
+                            <h5><a href="http://www.iitkgp.ac.in/department/CE" target="_blank">CE Dept, IITKGP</a></h5>
+                            <p>Place: IIT, Kharagpur<a href="./pdfs/structure-iitkgp.pdf" target="_blank"><img
+                                        src="./logos/pdfimg.png" alt=""></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="courses-container">
+                    <div class="course-even">
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Course</p>
+                            <h5>AutoCAD 3D</h5>
+                            <p>From: 24/12/2018 To: 23/01/2019</p>
+                        </div>
+                        <div class="course-info">
+                            <h6>Description</h6>
+                            <p>Learnt 3D modeling in Autocad. Also designed plan & elevation of a
+                                2-storeyed building, created 3D view and rendered it.</p>
+                        </div>
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Organizer</p>
+                            <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a></h5>
+                            <p>Place: Bonhooghly, Kolkata<a href="./pdfs/autocad-msme.pdf" target="_blank"><img
+                                        src="./logos/pdfimg.png" alt=""></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="courses-container">
+                    <div class="course-odd">
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Course</p>
+                            <h5>Building Analysis</h5>
+                            <p>From: 29/09/2018 To: 30/09/2018</p>
+                        </div>
+                        <div class="course-info">
+                            <h6>Description</h6>
+                            <p>Learnt Primavera, ETABS & SAP2000. Also completed one project on
+                                building analysis & planning.</p>
+                        </div>
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Organizer</p>
+                            <h5><a href="https://www.skyfilabs.com/" target="_blank">Skyfi Labs</a></h5>
+                            <p>Place: JGEC, Jalpaiguri<a href="./pdfs/buildinganalysis-skyfilabs.pdf"
+                                    target="_blank"><img src="./logos/pdfimg.png" alt=""></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="courses-container">
+                    <div class="course-even">
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Course</p>
+                            <h5>Advance Excel</h5>
+                            <p>From: 21/06/2018 To: 18/07/2018</p>
+                        </div>
+                        <div class="course-info">
+                            <h6>Description</h6>
+                            <p>Learnt Excel basics, Excel functions, data visualization & various advanced concepts of
+                                Excel.</p>
+                        </div>
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Organizer</p>
+                            <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
+                            <p>Mode: Virtual<a href="./pdfs/advanceexcel-internshala.pdf" target="_blank"><img
+                                        src="./logos/pdfimg.png" alt=""></a></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="courses-container">
+                    <div class="course-odd">
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Course</p>
+                            <h5>AutoCAD 2D</h5>
+                            <p>From: 01/06/2018 To: 12/07/2018</p>
+                        </div>
+                        <div class="course-info">
+                            <h6>Description</h6>
+                            <p>Learnt AutoCAD interface, drawing aids & basic objects, complex objects & object
+                                editing, blocks & annotations & plotting.</p>
+                        </div>
+                        <div class="course-preview">
+                            <p style="text-transform: uppercase;">Organizer</p>
+                            <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
+                            <p>Mode: Virtual<a href="./pdfs/autocad-internshala.pdf" target="_blank"><img
+                                        src="./logos/pdfimg.png" alt=""></a></p>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>
