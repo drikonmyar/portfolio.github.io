@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./css/all.min.css">
 
     <title>Portfolio | Nabyendu Ojha</title>
-    <link rel="icon" href="./logos/tabicon.png">
+    <link rel="icon" href="./logos/tabicon.webp">
 </head>
 
 <body onload="pingMe()">
@@ -62,7 +62,7 @@
     <section class="header fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <div class="navbar-brand"><a href="index.php"><img src="./logos/text.png" alt=""></a></div>
+                <div class="navbar-brand"><a href="index.php"><img src="./logos/text.webp" alt=""></a></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -145,7 +145,7 @@
             </div>
             <div class="about-wrapper">
                 <div class="about-pic">
-                    <img src="./pics/me.jpg" alt="">
+                    <img src="./pics/me.webp" alt="">
                 </div>
                 <div class="about-description">
                     <span style="font-weight: bold; font-size: large;">This is Nabyendu Ojha</span>
@@ -176,7 +176,7 @@
                 <div class="row row-cols-1 row-cols-md-3">
                     <div class="col">
                         <div class="card h-100">
-                            <img src="./pics/rkmvimg.jpg" class="card-img-top" alt="...">
+                            <img src="./pics/rkmvimg.webp" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="http://www.rkmvmidnapore.org/" target="_blank">RKMV
                                         (HS), Midnapore</a></h5>
@@ -191,7 +191,7 @@
                     </div>
                     <div class="col">
                         <div class="card h-100">
-                            <img src="./pics/mkciimg.jpg" class="card-img-top" alt="...">
+                            <img src="./pics/mkciimg.webp" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><a
                                         href="https://www.facebook.com/Mohiary-Kc-Institution-hs-School-Howrah-Andul-Mouri-1536546546637860/"
@@ -207,7 +207,7 @@
                     </div>
                     <div class="col">
                         <div class="card h-100">
-                            <img src="./pics/jgecimg.png" class="card-img-top" alt="...">
+                            <img src="./pics/jgecimg.webp" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="https://jgec.ac.in/" target="_blank">JGEC (Autonomous),
                                         Jalpaiguri</a></h5>
@@ -250,7 +250,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="https://www.coursera.org/" target="_blank">Coursera</a></h5>
                             <p>Mode: Virtual<a href="./pdfs/googleit-coursera.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="https://www.eleation.com/" target="_blank">ELEATION</a></h5>
                             <p>Mode: Virtual<a href="./pdfs/hyperworks-eleation.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a>
+                                        src="./logos/pdfimg.webp" alt=""></a>
                             </p>
                         </div>
                     </div>
@@ -293,7 +293,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="https://knowhowschools.com/" target="_blank">Know How Schools</a></h5>
                             <p>Mode: Virtual<a href="./pdfs/rcc-knowhowschools.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -314,7 +314,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
                             <p>Mode: Virtual<a href="./pdfs/python-internshala.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -335,7 +335,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a></h5>
                             <p>Place: Bonhooghly, Kolkata<a href="./pdfs/staadpro-msme.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -356,7 +356,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="http://www.iitkgp.ac.in/department/CE" target="_blank">CE Dept, IITKGP</a></h5>
                             <p>Place: IIT, Kharagpur<a href="./pdfs/structure-iitkgp.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -377,7 +377,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a></h5>
                             <p>Place: Bonhooghly, Kolkata<a href="./pdfs/autocad-msme.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -398,7 +398,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="https://www.skyfilabs.com/" target="_blank">Skyfi Labs</a></h5>
                             <p>Place: JGEC, Jalpaiguri<a href="./pdfs/buildinganalysis-skyfilabs.pdf"
-                                    target="_blank"><img src="./logos/pdfimg.png" alt=""></a></p>
+                                    target="_blank"><img src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -419,7 +419,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
                             <p>Mode: Virtual<a href="./pdfs/advanceexcel-internshala.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -441,7 +441,7 @@
                             <p style="text-transform: uppercase;">Organizer</p>
                             <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
                             <p>Mode: Virtual<a href="./pdfs/autocad-internshala.pdf" target="_blank"><img
-                                        src="./logos/pdfimg.png" alt=""></a></p>
+                                        src="./logos/pdfimg.webp" alt=""></a></p>
                         </div>
                     </div>
                 </div>
@@ -600,7 +600,7 @@
                     <div class="civil-grid">
                         <a href="https://drive.google.com/drive/folders/14nK0PHr1hNls8M7rNZvvSnQAaYlSNz09?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-6 civil-exception' src='./logos/building.png' alt=''>
+                            <img class='grid-item grid-item-6 civil-exception' src='./logos/building.webp' alt=''>
                             <p>"Civil Projects"</p>
                         </a>
                     </div>
@@ -608,7 +608,7 @@
                     <div class="arduino-grid">
                         <a href="https://drive.google.com/drive/folders/1X1ak0cSy_y8LNB8n8XqoAJmNuih2g8Au?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-12 sap-exception' src='./logos/sap.png' alt=''>
+                            <img class='grid-item grid-item-12 sap-exception' src='./logos/sap.webp' alt=''>
                             <p>"SAP Projects"</p>
                         </a>
                     </div>
@@ -618,7 +618,7 @@
                     <div class="python-grid">
                         <a href="https://drive.google.com/drive/folders/1UHsX8QhlCnnb2F7LqN5Mhvrb1LuEwJGM?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-14 ms-exception' src='./logos/pythonimg.png' alt=''>
+                            <img class='grid-item grid-item-14 ms-exception' src='./logos/pythonimg.webp' alt=''>
                             <p>"Python Projects"</p>
                         </a>
                     </div>
@@ -628,7 +628,7 @@
                     <div class="civilcad-grid">
                         <a href="https://drive.google.com/drive/folders/1piVb0TV739Gm81oG7dC38vk7O0xNJFUp?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-5' src='./pics/civilimg.png' alt=''>
+                            <img class='grid-item grid-item-5' src='./pics/civilimg.webp' alt=''>
                             <p>"Civil - CAD 3D"</p>
                         </a>
                     </div>
@@ -637,7 +637,7 @@
                     <div class="bccicad-grid">
                         <a href="https://drive.google.com/drive/folders/1SLjXl1kbpC-hAfuLHqPh0TuheH0NdDrZ?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-2' src='./pics/bcciimg.png' alt=''>
+                            <img class='grid-item grid-item-2' src='./pics/bcciimg.webp' alt=''>
                             <p>"BCCI - CAD 3D"</p>
                         </a>
                     </div>
@@ -645,7 +645,7 @@
                     <div class="sketch-grid">
                         <a href="https://drive.google.com/drive/folders/1w1AT1IYs3-GUTpx8bnOquzkfMEespix7?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-9' src='logos/web.png' alt=''>
+                            <img class='grid-item grid-item-9' src='logos/web.webp' alt=''>
                             <p>"Web Projects"</p>
                         </a>
                     </div>
@@ -653,7 +653,7 @@
                     <div class="sketch-grid">
                         <a href="https://drive.google.com/drive/folders/1HWHRfj5MnO64LsoU49q8Mp8fATbyy2Mi?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-11 java-exception' src='./logos/java.png' alt=''>
+                            <img class='grid-item grid-item-11 java-exception' src='./logos/java.webp' alt=''>
                             <p>"Java Projects"</p>
                         </a>
                     </div>
@@ -664,7 +664,7 @@
                     <div class="sketch-grid">
                         <a href="https://drive.google.com/drive/folders/1qorq0db9t6nhlQXOSgVbSHXDhmPkxS5b?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-3' src='./logos/sketch.png' alt=''>
+                            <img class='grid-item grid-item-3' src='./logos/sketch.webp' alt=''>
                             <p>"Pencil Sketch"</p>
                         </a>
                     </div>
@@ -673,7 +673,7 @@
                     <div class="sketch-grid">
                         <a href="https://drive.google.com/drive/folders/1YDJnb7yOfikAYM_2a6H1WGpNdorMlgsM?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-5 iot-exception' src='./logos/iot.png' alt=''>
+                            <img class='grid-item grid-item-5 iot-exception' src='./logos/iot.webp' alt=''>
                             <p>"IOT Projects"</p>
                         </a>
                     </div>
@@ -681,7 +681,7 @@
                     <div class="presentation-grid">
                         <a href="https://drive.google.com/drive/folders/17GgDFIqOhtEqmcoJ_yIwH9qn1HFMUYk0?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-4 civil-exception' src='./logos/presentation.png' alt=''>
+                            <img class='grid-item grid-item-4 civil-exception' src='./logos/presentation.webp' alt=''>
                             <p>"Presentations"</p>
                         </a>
                     </div>
@@ -693,7 +693,7 @@
                     <div class="android-grid">
                         <a href="https://drive.google.com/drive/folders/1kPMyE_8sidqoKZaNlp7y0PmQjR21EB5R?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-1 android-exception' src='./logos/android.png' alt=''>
+                            <img class='grid-item grid-item-1 android-exception' src='./logos/android.webp' alt=''>
                             <p>"Android Projects"</p>
                         </a>
                     </div>
@@ -704,7 +704,7 @@
                     <div class="jgeccad-grid">
                         <a href="https://drive.google.com/drive/folders/1IuHPrhCYxJ-zjPQCj9pX3mpL1Oh0drZ2?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-8' src='./pics/jgeclogoimg.png' alt=''>
+                            <img class='grid-item grid-item-8' src='./pics/jgeclogoimg.webp' alt=''>
                             <p>"JGEC - CAD 3D"</p>
                         </a>
                     </div>
@@ -712,7 +712,7 @@
                     <div class="ds-grid">
                         <a href="https://drive.google.com/drive/folders/1e0xy8g3eRBFQsWzAtabqt9TI0pQ19Ud7?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-14 ds-exception' src='./logos/datascience.png' alt=''>
+                            <img class='grid-item grid-item-14 ds-exception' src='./logos/datascience.webp' alt=''>
                             <p>"Data Science Projects"</p>
                         </a>
                     </div>
@@ -723,7 +723,7 @@
                     <div class="burjcad-grid">
                         <a href="https://drive.google.com/drive/folders/1GGg4IOkyUtxQg02_FNjjbyr28560JHve?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-10' src='./pics/burjimg.png' alt=''>
+                            <img class='grid-item grid-item-10' src='./pics/burjimg.webp' alt=''>
                             <p>"Burj Khalifa - CAD 3D"</p>
                         </a>
                     </div>
@@ -731,7 +731,7 @@
                     <div class="sketch-grid">
                         <a href="https://drive.google.com/drive/folders/1A9sF5YBeH7hRDEkl-X8hRWOlbBFrpKhD?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-7 cloud-exception' src='./logos/cloud.png' alt=''>
+                            <img class='grid-item grid-item-7 cloud-exception' src='./logos/cloud.webp' alt=''>
                             <p>"Cloud Projects"</p>
                         </a>
                     </div>
@@ -739,7 +739,7 @@
                     <div class="c-grid">
                         <a href="https://drive.google.com/drive/folders/1C_o1Y0Nfk1dp0yby4ycZAfgDf4FVMZyD?usp=sharing"
                             target="_blank">
-                            <img class='grid-item grid-item-14 ms-exception' src='./logos/c++.png' alt=''>
+                            <img class='grid-item grid-item-14 ms-exception' src='./logos/c++.webp' alt=''>
                             <p>"C++ Projects"</p>
                         </a>
                     </div>
@@ -760,11 +760,11 @@
             </div>
             <div class="hobby-wrapper">
                 <div class='diamond diamond1'>
-                    <img src="./logos/chessimg.png" alt="">
+                    <img src="./logos/chessimg.webp" alt="">
                     Chess
                 </div>
                 <div class='diamond diamond2'>
-                    <img src="./logos/geopoliticsimg.png" alt="">
+                    <img src="./logos/geopoliticsimg.webp" alt="">
                     Geopolitics
                 </div>
             </div>
