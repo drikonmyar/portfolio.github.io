@@ -173,50 +173,33 @@
                 <div id="about-heading-greenline"></div>
             </div>
             <div class="education-wrapper">
-                <div class="row row-cols-1 row-cols-md-3">
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="./pics/rkmvimg.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="http://www.rkmvmidnapore.org/" target="_blank">RKMV
-                                        (HS), Midnapore</a></h5>
-                                <p class="card-text">Ramakrishna Mission is not a place of study only, it's a place of
-                                    worship as well. Students are taught about behavioral skills and how to stick with
-                                    truth in difficult situations.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Secondary - 2015 (WBBSE)</small>
-                            </div>
+                <div class="edu-container">
+                    <div class="grid-educontainer">
+                        <div class="grid-eduitem gl"><img class="left-logo" src="./logos/jgeclogo.webp" alt=""></div>
+                        <div class="grid-eduitem gt"><span class="edu-head"><a href="https://jgec.ac.in/"
+                                    target="_blank">Jalpaiguri Government Engineering College</a></span>
+                            Jalpaiguri, India
+                            <div class="edu-det">Qualification: B.Tech (Civil)<br>Passing Year: 2021<br>Board: MAKAUT
+                                (Autonomous)</div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="./pics/mkciimg.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><a
-                                        href="https://www.facebook.com/Mohiary-Kc-Institution-hs-School-Howrah-Andul-Mouri-1536546546637860/"
-                                        target="_blank">MKCI (HS), Howrah</a></h5>
-                                <p class="card-text">This 180 years old institution has retained its own glory at every
-                                    corner till date. Occasions and exhibitions are organized here throughout the year.
-                                    This is a good place to grow overall.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Higher Secondary - 2017 (WBCHSE)</small>
-                            </div>
+                    <div class="grid-educontainer">
+                        <div class="grid-eduitem gl mkci-exception"><img class="mid-logo" src="./logos/mkcilogo.webp"
+                                alt=""></div>
+                        <div class="grid-eduitem gt"><span class="edu-head"><a
+                                    href="https://www.facebook.com/pages/category/Community/Mahiary-Kundu-Chowdhury-Institution-353140688171387/"
+                                    target="_blank">Mohiary Kundu Chowdhury Institution</a></span>
+                            Howrah, India
+                            <div class="edu-det">Qualification: Higher Secondary (10+2)<br>Passing Year: 2017<br>Board:
+                                WBCHSE</div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="./pics/jgecimg.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="https://jgec.ac.in/" target="_blank">JGEC (Autonomous),
-                                        Jalpaiguri</a></h5>
-                                <p class="card-text">This is one of the premier public institutes in India well known
-                                    for providing quality education. A strong alumni-student bond exists here. Recently
-                                    it has been accredited by NAAC.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">B.Tech (Civil Engineering) - 2021 (MAKAUT)</small>
+                    <div class="grid-educontainer">
+                        <div class="grid-eduitem gl"><img class="right-logo" src="./logos/rkmvlogo.webp" alt=""></div>
+                        <div class="grid-eduitem gt"><span class="edu-head"><a href="https://www.rkmvmidnapore.org/"
+                                    target="_blank">Ramakrishna Mission Vidyabhavan</a></span>
+                            Midnapore, India
+                            <div class="edu-det">Qualification: Secondary (10th)<br>Passing Year: 2015<br>Board: WBBSE
                             </div>
                         </div>
                     </div>
@@ -235,7 +218,7 @@
 
 
                 <div class="courses-container">
-                    <div class="course-even">
+                    <div class="course-odd">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>Google IT Support</h5>
@@ -256,7 +239,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-odd">
+                    <div class="course-even">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>HyperWorks (CAE)</h5>
@@ -278,7 +261,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-even">
+                    <div class="course-odd">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>RCC : Basics & Advanced</h5>
@@ -299,7 +282,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-odd">
+                    <div class="course-even">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>Python Programming</h5>
@@ -320,7 +303,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-even">
+                    <div class="course-odd">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>STAAD.Pro</h5>
@@ -341,7 +324,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-odd">
+                    <div class="course-even">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>Structural Engineering</h5>
@@ -362,7 +345,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-even">
+                    <div class="course-odd">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>AutoCAD 3D</h5>
@@ -383,7 +366,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-odd">
+                    <div class="course-even">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>Building Analysis</h5>
@@ -404,7 +387,7 @@
                 </div>
 
                 <div class="courses-container">
-                    <div class="course-even">
+                    <div class="course-odd">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>Advance Excel</h5>
@@ -426,7 +409,7 @@
 
 
                 <div class="courses-container">
-                    <div class="course-odd">
+                    <div class="course-even">
                         <div class="course-preview">
                             <p style="text-transform: uppercase;">Course</p>
                             <h5>AutoCAD 2D</h5>
