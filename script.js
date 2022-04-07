@@ -6,12 +6,13 @@ function pingMe() {
 
 }
 
+
 function sendEmail() {
     Email.send({
         Host: "smtp.gmail.com",
         Username: "jgecsongs1@gmail.com",
         Password: "gpnsacsaziycbhhp",
-        To: 'nabyenduojha@gmail.com',
+        To: 'portfolio@nojha.in',
         From: document.getElementById('form-email').value,
         Subject: "New Message Enquiry",
         Body: "<b>Name: </b>" + document.getElementById("form-name").value
@@ -19,7 +20,16 @@ function sendEmail() {
             + "<br> <b>Subject: </b>" + document.getElementById("form-subject").value
             + "<br> <b>Message: </b>" + document.getElementById("form-message").value
     }).then(
-        alert("Message sent successfully")
-        // message => alert("Message sent successfully")
+        Email.send({
+            Host: "smtp.gmail.com",
+            Username: "jgecsongs1@gmail.com",
+            Password: "gpnsacsaziycbhhp",
+            To: document.getElementById('form-email').value,
+            From: 'portfolio@nojha.in',
+            Subject: "Thanks For Your Submission",
+            Body: "Hi,<br><br>Thank you for your message. I will repond to you as soon as possible. Stay healthy, stay safe & stay tuned. Have a good day.<br><br>Best regards,<br>Nabyendu Ojha"
+        }).then(
+            alert("Message sent successfully")
+        )
     );
 }
