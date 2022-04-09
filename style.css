@@ -20,7 +20,7 @@ body {
     padding: 0 !important;
 }
 
-#shadow-nav {
+.shadow-nav {
     box-shadow: 0 16px 16px -16px rgba(0, 0, 0, 0.5);
 }
 
@@ -352,6 +352,10 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
+}
+
+.btn:hover {
+    cursor: url(./logos/cursor-link.webp), auto;
 }
 
 .btn {
@@ -1054,6 +1058,7 @@ body {
 .contact .right form .button button:hover {
     color: #000080;
     background: none;
+    cursor: url(./logos/cursor-link.webp), auto;
 }
 
 .left {
@@ -1360,6 +1365,10 @@ div.contact-wrapper {
     border-radius: 50%;
 }
 
+#topBtn:hover {
+    cursor: url(./logos/cursor-link.webp), auto;
+}
+
 #topBtn:active {
     box-shadow: none;
 }
@@ -1370,3 +1379,63 @@ div.contact-wrapper {
 }
 
 /* Go to top button ends here */
+
+
+
+/* Cursor style starts here */
+
+.cursor {
+    cursor: url(./logos/cursor-arrow.webp), auto;
+}
+
+a {
+    cursor: url(./logos/cursor-link.webp), auto;
+}
+
+label {
+    cursor: url(./logos/cursor-arrow.webp), auto;
+}
+
+/* Cursor style ends here */
+
+
+
+
+
+
+
+
+/* Scrollbar style starts here */
+
+.scrollbar {
+    /* margin-left: 30px; */
+    float: left;
+    /* height: 300px; */
+    background: #F5F5F5;
+    overflow-y: scroll;
+    /* margin-bottom: 25px; */
+}
+
+/* .force-overflow {
+    min-height: 450px;
+} */
+
+#style-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#style-scroll::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+#style-scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #0000FF;
+    min-height: 225px;
+}
+
+/* Scrollbar style ends here */

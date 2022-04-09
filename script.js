@@ -1,7 +1,8 @@
+
+
 var preloader = document.getElementById("anim");
 
-function pingMe() {
-
+function preload() {
     setTimeout(function () { preloader.style.display = 'none'; }, 2000);
 
 }
@@ -55,3 +56,5 @@ function topFunction() {
 }
 
 // Go to top ends
+
+
