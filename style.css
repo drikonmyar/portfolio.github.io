@@ -20,7 +20,7 @@ body {
     padding: 0 !important;
 }
 
-.header {
+#shadow-nav {
     box-shadow: 0 16px 16px -16px rgba(0, 0, 0, 0.5);
 }
 
@@ -1339,3 +1339,34 @@ div.contact-wrapper {
         transform: translate(100%, 100%);
     }
 }
+
+
+
+
+/* Go to top button starts here */
+
+#topBtn {
+    box-shadow: 0px 0px 12px #ffd500;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: black;
+    cursor: pointer;
+    padding: 14px;
+    border-radius: 50%;
+}
+
+#topBtn:active {
+    box-shadow: none;
+}
+
+#topBtn img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Go to top button ends here */
