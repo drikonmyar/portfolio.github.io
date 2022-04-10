@@ -11,8 +11,8 @@ function preload() {
 function sendEmail() {
     Email.send({
         Host: "smtp.gmail.com",
-        Username: "jgecsongs1@gmail.com",
-        Password: "gpnsacsaziycbhhp",
+        Username: "submitted.successfully@gmail.com",
+        Password: "wgpwroehhvxbvrep",
         To: 'portfolio@nojha.in',
         From: document.getElementById('form-email').value,
         Subject: "New Message Enquiry",
@@ -23,8 +23,8 @@ function sendEmail() {
     }).then(
         Email.send({
             Host: "smtp.gmail.com",
-            Username: "jgecsongs1@gmail.com",
-            Password: "gpnsacsaziycbhhp",
+            Username: "submitted.successfully@gmail.com",
+            Password: "wgpwroehhvxbvrep",
             To: document.getElementById('form-email').value,
             From: 'portfolio@nojha.in',
             Subject: "Thanks For Your Submission",
