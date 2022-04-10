@@ -1084,6 +1084,9 @@ body {
 }
 
 
+
+/* Footer starts here */
+
 footer {
     background: #111;
     padding: 15px 23px;
@@ -1093,10 +1096,66 @@ footer {
     /* border: 2px solid red; */
 }
 
-footer .yellow-text {
+.footer-anim a {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
     color: #ffd500;
-    text-decoration: none;
+    vertical-align: top;
 }
+
+.footer-anim a::before,
+.footer-anim a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.footer-anim a::before {
+    background-color: #ffd500;
+    bottom: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.footer-anim a::after {
+    content: attr(data-replace);
+    height: 100%;
+    top: 0;
+    transform-origin: 100% 50%;
+    transform: translate3d(200%, 0, 0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+    color: #ffd500;
+}
+
+.footer-anim a:hover::before {
+    transform-origin: 0% 50%;
+    transform: scaleX(1);
+}
+
+.footer-anim a:hover::after {
+    transform: translate3d(0, 0, 0);
+}
+
+.footer-anim a span {
+    display: inline-block;
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.footer-anim a:hover span {
+    transform: translate3d(-200%, 0, 0);
+}
+
+/* Footer ends here */
+
+
+
+
+
+
+
 
 
 
