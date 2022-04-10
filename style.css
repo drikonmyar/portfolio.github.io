@@ -323,7 +323,7 @@ body {
 
 .about-pic>img {
     height: 300px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow:
         -50px -50px 0 -40px #ffd500,
         50px 50px 0 -40px #000000;
