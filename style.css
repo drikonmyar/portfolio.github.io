@@ -1351,7 +1351,7 @@ div.contact-wrapper {
 /* Go to top button starts here */
 
 #topBtn {
-    display: block;
+    display: none;
     position: fixed;
     bottom: 20px;
     right: 30px;
