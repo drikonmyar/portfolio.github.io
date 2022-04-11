@@ -1513,6 +1513,9 @@ label {
 /* For mobile portrait view starts */
 
 @media screen and (max-device-width: 480px) {
+    /* body{
+        width: 100%;
+    } */
     .box {
         height: 450px;
     }
