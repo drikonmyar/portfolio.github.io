@@ -1498,3 +1498,141 @@ label {
 }
 
 /* Scrollbar style ends here */
+
+
+
+
+
+
+
+
+
+
+
+
+/* For mobile portrait view starts */
+
+@media screen and (max-device-width: 480px) {
+    .box {
+        height: 450px;
+    }
+
+    .home {
+        margin-left: 28%;
+        height: 102vh;
+        margin-bottom: 20%;
+    }
+
+
+    .about {
+        margin-left: 38%;
+        height: 102vh;
+        margin-bottom: 20%;
+    }
+
+    .about-wrapper {
+        width: fit-content;
+    }
+
+    .about-description {
+        width: 680px;
+    }
+
+
+
+
+    .education {
+        margin-left: 38%;
+    }
+
+    .education-wrapper {
+        margin-left: 168%;
+        height: fit-content;
+        margin-top: 25%;
+    }
+
+
+    .trainings {
+        margin-left: 38%;
+        height: 400vh;
+    }
+
+    .trainings-wrapper {
+        margin-left: 310%;
+    }
+
+    .course-odd {
+        float: right;
+    }
+
+
+
+
+    .skills {
+        margin-left: 38%;
+        margin-top: 150%;
+        height: 50vh;
+    }
+
+    .skills-wrapper {
+        margin-left: 162%;
+        margin-top: 15%;
+    }
+
+
+
+    .projects {
+        margin-left: 38%;
+        height: 230vh;
+
+    }
+
+    .projects-wrapper {
+        margin-right: 20%;
+    }
+
+
+    .hobby {
+        margin-left: 38%;
+    }
+
+    .hobby-wrapper {
+        margin-left: 161%;
+    }
+
+
+    .contact {
+        margin-left: 38%;
+        height: 115vh;
+    }
+
+    .contact-wrapper {
+        margin-left: 190%;
+    }
+
+
+    .left {
+        width: 85vh;
+    }
+
+    .right {
+        width: 85vh;
+    }
+
+    .last-line {
+        margin-top: 25%;
+        margin-left: 160%;
+        width: max-content;
+    }
+
+    footer {
+        width: 398vw;
+    }
+
+    #anim {
+        height: 100%;
+    }
+
+}
+
+/* For mobile portrait view ends */
