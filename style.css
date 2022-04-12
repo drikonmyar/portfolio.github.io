@@ -732,8 +732,8 @@ body {
 
 .projects-wrapper {
     position: relative;
-    height: 120vh;
-    top: 47%;
+    height: 130vh;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: 50px;
@@ -1644,60 +1644,3 @@ label {
 
 
 
-/* Training section scrollbar starts */
-
-.ex-scrollbar {
-    background: #EEF2F7;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-#goto-trainings::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: #EEF2F7;
-}
-
-#goto-trainings::-webkit-scrollbar {
-    width: 12px;
-    background-color: #EEF2F7;
-}
-
-#goto-trainings::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: red;
-    min-height: 225px;
-}
-
-/* Training section scrollbar ends */
-
-
-
-
-/* Project section scrollbar starts here */
-
-.ex-scrollbar1 {
-    background: #EEF2F7;
-    overflow: auto;
-}
-
-#goto-projects::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: #EEF2F7;
-}
-
-#goto-projects::-webkit-scrollbar {
-    width: 12px;
-    background-color: #EEF2F7;
-}
-
-#goto-projects::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: red;
-    min-height: 225px;
-}
-
-/* Project section scrollbar ends here */
