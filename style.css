@@ -462,13 +462,13 @@ body {
 
 
 .trainings {
-    height: 380vh;
+    height: 410vh;
     position: relative;
 }
 
 .trainings-content {
     position: absolute;
-    height: 360vh;
+    height: 390vh;
     width: 80vw;
     top: 50%;
     left: 50%;
@@ -477,7 +477,7 @@ body {
 
 .trainings-wrapper {
     position: relative;
-    height: 350vh;
+    height: 380vh;
     width: 60%;
     top: 50%;
     left: 50%;
@@ -1641,6 +1641,3 @@ label {
 }
 
 /* For mobile portrait view ends */
-
-
-
