@@ -1096,6 +1096,14 @@ footer {
     /* border: 2px solid red; */
 }
 
+.counter-container {
+    float: left;
+}
+
+.dummy-span {
+    float: right;
+}
+
 .footer-anim a {
     overflow: hidden;
     position: relative;
