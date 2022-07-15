@@ -12,7 +12,7 @@ function sendEmail() {
     Email.send({
         Host: "smtp.gmail.com",
         Username: "submitted.successfully@gmail.com",
-        Password: "wgpwroehhvxbvrep",
+        Password: "eecyqyeufhhndmzx",
         To: 'portfolio@nojha.in',
         From: document.getElementById('form-email').value,
         Subject: "New Message Enquiry",
@@ -24,13 +24,21 @@ function sendEmail() {
         Email.send({
             Host: "smtp.gmail.com",
             Username: "submitted.successfully@gmail.com",
-            Password: "wgpwroehhvxbvrep",
+            Password: "eecyqyeufhhndmzx",
             To: document.getElementById('form-email').value,
             From: 'portfolio@nojha.in',
             Subject: "Thanks For Your Submission",
             Body: "Hi,<br><br>Thank you for your message. I will repond to you as soon as possible. Stay healthy, stay safe & stay tuned. Have a good day.<br><br>Best regards,<br>Nabyendu Ojha"
         }).then(
-            alert("Message sent successfully")
+            message => {
+                if (message == 'OK') {
+                    alert("Message sent successfully");
+                }
+                else {
+                    console.error(message);
+                    alert("Some error occurred");
+                }
+            }
         )
     );
 }
