@@ -462,13 +462,13 @@ body {
 
 
 .trainings {
-    height: 410vh;
+    height: 450vh;
     position: relative;
 }
 
 .trainings-content {
     position: absolute;
-    height: 390vh;
+    height: 430vh;
     width: 80vw;
     top: 50%;
     left: 50%;
@@ -477,7 +477,7 @@ body {
 
 .trainings-wrapper {
     position: relative;
-    height: 380vh;
+    height: 420vh;
     width: 60%;
     top: 50%;
     left: 50%;
