@@ -1074,8 +1074,13 @@ body {
 .last-line {
     position: relative;
     margin-top: 32px;
+    font-size: xx-large;
     text-align: center;
     z-index: 0;
+}
+
+.last-line :hover {
+    font-size: x-large;
 }
 
 .last-line a {
