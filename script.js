@@ -12,7 +12,7 @@ function sendEmail() {
     Email.send({
         Host: "smtp.gmail.com",
         Username: "submitted.successfully@gmail.com",
-        Password: "eecyqyeufhhndmzx",
+        Password: "", // Enter password here
         To: 'portfolio@nojha.in',
         From: document.getElementById('form-email').value,
         Subject: "New Message Enquiry",
