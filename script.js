@@ -24,7 +24,7 @@ function sendEmail() {
         Email.send({
             Host: "smtp.gmail.com",
             Username: "submitted.successfully@gmail.com",
-            Password: "eecyqyeufhhndmzx",
+            Password: "", // Enter password here
             To: document.getElementById('form-email').value,
             From: 'portfolio@nojha.in',
             Subject: "Thanks For Your Submission",
