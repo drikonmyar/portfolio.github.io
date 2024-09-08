@@ -7,39 +7,22 @@ function preload() {
 
 }
 
+// feedback form submission
 
 function sendEmail() {
     Email.send({
-        Host: "smtp.gmail.com",
-        Username: "submitted.successfully@gmail.com",
-        Password: "", // Enter password here
-        To: 'portfolio@nojha.in',
-        From: document.getElementById('form-email').value,
+        SecureToken: "447fa0a6-6dba-4968-ad69-0638c418358e", // Secure Token provided by SMTPJS for direct emailing
+        To: 'nabyenduojha99@gmail.com', // Replace with your email
+        From: "nabyenduojha@gmail.com",
         Subject: "New Message Enquiry",
-        Body: "<b>Name: </b>" + document.getElementById("form-name").value
-            + "<br> <b>Email: </b>" + document.getElementById("form-email").value
-            + "<br> <b>Subject: </b>" + document.getElementById("form-subject").value
-            + "<br> <b>Message: </b>" + document.getElementById("form-message").value
+        Body: `
+            <b>Name: </b>${document.getElementById("form-name").value} <br>
+            <b>Email: </b>${document.getElementById("form-email").value} <br>
+            <b>Subject: </b>${document.getElementById("form-subject").value} <br>
+            <b>Message: </b>${document.getElementById("form-message").value}
+        `
     }).then(
-        Email.send({
-            Host: "smtp.gmail.com",
-            Username: "submitted.successfully@gmail.com",
-            Password: "", // Enter password here
-            To: document.getElementById('form-email').value,
-            From: 'portfolio@nojha.in',
-            Subject: "Thanks For Your Submission",
-            Body: "Hi,<br><br>Thank you for your message. I will repond to you as soon as possible. Stay healthy, stay safe & stay tuned. Have a good day.<br><br>Best regards,<br>Nabyendu Ojha"
-        }).then(
-            message => {
-                if (message == 'OK') {
-                    alert("Message sent successfully");
-                }
-                else {
-                    console.error(message);
-                    alert("Some error occurred");
-                }
-            }
-        )
+        message => alert(message === 'OK' ? "Message sent successfully" : "Some error occurred")
     );
 }
 
