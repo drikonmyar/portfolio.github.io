@@ -1435,14 +1435,18 @@ div.contact-wrapper {
     padding: 19px;
     margin: 0;
     background: radial-gradient(circle at 16px 0px, white, black);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
 #topBtn:hover {
     cursor: url(./logos/cursor-link.webp), auto;
+    transform: scale(1.2) rotate(360deg);
+    box-shadow: 0 0 20px rgba(255, 213, 0, 0.7);
 }
 
 #topBtn:active {
-    background: radial-gradient(circle at 33px 0px, white, black);
+    transform: scale(0.8);
 }
 
 #topBtn img {
