@@ -1565,6 +1565,7 @@ label {
 
     .education {
         margin-left: 38%;
+        height: 120vh;
     }
 
     .education-wrapper {
@@ -1576,7 +1577,7 @@ label {
 
     .trainings {
         margin-left: 38%;
-        height: 400vh;
+        height: 450vh;
     }
 
     .trainings-wrapper {
