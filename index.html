@@ -148,8 +148,14 @@
                         </div>
 
                     </div>
+                    <div class="ai-chat">
+                        <!-- Tech Squishy -->
+                        <button class="squishy squishy-tech" id="openChatBtn">
+                            <i data-lucide="zap"></i>
+                            Echo AI
+                        </button>
+                    </div>
                 </div>
-            </div>
         </section>
 
         <section class="about" id="goto-about">
@@ -964,8 +970,26 @@
         </footer>
     </div>
 
+    <!-- Popup Chat Window -->
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <span>Nabyendu's chat</span>
+            <button id="closeChatBtn">×</button>
+        </div>
+        <div class="chat-body">
+            <div id="chatMessages" class="messages"></div>
+            <div class="input-container">
+                <input type="text" id="userInput" placeholder="Type a message...">
+                <button id="sendMessageBtn" class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                <!-- Send Icon -->
+            </div>
+        </div>
+    </div>
 
 
+
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
