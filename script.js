@@ -151,8 +151,8 @@ async function getBotResponse(userMessage) {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer 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", // Replace with your API key
-                "HTTP-Referer": "https://nojha.in/", // Optional
-                "X-Title": "Portfolio | Nabyendu Ojha" // Optional
+                "HTTP-Referer": "<YOUR_SITE_URL>", // Optional
+                "X-Title": "<YOUR_SITE_NAME>" // Optional
             },
             body: JSON.stringify({
                 model: "openai/gpt-3.5-turbo",
