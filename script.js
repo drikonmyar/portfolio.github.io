@@ -171,7 +171,7 @@ async function getBotResponse(userMessage) {
         responseElement.querySelector(".text").textContent = data.choices[0].message.content;
     } catch (error) {
         console.error("Error:", error);
-        responseElement.querySelector(".text").textContent = "Sorry, there was an error fetching the response.";
+        responseElement.querySelector(".text").textContent = "Sorry, I am offline now. Please mail me at nabyenduojha99@gmail.com";
     }
 
     // Scroll to the latest message
