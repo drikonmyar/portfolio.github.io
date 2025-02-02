@@ -1659,6 +1659,7 @@ button {
     /* Light blue background for user messages */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     /* Light shadow for questions */
+    overflow: auto;
 }
 
 /* Bot message style */
@@ -1667,6 +1668,7 @@ button {
     /* Light orange background for bot responses */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     /* Deeper shadow for answers */
+    overflow: auto;
 }
 
 /* Input container to align input and button */
