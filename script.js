@@ -137,6 +137,15 @@ async function sendMessage() {
     }
 }
 
+const fileUrl = `https://drive.google.com/uc?export=download&id=1aTft3A9Wo492sqMT3f5UWPeysE2-VzQ0`;
+
+fetch(fileUrl)
+    .then(response => response.text())
+    .then(data => {
+        console.log("File Content:", data);
+    })
+    .catch(error => console.error("Error fetching file:", error));
+
 // Function to make API call and get bot response
 async function getBotResponse(userMessage) {
     const responseElement = document.createElement("div");
@@ -150,7 +159,7 @@ async function getBotResponse(userMessage) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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", // Replace with your API key
+                "Authorization": "Bearer " + data, // Replace with your API key
                 "HTTP-Referer": "<YOUR_SITE_URL>", // Optional
                 "X-Title": "<YOUR_SITE_NAME>" // Optional
             },
