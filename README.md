@@ -18,4 +18,5 @@ This is my portfolio website. This is my first website as well. I have acquired 
 
    ![alt text](<Screenshot 2025-02-16 at 3.55.13 AM.png>)
 
-   ![alt text](image-1.png)
+   ![image](https://github.com/user-attachments/assets/67aa0582-b417-49c5-888f-b41b11c5889f)
+
