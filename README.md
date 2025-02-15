@@ -14,9 +14,9 @@ This is my portfolio website. This is my first website as well. I have acquired 
 
    This is built using `SmtpJS` and `ElasticEmail`. Once user will fill the details and submit, a notification will confirm that the email is sent successfully and the message will reach to my mail.
 
-   ![alt text](image.png)
+   ![Screenshot 2025-02-16 at 3 53 58 AM](https://github.com/user-attachments/assets/c960cc62-436c-4cd5-b270-13e0863f0e61)
 
-   ![alt text](<Screenshot 2025-02-16 at 3.55.13 AM.png>)
+   ![Screenshot 2025-02-16 at 3 55 13 AM](https://github.com/user-attachments/assets/81d15d96-a2de-4dc3-a7ec-03bb915d4e91)
 
    ![image](https://github.com/user-attachments/assets/67aa0582-b417-49c5-888f-b41b11c5889f)
 
