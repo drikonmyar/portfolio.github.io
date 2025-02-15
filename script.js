@@ -150,7 +150,7 @@ async function getBotResponse(userMessage) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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", // Replace with your API key
+                "Authorization": "Bearer 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", // Replace with your API key
                 "HTTP-Referer": "<YOUR_SITE_URL>", // Optional
                 "X-Title": "<YOUR_SITE_NAME>" // Optional
             },
