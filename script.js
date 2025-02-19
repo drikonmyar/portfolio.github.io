@@ -152,14 +152,7 @@ async function getBotResponse(userMessage) {
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
-<<<<<<< HEAD
-                "Content-Type": "application/json",
-                "Authorization": "Bearer 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", // Replace with your API key
-                "HTTP-Referer": "<YOUR_SITE_URL>", // Optional
-                "X-Title": "<YOUR_SITE_NAME>" // Optional
-=======
                 "Content-Type": "application/json"
->>>>>>> 3da50ed (added gemini api)
             },
             body: JSON.stringify({
                 contents: [{ parts: [{ text: userMessage }] }]
