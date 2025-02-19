@@ -137,7 +137,10 @@ async function sendMessage() {
     }
 }
 
-// Function to make API call and get bot response
+const API_KEY = "AIzaSyBi7CBKdqLY8kXNREnLPGG-w6U7NZMPDxk"; // Replace with your actual API key
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+
+// Function to make API call and get bot response using Gemini API
 async function getBotResponse(userMessage) {
     const responseElement = document.createElement("div");
     responseElement.classList.add("message", "bot-message");
@@ -145,30 +148,31 @@ async function getBotResponse(userMessage) {
     chatMessages.appendChild(responseElement);
 
     try {
-        // Make API call to OpenRouter
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        // Make API call to Gemini API
+        const response = await fetch(API_URL, {
             method: "POST",
             headers: {
+<<<<<<< HEAD
                 "Content-Type": "application/json",
                 "Authorization": "Bearer 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", // Replace with your API key
                 "HTTP-Referer": "<YOUR_SITE_URL>", // Optional
                 "X-Title": "<YOUR_SITE_NAME>" // Optional
+=======
+                "Content-Type": "application/json"
+>>>>>>> 3da50ed (added gemini api)
             },
             body: JSON.stringify({
-                model: "openai/gpt-3.5-turbo",
-                messages: [
-                    {
-                        role: "user",
-                        content: userMessage
-                    }
-                ]
+                contents: [{ parts: [{ text: userMessage }] }]
             })
         });
 
         const data = await response.json();
 
+        // Extract the bot's response
+        const botResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+
         // Update the bot's message with the response
-        responseElement.querySelector(".text").textContent = data.choices[0].message.content;
+        responseElement.querySelector(".text").textContent = botResponse;
     } catch (error) {
         console.error("Error:", error);
         responseElement.querySelector(".text").textContent = "Sorry, I am offline now. Please mail me at nabyenduojha99@gmail.com";
