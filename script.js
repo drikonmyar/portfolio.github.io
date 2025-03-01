@@ -137,11 +137,12 @@ async function sendMessage() {
     }
 }
 
-const API_KEY = "AIzaSyBi7CBKdqLY8kXNREnLPGG-w6U7NZMPDxk"; // Replace with your actual API key
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+const API_KEY = "AIzaSyAerSIPSKhlafDXUclwTy9F9t5A87YcpqE"; // Replace with your actual API key
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 // Function to make API call and get bot response using Gemini API
 async function getBotResponse(userMessage) {
+    const errorText = "Sorry, I am offline now. Please mail me at nabyenduojha99@gmail.com";
     const responseElement = document.createElement("div");
     responseElement.classList.add("message", "bot-message");
     responseElement.innerHTML = `<span class="text">Typing...</span>`;
@@ -162,13 +163,13 @@ async function getBotResponse(userMessage) {
         const data = await response.json();
 
         // Extract the bot's response
-        const botResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+        const botResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || errorText;
 
         // Update the bot's message with the response
         responseElement.querySelector(".text").textContent = botResponse;
     } catch (error) {
         console.error("Error:", error);
-        responseElement.querySelector(".text").textContent = "Sorry, I am offline now. Please mail me at nabyenduojha99@gmail.com";
+        responseElement.querySelector(".text").textContent = errorText;
     }
 
     // Scroll to the latest message
