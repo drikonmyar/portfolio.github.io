@@ -95,9 +95,27 @@ const sendMessageBtn = document.getElementById("sendMessageBtn");
 const userInput = document.getElementById("userInput");
 const chatMessages = document.getElementById("chatMessages");
 
+let isFirstClick = true;
+
 // Open the chat popup
 openChatBtn.addEventListener("click", () => {
     chatPopup.style.display = "block";
+
+    // Only show the welcome message on the first click
+    if (isFirstClick) {
+        isFirstClick = false; // Set flag to false to prevent re-triggering
+
+        // Create the "Typing..." message
+        const typingMessage = document.createElement("div");
+        typingMessage.classList.add("message", "bot-message");
+        typingMessage.innerHTML = `<span class="text">Typing...</span>`;
+        chatMessages.appendChild(typingMessage);
+
+        // Delay before showing the actual message
+        setTimeout(() => {
+            typingMessage.innerHTML = `<span class="text">Hi, how can I help you today?</span>`;
+        }, 1500); // 1.5-second delay
+    }
 });
 
 // Close the chat popup
