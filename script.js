@@ -207,3 +207,29 @@ async function getBotResponse(userMessage) {
 }
 
 // ai logic ends
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-item a");
+
+    function changeActiveNav() {
+        let scrollY = window.pageYOffset;
+
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 50; // Adjust for navbar height
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute("id");
+
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === `#${sectionId}`) {
+                        link.classList.add("active");
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener("scroll", changeActiveNav);
+});
