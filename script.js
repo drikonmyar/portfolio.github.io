@@ -96,14 +96,14 @@ const userInput = document.getElementById("userInput");
 const chatMessages = document.getElementById("chatMessages");
 
 let isFirstClick = true;
+const messageSound = document.getElementById("messageSound"); // Get the audio element
 
 // Open the chat popup
 openChatBtn.addEventListener("click", () => {
     chatPopup.style.display = "block";
 
-    // Only show the welcome message on the first click
     if (isFirstClick) {
-        isFirstClick = false; // Set flag to false to prevent re-triggering
+        isFirstClick = false; // Prevent further triggers
 
         // Create the "Typing..." message
         const typingMessage = document.createElement("div");
@@ -113,8 +113,11 @@ openChatBtn.addEventListener("click", () => {
 
         // Delay before showing the actual message
         setTimeout(() => {
+            // Play sound effect when the message appears
+            messageSound.play();
+
             typingMessage.innerHTML = `<span class="text">Hi, how can I help you today?</span>`;
-        }, 1500); // 1.5-second delay
+        }, 1500); // 2-second delay
     }
 });
 
@@ -188,6 +191,8 @@ async function getBotResponse(userMessage) {
     } catch (error) {
         console.error("Error:", error);
         responseElement.querySelector(".text").textContent = errorText;
+    } finally {
+        messageSound.play();
     }
 
     // Scroll to the latest message
