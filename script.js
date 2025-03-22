@@ -208,6 +208,8 @@ async function getBotResponse(userMessage) {
 
 // ai logic ends
 
+// section header highlight while scroll starts
+
 document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".navbar-nav .nav-item a");
@@ -233,3 +235,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("scroll", changeActiveNav);
 });
+
+// section header highlight while scroll ends
