@@ -1,4 +1,6 @@
-
+const messageSound = document.getElementById("messageSound");
+const successSound = document.getElementById("successSound");
+const errorSound = document.getElementById("errorSound");
 
 var preloader = document.getElementById("anim");
 
@@ -21,9 +23,15 @@ function sendEmail() {
             <b>Subject: </b>${document.getElementById("form-subject").value} <br>
             <b>Message: </b>${document.getElementById("form-message").value}
         `
-    }).then(
-        message => alert(message === 'OK' ? "Message sent successfully" : "Some error occurred")
-    );
+    }).then(message => {
+        if (message === 'OK') {
+            successSound.play();
+            alert("Message sent successfully");
+        } else {
+            errorSound.play();
+            alert("Some error occurred");
+        }
+    });
 }
 
 
@@ -96,7 +104,6 @@ const userInput = document.getElementById("userInput");
 const chatMessages = document.getElementById("chatMessages");
 
 let isFirstClick = true;
-const messageSound = document.getElementById("messageSound"); // Get the audio element
 
 // Open the chat popup
 openChatBtn.addEventListener("click", () => {
@@ -116,7 +123,7 @@ openChatBtn.addEventListener("click", () => {
             // Play sound effect when the message appears
             messageSound.play();
 
-            typingMessage.innerHTML = `<span class="text">Hi, how can I help you today?</span>`;
+            typingMessage.innerHTML = `<span class="text">Hello! 👋 How can I help you today?</span>`;
         }, 1500); // 2-second delay
     }
 });
