@@ -5,7 +5,7 @@ const errorSound = document.getElementById("errorSound");
 var preloader = document.getElementById("anim");
 
 function preload() {
-    setTimeout(function () { preloader.style.display = 'none'; }, 2000);
+    setTimeout(function () { preloader.style.display = 'none'; }, 1500);
 
 }
 
@@ -108,7 +108,7 @@ let isFirstClick = true;
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
         openChatBtn.click(); // Simulate a click on the AI Assist button
-    }, 2000); // 2-second delay for preloader
+    }, 3000); // 3-second delay for preloader
 });
 
 function openChatWindow() {
@@ -129,7 +129,7 @@ function openChatWindow() {
 
             // Play the message sound
             messageSound.play().catch(error => console.log("Autoplay blocked:", error));
-        }, 1500); // 1.5-second delay
+        }, 0); // 0-second delay
     }
 }
 
