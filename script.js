@@ -105,14 +105,19 @@ const chatMessages = document.getElementById("chatMessages");
 
 let isFirstClick = true;
 
-// Open the chat popup
-openChatBtn.addEventListener("click", () => {
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        openChatBtn.click(); // Simulate a click on the AI Assist button
+    }, 2000); // 2-second delay for preloader
+});
+
+function openChatWindow() {
     chatPopup.style.display = "block";
 
     if (isFirstClick) {
-        isFirstClick = false; // Prevent further triggers
+        isFirstClick = false;
 
-        // Create the "Typing..." message
+        // Show "Typing..." message
         const typingMessage = document.createElement("div");
         typingMessage.classList.add("message", "bot-message");
         typingMessage.innerHTML = `<span class="text">Typing...</span>`;
@@ -120,13 +125,16 @@ openChatBtn.addEventListener("click", () => {
 
         // Delay before showing the actual message
         setTimeout(() => {
-            // Play sound effect when the message appears
-            messageSound.play();
-
             typingMessage.innerHTML = `<span class="text">Hello! 👋 How can I help you today?</span>`;
-        }, 1500); // 2-second delay
+
+            // Play the message sound
+            messageSound.play().catch(error => console.log("Autoplay blocked:", error));
+        }, 1500); // 1.5-second delay
     }
-});
+}
+
+// Click event handler for manual opening
+openChatBtn.addEventListener("click", openChatWindow);
 
 // Close the chat popup
 closeChatBtn.addEventListener("click", () => {
