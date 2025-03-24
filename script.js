@@ -126,8 +126,6 @@ function openChatWindow() {
         // Delay before showing the actual message
         setTimeout(() => {
             typingMessage.innerHTML = `<span class="text">Hello! 👋 How can I help you today?</span>`;
-
-            // Play the message sound
             messageSound.play().catch(error => console.log("Autoplay blocked:", error));
         }, 0); // 0-second delay
     }
