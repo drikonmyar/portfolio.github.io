@@ -38,7 +38,7 @@
     <link rel="icon" href="./logos/tabicon.webp">
 </head>
 
-<body class="scrollbar cursor container-fluid" id="style-scroll" onload="preload()">
+<body class="scrollbar cursor container-fluid" id="style-scroll" onload="initializePage()">
 
     <div class="force-overflow">
         <div id="anim">
@@ -995,6 +995,63 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9aOE5gjdurLGqR9JZzwzFMpn5v15m25Y",
+            authDomain: "portfolio-nabyendu.firebaseapp.com",
+            projectId: "portfolio-nabyendu",
+            storageBucket: "portfolio-nabyendu.firebasestorage.app",
+            messagingSenderId: "540684889169",
+            appId: "1:540684889169:web:7851fe6c53937351165c70",
+            measurementId: "G-61JNBKQP18"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Function to update visit count
+        async function updateVisitCount() {
+            const docRef = doc(db, "websiteStats", "visitCount");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                await updateDoc(docRef, { count: docSnap.data().count + 1 });
+                document.querySelector(".website-counter").textContent = docSnap.data().count + 1;
+            } else {
+                await setDoc(docRef, { count: 1 });
+                document.querySelector(".website-counter").textContent = 1;
+            }
+        }
+
+        // Automatically sign in the user anonymously
+        signInAnonymously(auth)
+            .then(() => console.log("Signed in as anonymous user"))
+            .catch((error) => console.error("Authentication error:", error));
+
+        // Detect when the user is signed in and update visit count
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                updateVisitCount();  // User is authenticated, update visit count
+            }
+        });
+
+        // Function to initialize the page
+        function initializePage() {
+            preload(); // Call existing function
+        }
+
+        // Attach function to window to make it accessible globally
+        window.initializePage = initializePage;
     </script>
 
 </body>
