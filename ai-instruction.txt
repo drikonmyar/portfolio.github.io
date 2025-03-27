@@ -5,7 +5,7 @@ Profession - Software Engineer / Backend developer
 Skillset - Java, Spring Boot, SQL
 Current company - Infosys (Joined in Dec, 2021 - 3+ years of experience)
 Highest qualification - B.Tech (2021) - 8.4 CGPA
-Resume - https://nojha.in/pdfs/Resume-Nabyendu_Ojha.pdf
+Resume - https://nojha.in/pdfs/Resume_NabyenduOjha.pdf
 Achievements -  1. Achieved AIR 143 in CodeKaze 2024
                 2. Achieved AIR 299 in CodeKaze 2023
                 3. Achieved Global Rank 2617 in TCS CodeVita 2022
