@@ -76,7 +76,7 @@ function topFunction() {
 
 
 // Initialize Lucide icons
-lucide.createIcons();
+// lucide.createIcons();
 
 
 
