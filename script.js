@@ -171,7 +171,7 @@ async function sendMessage() {
     }
 }
 
-const API_KEY = "AIzaSyAerSIPSKhlafDXUclwTy9F9t5A87YcpqE"; // Replace with your actual API key
+const API_KEY = "AIzaSyCNBmoUB_KCdzc34R_T3xZ83dDQF8aV6ro"; // Replace with your actual API key
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 // Function to make API call and get bot response using Gemini API
