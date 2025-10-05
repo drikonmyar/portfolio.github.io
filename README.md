@@ -9,7 +9,9 @@ This is my portfolio website. This is my first website as well. I have acquired 
    This is built using `openrouter API` with `openai/gpt-3.5-turbo` model and personalised prompt is added so that it can answer questions on behalf of me.
    
    Update 1: Added `Gemini API`
-   
+
+   ![image](https://github.com/user-attachments/assets/3169a572-e761-485f-9821-cd0a74331750)
+
    ![image](https://github.com/user-attachments/assets/3be8ebc0-948c-4947-bbda-6270e630bcdb)
 
 ### 2. Email Contact Form
