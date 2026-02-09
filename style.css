@@ -1939,3 +1939,10 @@ button {
 }
 
 /* Mobile Optimization for updated skill section ends */
+
+/* Target 1920x1080 only */
+@media (width: 1920px) and (height: 1080px) {
+    .home-content {
+        padding: 124px 5px 10px 10px;
+    }
+}

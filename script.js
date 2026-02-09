@@ -56,10 +56,18 @@ function sendEmail() {
 // Go to top starts
 
 mybutton = document.getElementById("topBtn");
+const headerSection = document.querySelector(".header");
 
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
+    if (headerSection) {
+        if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+            headerSection.classList.add("shadow-nav");
+        } else {
+            headerSection.classList.remove("shadow-nav");
+        }
+    }
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
     } else {
