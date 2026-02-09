@@ -1866,11 +1866,34 @@ button {
 
 
     .hobby {
-        margin-left: 38%;
+        margin-left: 30%;
+        width: 100%;
+        text-align: center;
     }
 
     .hobby-wrapper {
-        margin-left: 161%;
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+        left: auto;
+        transform: none;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .hobby-content {
+        position: static;
+        left: auto;
+        transform: none;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .about-heading {
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
     }
 
 
