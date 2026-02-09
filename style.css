@@ -489,6 +489,162 @@ body {
     margin-top: 10px;
 }
 
+/* Timeline layout for trainings */
+.trainings.timeline {
+    height: auto;
+    padding: 107px 0 80px;
+}
+
+.trainings.timeline .trainings-content {
+    position: relative;
+    height: auto;
+    width: 80vw;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 0 auto;
+}
+
+.trainings.timeline .trainings-wrapper {
+    position: relative;
+    height: auto;
+    width: 100%;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 40px auto 0;
+    padding: 10px 0 40px;
+}
+
+.trainings.timeline .trainings-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 14px;
+    transform: translateX(-50%);
+    background: #1b1b1b;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 2px #000000, inset 0 0 0 6px #2c2c2c;
+}
+
+.trainings.timeline .trainings-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(to bottom,
+            #ffd500 0 16px,
+            transparent 16px 32px);
+}
+
+.trainings.timeline .courses-container {
+    position: relative;
+    width: 100%;
+    margin: 32px 0;
+    display: flex;
+}
+
+.trainings.timeline .courses-container::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 32px;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffd500;
+    border: 4px solid #000000;
+    box-shadow: 0 0 0 6px rgba(255, 213, 0, 0.18);
+    z-index: 2;
+}
+
+.trainings.timeline .courses-container:nth-child(odd) {
+    justify-content: flex-start;
+}
+
+.trainings.timeline .courses-container:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.trainings.timeline .course-odd,
+.trainings.timeline .course-even {
+    float: none;
+    width: 460px;
+    max-width: 460px;
+    min-height: 380px;
+    margin: 0;
+    position: relative;
+}
+
+.trainings.timeline .course-preview {
+    width: 150px;
+    padding: 30px 18px;
+}
+
+.trainings.timeline .course-info {
+    width: 160px;
+    padding: 30px 18px;
+}
+
+.trainings.timeline .course-odd::after,
+.trainings.timeline .course-even::after {
+    content: "";
+    position: absolute;
+    top: 38px;
+    width: 50px;
+    height: 2px;
+    background: #ffd500;
+}
+
+.trainings.timeline .course-odd::after {
+    right: -50px;
+}
+
+.trainings.timeline .course-even::after {
+    left: -50px;
+}
+
+@media (max-width: 900px) {
+    .trainings.timeline {
+        padding: 60px 0;
+    }
+
+    .trainings.timeline .trainings-wrapper::before,
+    .trainings.timeline .trainings-wrapper::after {
+        left: 12px;
+        transform: none;
+    }
+
+    .trainings.timeline .courses-container {
+        justify-content: flex-start;
+        padding-left: 36px;
+    }
+
+    .trainings.timeline .courses-container::before {
+        left: 12px;
+        transform: none;
+    }
+
+    .trainings.timeline .course-odd,
+    .trainings.timeline .course-even {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .trainings.timeline .course-odd::after,
+    .trainings.timeline .course-even::after {
+        left: -36px;
+        right: auto;
+        width: 36px;
+    }
+}
+
 .courses-container {
     font-family: 'Play', sans-serif;
 }
@@ -498,17 +654,20 @@ body {
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
     display: flex;
+    align-items: stretch;
     margin: 50px 20px;
     overflow: hidden;
-    max-width: max-content;
+    width: 620px;
+    max-width: 620px;
     float: left;
+    min-height: 300px;
 }
 
 .course-preview {
     background-color: #000000;
     color: #ffd500;
-    padding: 30px;
-    width: 300px;
+    padding: 36px 28px;
+    width: 210px;
 }
 
 .course-preview p {
@@ -524,9 +683,9 @@ body {
 }
 
 .course-info {
-    padding: 30px;
+    padding: 36px 28px;
     position: relative;
-    width: 400px;
+    width: 260px;
 }
 
 .course-preview>h5 {
@@ -561,10 +720,13 @@ body {
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
     display: flex;
+    align-items: stretch;
     margin: 50px 20px;
     overflow: hidden;
-    max-width: max-content;
+    width: 620px;
+    max-width: 620px;
     float: right;
+    min-height: 300px;
 }
 
 
