@@ -1945,4 +1945,9 @@ button {
     .home-content {
         padding: 124px 5px 10px 10px;
     }
+
+    .projects-wrapper {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
