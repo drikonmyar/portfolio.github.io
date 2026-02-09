@@ -866,13 +866,65 @@ body {
     padding: 80px 200px;
 }
 
+/* Interest grid: staggered 3 on top, 2 centered below */
+.hobby-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: auto;
+    justify-content: center;
+    justify-items: center;
+    align-items: start;
+    align-content: start;
+    column-gap: 40px;
+    row-gap: 0;
+    width: max-content;
+    max-width: 100%;
+    margin: 40px auto 0;
+    height: auto;
+    padding: 0 0 60px;
+    position: static;
+    top: auto;
+    left: auto;
+    transform: translateY(90px);
+}
+
+.hobby-wrapper .diamond {
+    margin: 0;
+}
+
+.hobby-wrapper .diamond:nth-child(1) {
+    grid-column: 1 / 3;
+}
+
+.hobby-wrapper .diamond:nth-child(2) {
+    grid-column: 3 / 5;
+}
+
+.hobby-wrapper .diamond:nth-child(3) {
+    grid-column: 5 / 7;
+}
+
+.hobby-wrapper .diamond:nth-child(4) {
+    grid-column: 2 / 4;
+}
+
+.hobby-wrapper .diamond:nth-child(5) {
+    grid-column: 4 / 6;
+}
+
+/* Pull second row upward to overlap the first row slightly */
+.hobby-wrapper .diamond:nth-child(4),
+.hobby-wrapper .diamond:nth-child(5) {
+    margin-top: -40px;
+}
+
 .diamond {
     position: relative;
     height: 250px;
     width: 250px;
     line-height: 250px;
     text-align: center;
-    margin: 10px 40px;
+    margin: 0 40px;
     font-family: 'Play', sans-serif;
     font-weight: bolder;
     letter-spacing: 1px;
@@ -921,6 +973,16 @@ body {
     height: 150px;
     width: 140px;
     filter: grayscale(100%);
+}
+
+.interest-small {
+    height: 120px !important;
+    width: 120px !important;
+}
+
+.interest-small-coding {
+    height: 90px !important;
+    width: 90px !important;
 }
 
 
