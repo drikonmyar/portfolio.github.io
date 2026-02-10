@@ -262,6 +262,7 @@ body {
 .about {
     height: 90vh;
     position: relative;
+    padding-top: 120px;
 }
 
 .about-content {
@@ -373,6 +374,7 @@ body {
 .education {
     height: 90vh;
     position: relative;
+    padding-top: 120px;
 }
 
 .education-content {
@@ -466,31 +468,28 @@ body {
 
 
 .trainings {
-    height: 450vh;
+    height: auto;
     position: relative;
+    padding: 120px 0 80px;
 }
 
 .trainings-content {
-    position: absolute;
-    height: 430vh;
+    position: relative;
+    height: auto;
     width: 80vw;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
 }
 
 .trainings-wrapper {
     position: relative;
-    height: 420vh;
+    height: auto;
     width: 60%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 10px;
+    margin: 20px auto 0;
 }
 
 .courses-container {
     font-family: 'Play', sans-serif;
+    display: flow-root;
 }
 
 .course-odd {
@@ -573,6 +572,7 @@ body {
 .skills {
     height: 90vh;
     position: relative;
+    padding-top: 120px;
 }
 
 .skills-content {
@@ -723,6 +723,7 @@ body {
 .projects {
     height: 160vh;
     position: relative;
+    padding-top: 120px;
 }
 
 .projects-content {
@@ -844,6 +845,7 @@ body {
 .hobby {
     height: 90vh;
     position: relative;
+    padding-top: 120px;
 }
 
 .hobby-content {
@@ -987,13 +989,25 @@ body {
 
 
 .contact {
-    height: 100vh;
+    height: 83vh;
     position: relative;
+    padding-top: 120px;
+}
+
+/* Ensure anchored sections align consistently below fixed navbar */
+#goto-about,
+#goto-education,
+#goto-trainings,
+#goto-skills,
+#goto-projects,
+#goto-hobby,
+#goto-contact {
+    scroll-margin-top: 120px;
 }
 
 .contact-content {
     position: absolute;
-    height: 80vh;
+    height: 65vh;
     width: 80vw;
     top: 50%;
     left: 50%;
@@ -1002,7 +1016,7 @@ body {
 
 .contact-wrapper {
     position: relative;
-    height: 60vh;
+    height: 45vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -1105,6 +1119,7 @@ body {
 .contact .right form .button {
     height: 47px;
     width: 170px;
+    margin-bottom: 0px;
 }
 
 .contact .right form .button button {
@@ -1139,7 +1154,7 @@ body {
 
 .last-line {
     position: relative;
-    margin-top: 32px;
+    margin-top: 70px;
     font-size: xx-large;
     text-align: center;
     z-index: 0;
@@ -1827,11 +1842,12 @@ button {
 
     .trainings {
         margin-left: 38%;
-        height: 450vh;
+        height: auto;
     }
 
     .trainings-wrapper {
         margin-left: 310%;
+        height: auto;
     }
 
     .course-odd {
