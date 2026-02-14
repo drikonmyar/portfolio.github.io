@@ -251,3 +251,112 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // section header highlight while scroll ends
+
+// Hero scramble text animation
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = Array.from(document.querySelectorAll(".scramble-text"));
+    if (!elements.length) return;
+
+    const phrases = [
+        "4+ Years of Experience.",
+        "Assistant Manager at Deloitte.",
+        "Ex-Engineer at Infosys.",
+        "Spring Boot & Microservices Specialist.",
+        "900+ LeetCode Problems Solved.",
+        "Expert in SQL and NoSQL Databases.",
+        "Building Secure, Scalable REST APIs.",
+        "Certified Java Developer.",
+        "5★ HackerRank Rating.",
+        "Automated CI/CD Pipelines.",
+        "Jenkins Microservice Builds.",
+        "XL Deploy Environment Promotions.",
+        "Rancher Environment Monitoring."
+    ];
+
+    class ScrambleText {
+        constructor(element, chars) {
+            this.el = element;
+            this.chars = chars;
+            this.frame = 0;
+            this.queue = [];
+            this.frameRequest = null;
+            this.resolve = null;
+            this.update = this.update.bind(this);
+        }
+
+        setText(newText) {
+            const oldText = this.el.textContent;
+            const length = Math.max(oldText.length, newText.length);
+            this.queue = [];
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || "";
+                const to = newText[i] || "";
+                const start = Math.floor(Math.random() * 8);
+                const end = start + 40 + Math.floor(Math.random() * 30);
+                this.queue.push({ from, to, start, end, char: "" });
+            }
+
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            return new Promise((resolve) => {
+                this.resolve = resolve;
+                this.update();
+            });
+        }
+
+        update() {
+            let output = "";
+            let complete = 0;
+
+            for (let i = 0; i < this.queue.length; i++) {
+                const item = this.queue[i];
+                if (this.frame >= item.end) {
+                    complete++;
+                    output += item.to;
+                } else if (this.frame >= item.start) {
+                    if (!item.char || Math.random() < 0.28) {
+                        item.char = this.randomChar(item.to);
+                    }
+                    output += item.char;
+                } else {
+                    output += item.from;
+                }
+            }
+
+            this.el.textContent = output;
+            if (complete === this.queue.length) {
+                this.resolve();
+            } else {
+                this.frame++;
+                this.frameRequest = requestAnimationFrame(this.update);
+            }
+        }
+
+        randomChar(targetChar) {
+            if (targetChar === " ") return " ";
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+    }
+
+    const scramblers = elements.map((el) =>
+        new ScrambleText(el, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*")
+    );
+
+    const run = (scrambler, offset = 0) => {
+        let index = offset % phrases.length;
+        const loop = () => {
+            scrambler.setText(phrases[index]).then(() => {
+                setTimeout(() => {
+                    index = (index + 1) % phrases.length;
+                    loop();
+                }, 1000);
+            });
+        };
+        loop();
+    };
+
+    scramblers.forEach((scrambler, i) => {
+        const offset = Number(elements[i].dataset.offset || i);
+        run(scrambler, offset);
+    });
+});
