@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3R97FCKD1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-J3R97FCKD1');
+    </script>
+
+    <meta property='og:title' content="Nabyendu's Portfolio Website" />
+    <meta property='og:image' content='https://nojha.in/pics/tn.png' />
+    <meta property='og:description'
+        content='This is my portfolio website. This is my first website as well. I have acquired some knowledge on HTML, CSS and JavaScript surfing the internet and it is the outcome of that only. If you have any suggestion regarding its improvement, I will be happy to hear that. Thanks for your time.' />
+    <meta property='og:url' content='https://nojha.in/' />
+    <meta property='og:image:width' content='600' />
+    <meta property='og:image:height' content='400' />
+
+    <meta property="og:type" content='website' />
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+    <title>Portfolio | Nabyendu Ojha</title>
+    <link rel="icon" href="./logos/tabicon.webp">
+</head>
+
+<body class="scrollbar cursor container-fluid" id="style-scroll" onload="initializePage()">
+
+    <div class="force-overflow">
+        <div id="anim">
+
+            <div id="boxes-anim">
+                <div class="box-anim">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="box-anim">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="box-anim">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="box-anim">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+        </div>
+
+        <button onclick="topFunction()" id="topBtn"><img src="./logos/arrow.webp" alt=""></button>
+
+        <section class="header fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <div class="navbar-brand"><a href="https://nojha.in/"><img src="./logos/text.webp" alt=""></a></div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="mx-auto"></div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="index.html" data-replace="Home"><span>Home</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#goto-about" data-replace="About"><span>About</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#goto-education" data-replace="Education"><span>Education</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#goto-trainings" data-replace="Training"><span>Training</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#goto-skills" data-replace="Expertise"><span>Expertise</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#goto-projects" data-replace="Leisure"><span>Leisure</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#goto-hobby" data-replace="Interest"><span>Interest</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#goto-contact" data-replace="Contact"><span>Contact</span></a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <section class="home">
+            <div class="home-background">
+                <div class="home-content">
+                    <div class="home-text">
+                        <h3>Hi, my name is <span class="badge bg-dark"
+                                style="text-transform: uppercase; color: #ffd500;">Nabyendu Ojha</span> and I'm a <span
+                                class="badge bg-dark" style="text-transform: uppercase; color: #ffd500;">Certified
+                                Software Engineer</span></h3>
+                    </div>
+                    <div id="green-line"></div>
+                </div>
+                <div class="box">
+                    <div class="nav-wrapper">
+                        <div class="dots-wrapper">
+                            <div id="dot-1" class="browser-dot"></div>
+                            <div id="dot-2" class="browser-dot"></div>
+                            <div id="dot-3" class="browser-dot"></div>
+                        </div>
+
+                        <ul id="navigation">
+                            <li><a href="./pdfs/Resume_NabyenduOjha.pdf" target="_blank">Get CV</a></li>
+                        </ul>
+                    </div>
+                    <div class="box-text">
+                        <div class="box-intro"><span style="color:rgb(76 29 149)">AI</span> may be a <span
+                                style="color:rgb(197, 0, 0)">compass</span> but not
+                            a
+                            <span style="color:#0000FF">captain</span>
+                        </div>
+
+                    </div>
+                    <div class="ai-chat">
+                        <!-- Tech Squishy -->
+                        <button class="squishy squishy-tech" id="openChatBtn">
+                            <!-- <i data-lucide="sparkles"></i> -->
+                            <i class="fa-brands fa-rocketchat"></i>
+                            AI Assist
+                        </button>
+                    </div>
+                </div>
+        </section>
+
+        <section class="about" id="goto-about">
+            <div class="about-content">
+                <div class="about-heading">
+                    <div class="about-heading-text"><span style="color: #000000;">About me</span></div>
+                    <div id="about-heading-greenline"></div>
+                </div>
+                <div class="about-wrapper">
+                    <div class="about-pic">
+                        <img src="./pics/me.webp" alt="">
+                    </div>
+                    <div class="about-description">
+                        <span style="font-weight: bold; font-size: large;">This is Nabyendu Ojha</span>
+                        <hr>
+                        <p>Currently working at Infosys. Though I've completed my
+                            graduation in Civil Engineering, I'm passionate about computer & related technologies and
+                            I'm happy to get the opportunity to pursue my passion finally. I'm trained in Java & DBMS.
+                            Acquired knowledge
+                            of
+                            C++ & Python as
+                            well. I'm interested in machine learning and data science. I've gained some skills in
+                            HTML, CSS & JS surfing the internet and the demo is in front of you :)</p>
+                        <div class="d-grid gap-2 about-button">
+                            <a href="./pdfs/Resume_NabyenduOjha.pdf" target="_blank" class="btn btn-primary">Download
+                                CV
+                                &nbsp;<i class="fa-solid fa-download"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="education" id="goto-education">
+            <div class="education-content">
+                <div class="about-heading">
+                    <div class="about-heading-text"><span style="color: #000000;">Educations & Qualifications</span>
+                    </div>
+                    <div id="about-heading-greenline"></div>
+                </div>
+                <div class="education-wrapper">
+                    <div class="edu-container">
+                        <div class="grid-educontainer">
+                            <div class="grid-eduitem gl"><a href="https://jgec.ac.in/" target="_blank"><img
+                                        class="left-logo" src="./logos/jgeclogo.webp" alt=""></a></div>
+                            <div class="grid-eduitem gt"><span class="edu-head"><a href="https://jgec.ac.in/"
+                                        target="_blank">Jalpaiguri Government Engineering College</a></span>
+                                Jalpaiguri, India
+                                <div class="edu-det">Qualification: B.Tech (Civil Engineering)<br>Passing Year:
+                                    2021<br>Board:
+                                    MAKAUT
+                                    (Autonomous)<br>CGPA: 8.38</div>
+                            </div>
+                        </div>
+                        <div class="grid-educontainer">
+                            <div class="grid-eduitem gl mkci-exception"><a
+                                    href="https://www.facebook.com/pages/category/Community/Mahiary-Kundu-Chowdhury-Institution-353140688171387/"
+                                    target="_blank"><img class="mid-logo" src="./logos/mkcilogo.webp" alt=""></a></div>
+                            <div class="grid-eduitem gt"><span class="edu-head"><a
+                                        href="https://www.facebook.com/pages/category/Community/Mahiary-Kundu-Chowdhury-Institution-353140688171387/"
+                                        target="_blank">Mohiary Kundu Chowdhury Institution</a></span>
+                                Howrah, India
+                                <div class="edu-det">Qualification: Higher Secondary (10+2)<br>Passing Year:
+                                    2017<br>Board:
+                                    WBCHSE<br>Percentage: 86.20%</div>
+                            </div>
+                        </div>
+                        <div class="grid-educontainer">
+                            <div class="grid-eduitem gl"><a href="https://www.rkmvmidnapore.org/" target="_blank"><img
+                                        class="right-logo" src="./logos/rkmvlogo.webp" alt=""></a></div>
+                            <div class="grid-eduitem gt"><span class="edu-head"><a href="https://www.rkmvmidnapore.org/"
+                                        target="_blank">Ramakrishna Mission Vidyabhavan</a></span>
+                                Midnapore, India
+                                <div class="edu-det">Qualification: Secondary (10th)<br>Passing Year: 2015<br>Board:
+                                    WBBSE<br>Percentage: 89.71%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trainings" id="goto-trainings">
+            <div class="trainings-content">
+                <div class="about-heading">
+                    <div class="about-heading-text"><span style="color: #000000;">Trainings & Internships</span></div>
+                    <div id="about-heading-greenline"></div>
+                </div>
+                <div class="trainings-wrapper">
+
+                    <div class="courses-container">
+                        <div class="course-odd">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>Data Structures</h5>
+                                <p>From: 01/06/2022 To: 31/10/2022</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt OOPS, Recursion, Binary Tree, Stacks, Queues, Hashmaps, Priority Queue,
+                                    Backtracing, Dynamic Programming & Graphs.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://www.codingninjas.com/" target="_blank">Coding Ninjas</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/dsa-cn.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-even">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>Java Fundamentals</h5>
+                                <p>From: 01/05/2022 To: 01/06/2022</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt basics of Java, stack & heap memory, 1D & 2D arrays, access modifiers,
+                                    functions, classes and scope of variables.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://www.codingninjas.com/" target="_blank">Coding Ninjas</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/java-cn.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-odd">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>Google IT Support</h5>
+                                <p>From: 23/08/2021 To: 07/02/2022</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt about computer networking, operating systems, IT security, IT infrastructure
+                                    services, IT technical support process.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://www.coursera.org/" target="_blank">Coursera</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/googleit-coursera.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-even">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>HyperWorks (CAE)</h5>
+                                <p>From: 09/11/2020 To: 12/02/2021</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Worked with Altair HyperWorks to find stress-strain characteristics of various
+                                    sections for applying loads from different directions.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://www.eleation.com/" target="_blank">ELEATION</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/hyperworks-eleation.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-odd">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>RCC : Basics & Advanced</h5>
+                                <p>From: 01/08/2020 To: 26/08/2020</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt about site engineering drawings, site hierarchy, SOP for RCC elements, site
+                                    logistics, WBS, various stakeholders & site safety.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://knowhowschools.com/" target="_blank">Know How Schools</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/rcc-knowhowschools.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-even">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>Python Programming</h5>
+                                <p>From: 19/04/2020 To: 31/05/2020</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt variables in Python, OOPs, SQLite database, to develop a GUI with PyQT and
+                                    application of Python in various disciplines.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/python-internshala.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-odd">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>STAAD.Pro</h5>
+                                <p>From: 23/12/2019 To: 22/01/2020</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Designed 2 RCC structures (G+3 building, Water tank) & 1 steel structure
+                                    (Transmission
+                                    tower) and analysed them with suitable loads.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a>
+                                </h5>
+                                <p>Place: Bonhooghly, Kolkata<a href="./pdfs/staadpro-msme.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-even">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>Structural Engineering</h5>
+                                <p>From: 17/06/2019 To: 24/06/2019</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Created different types of truss & analysed them with given loads using Python
+                                    (Jupyter
+                                    Notebook).</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="http://www.iitkgp.ac.in/department/CE" target="_blank">CE Dept, IITKGP</a>
+                                </h5>
+                                <p>Place: IIT, Kharagpur<a href="./pdfs/structure-iitkgp.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-odd">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>AutoCAD 3D</h5>
+                                <p>From: 24/12/2018 To: 23/01/2019</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt 3D modeling in Autocad. Also designed plan & elevation of a
+                                    2-storeyed building, created 3D view and rendered it.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="http://www.msmetoolroomkolkata.com/" target="_blank">MSME Tool Room</a>
+                                </h5>
+                                <p>Place: Bonhooghly, Kolkata<a href="./pdfs/autocad-msme.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-even">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>Building Analysis</h5>
+                                <p>From: 29/09/2018 To: 30/09/2018</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt Primavera, ETABS & SAP2000. Also completed one project on
+                                    building analysis & planning.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://www.skyfilabs.com/" target="_blank">Skyfi Labs</a></h5>
+                                <p>Place: JGEC, Jalpaiguri<a href="./pdfs/buildinganalysis-skyfilabs.pdf"
+                                        target="_blank"><img src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="courses-container">
+                        <div class="course-odd">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>Advance Excel</h5>
+                                <p>From: 21/06/2018 To: 18/07/2018</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt Excel basics, Excel functions, data visualization & various advanced concepts
+                                    of
+                                    Excel.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/advanceexcel-internshala.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="courses-container">
+                        <div class="course-even">
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Course</p>
+                                <h5>AutoCAD 2D</h5>
+                                <p>From: 01/06/2018 To: 12/07/2018</p>
+                            </div>
+                            <div class="course-info">
+                                <h6>Description</h6>
+                                <p>Learnt AutoCAD interface, drawing aids & basic objects, complex objects & object
+                                    editing, blocks & annotations & plotting.</p>
+                            </div>
+                            <div class="course-preview">
+                                <p style="text-transform: uppercase;">Organizer</p>
+                                <h5><a href="https://internshala.com/" target="_blank">Internshala</a></h5>
+                                <p>Mode: Virtual<a href="./pdfs/autocad-internshala.pdf" target="_blank"><img
+                                            src="./logos/pdfimg.webp" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <section class="skills" id="goto-skills">
+            <div class="skills-content">
+                <div class="about-heading">
+                    <div class="about-heading-text"><span style="color: #000000;">My Expertises</span></div>
+                    <div id="about-heading-greenline"></div>
+                </div>
+                <div class="grid-container">
+                    <div class="skill">
+                        <i class="devicon-java-plain colored"></i>
+                        <span>Java</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-spring-plain colored"></i>
+                        <span>Spring Boot</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-maven-plain colored"></i>
+                        <span>Maven</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-postgresql-plain colored"></i>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-mysql-plain colored"></i>
+                        <span>MySQL</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-mongodb-plain colored"></i>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="skill blue-color">
+                        <i class="devicon-python-plain colored"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-cplusplus-plain colored"></i>
+                        <span>C++</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-html5-plain colored"></i>
+                        <span>HTML</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-css3-plain colored"></i>
+                        <span>CSS</span>
+                    </div>
+                    <div class="skill saffron-color">
+                        <i class="devicon-javascript-plain colored"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-php-plain colored"></i>
+                        <span>PHP</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-react-original colored"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-graphql-plain colored"></i>
+                        <span>GraphQL</span>
+                    </div>
+                    <div class="skill saffron-color">
+                        <i class="devicon-apachekafka-original colored"></i>
+                        <span>Kafka</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-docker-plain colored"></i>
+                        <span>Docker</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-kubernetes-plain colored"></i>
+                        <span>Kubernetes</span>
+                    </div>
+                    <div class="skill green-color">
+                        <i class="devicon-jenkins-plain colored"></i>
+                        <span>Jenkins</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-git-plain colored"></i>
+                        <span>Git</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-amazonwebservices-plain colored"></i>
+                        <span>AWS</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-jira-plain colored"></i>
+                        <span>Jira</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-sonarqube-plain colored"></i>
+                        <span>SonarQube</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-swagger-plain colored"></i>
+                        <span>Swagger</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-rancher-plain colored"></i>
+                        <span>Rancher</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-elasticsearch-plain colored"></i>
+                        <span>Elastic Logs</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-hibernate-plain colored"></i>
+                        <span>Hibernate</span>
+                    </div>
+                    <div class="skill">
+                        <i class="devicon-junit-plain colored"></i>
+                        <span>JUnit</span>
+                    </div>
+                    <div class="skill green-color">
+                        <i class="fas fa-box-open"></i>
+                        <span>XL Deploy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects" id="goto-projects">
+            <div class="projects-content">
+                <div class="about-heading">
+                    <div class="about-heading-text"><span style="color: #000000;">Leisure Works</span></div>
+                    <div id="about-heading-greenline"></div>
+                </div>
+                <div class="projects-wrapper">
+                    <div class="grid2-container">
+
+                        <div class="civil-grid">
+                            <a href="https://drive.google.com/drive/folders/14nK0PHr1hNls8M7rNZvvSnQAaYlSNz09?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-6 civil-exception' src='./logos/building.webp' alt=''>
+                                <p>"Civil Projects"</p>
+                            </a>
+                        </div>
+
+                        <div class="arduino-grid">
+                            <a href="https://drive.google.com/drive/folders/1X1ak0cSy_y8LNB8n8XqoAJmNuih2g8Au?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-12 sap-exception' src='./logos/sap.webp' alt=''>
+                                <p>"SAP Projects"</p>
+                            </a>
+                        </div>
+
+
+
+                        <div class="python-grid">
+                            <a href="https://drive.google.com/drive/folders/1UHsX8QhlCnnb2F7LqN5Mhvrb1LuEwJGM?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-14 ms-exception' src='./logos/pythonimg.webp' alt=''>
+                                <p>"Python Projects"</p>
+                            </a>
+                        </div>
+
+
+
+                        <div class="civilcad-grid">
+                            <a href="https://drive.google.com/drive/folders/1piVb0TV739Gm81oG7dC38vk7O0xNJFUp?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-5' src='./pics/civilimg.webp' alt=''>
+                                <p>"Civil - CAD 3D"</p>
+                            </a>
+                        </div>
+
+
+                        <div class="bccicad-grid">
+                            <a href="https://drive.google.com/drive/folders/1SLjXl1kbpC-hAfuLHqPh0TuheH0NdDrZ?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-2' src='./pics/bcciimg.webp' alt=''>
+                                <p>"BCCI - CAD 3D"</p>
+                            </a>
+                        </div>
+
+                        <div class="sketch-grid">
+                            <a href="https://drive.google.com/drive/folders/1w1AT1IYs3-GUTpx8bnOquzkfMEespix7?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-9' src='logos/web.webp' alt=''>
+                                <p>"Web Projects"</p>
+                            </a>
+                        </div>
+
+                        <div class="sketch-grid">
+                            <a href="https://drive.google.com/drive/folders/1HWHRfj5MnO64LsoU49q8Mp8fATbyy2Mi?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-11 java-exception' src='./logos/java.webp' alt=''>
+                                <p>"Java Projects"</p>
+                            </a>
+                        </div>
+
+
+
+
+                        <div class="sketch-grid">
+                            <a href="https://drive.google.com/drive/folders/1qorq0db9t6nhlQXOSgVbSHXDhmPkxS5b?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-3' src='./logos/sketch.webp' alt=''>
+                                <p>"Pencil Sketch"</p>
+                            </a>
+                        </div>
+
+
+                        <div class="sketch-grid">
+                            <a href="https://drive.google.com/drive/folders/1YDJnb7yOfikAYM_2a6H1WGpNdorMlgsM?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-5 iot-exception' src='./logos/iot.webp' alt=''>
+                                <p>"IOT Projects"</p>
+                            </a>
+                        </div>
+
+                        <div class="presentation-grid">
+                            <a href="https://drive.google.com/drive/folders/17GgDFIqOhtEqmcoJ_yIwH9qn1HFMUYk0?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-4 civil-exception' src='./logos/presentation.webp'
+                                    alt=''>
+                                <p>"Presentations"</p>
+                            </a>
+                        </div>
+
+
+
+
+
+                        <div class="android-grid">
+                            <a href="https://drive.google.com/drive/folders/1kPMyE_8sidqoKZaNlp7y0PmQjR21EB5R?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-1 android-exception' src='./logos/android.webp' alt=''>
+                                <p>"Android Projects"</p>
+                            </a>
+                        </div>
+
+
+
+
+                        <div class="jgeccad-grid">
+                            <a href="https://drive.google.com/drive/folders/1IuHPrhCYxJ-zjPQCj9pX3mpL1Oh0drZ2?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-8' src='./pics/jgeclogoimg.webp' alt=''>
+                                <p>"JGEC - CAD 3D"</p>
+                            </a>
+                        </div>
+
+                        <div class="ds-grid">
+                            <a href="https://drive.google.com/drive/folders/1e0xy8g3eRBFQsWzAtabqt9TI0pQ19Ud7?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-14 ds-exception' src='./logos/datascience.webp' alt=''>
+                                <p>"Data Science Projects"</p>
+                            </a>
+                        </div>
+
+
+
+
+                        <div class="burjcad-grid">
+                            <a href="https://drive.google.com/drive/folders/1GGg4IOkyUtxQg02_FNjjbyr28560JHve?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-10' src='./pics/burjimg.webp' alt=''>
+                                <p>"Burj Khalifa - CAD 3D"</p>
+                            </a>
+                        </div>
+
+                        <div class="sketch-grid">
+                            <a href="https://drive.google.com/drive/folders/1A9sF5YBeH7hRDEkl-X8hRWOlbBFrpKhD?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-7 cloud-exception' src='./logos/cloud.webp' alt=''>
+                                <p>"Cloud Projects"</p>
+                            </a>
+                        </div>
+
+                        <div class="c-grid">
+                            <a href="https://drive.google.com/drive/folders/1C_o1Y0Nfk1dp0yby4ycZAfgDf4FVMZyD?usp=sharing"
+                                target="_blank">
+                                <img class='grid-item grid-item-14 ms-exception' src='./logos/c++.webp' alt=''>
+                                <p>"C++ Projects"</p>
+                            </a>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hobby" id="goto-hobby">
+            <div class="hobby-content">
+                <div class="about-heading">
+                    <div class="about-heading-text"><span style="color: #000000;">I'm interested in</span></div>
+                    <div id="about-heading-greenline"></div>
+                </div>
+                <div class="hobby-wrapper">
+                    <div class='diamond diamond1'>
+                        <img src="./logos/chessimg.webp" alt="">
+                        Chess
+                    </div>
+                    <div class='diamond diamond2'>
+                        <img src="./logos/geopoliticsimg.webp" alt="">
+                        Geopolitics
+                    </div>
+                    <div class='diamond diamond1'>
+                        <img src="./logos/coding.webp" alt="" class="interest-small interest-small-coding">
+                        Coding
+                    </div>
+                    <div class='diamond diamond2'>
+                        <img src="./logos/swimming.webp" alt="">
+                        Swimming
+                    </div>
+                    <div class='diamond diamond1'>
+                        <img src="./logos/badminton.webp" alt="" class="interest-small">
+                        Badminton
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="goto-contact">
+            <div class="contact-content">
+                <div class="about-heading">
+                    <div class="about-heading-text"><span style="color: #000000;">Contact me</span></div>
+                    <div id="about-heading-greenline"></div>
+                </div>
+                <div class="contact-wrapper">
+                    <div class="left">
+                        <div class="text">
+                            Get in Touch</div>
+                        <p>Dear visitor! Thanks for your time. I've intentionally blocked access to some documents due
+                            to privacy concerns. Feel free to contact me in case you want to view any. Kindly provide
+                            suggestions for improvement and your valuable feedback. Have a good day.</p>
+                        <div class="icons">
+                            <div class="row">
+                                <i class="fa-solid fa-user-tie"></i>
+                                <div class="info">
+                                    <div class="head"><b>Name</b>
+                                    </div>
+                                    <div class="sub-title">
+                                        Nabyendu Ojha</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="info">
+                                    <div class="head">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="sub-title">
+                                        Kolkata, India</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <i class="fas fa-envelope"></i>
+                                <div class="info">
+                                    <div class="head">
+                                        <b>Email</b>
+                                    </div>
+                                    <div class="sub-title">
+                                        nabyenduojha99@gmail.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+
+                        <form onsubmit="sendEmail(); reset(); return false;">
+                            <div class="text">
+                                Message me</div>
+                            <div class="fields">
+                                <div class="field name">
+                                    <input name="name" type="text" id="form-name" placeholder="Name" required>
+                                </div>
+                                <div class="field email">
+                                    <input name="email" type="email" id="form-email" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <input name="subject" type="text" id="form-subject" placeholder="Subject" required>
+                            </div>
+                            <div class="field textarea">
+                                <textarea name="message" id="form-message" cols="30" rows="10" placeholder="Message"
+                                    required></textarea>
+                            </div>
+                            <div class="button">
+                                <button type="submit">Send message</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="last-line">
+                    &nbsp;
+                    <a href="https://www.linkedin.com/in/nabyendu-ojha/" target="_blank">
+                        <span class="iconify" data-icon="simple-icons:linkedin" data-width="32" data-height="32"></span>
+                    </a>
+                    &nbsp;
+                    <a href="https://leetcode.com/nojha99/" target="_blank">
+                        <span class="iconify" data-icon="simple-icons:leetcode" data-width="32" data-height="32"></span>
+                    </a>
+
+                    &nbsp;
+                    <a href="https://www.hackerrank.com/nabyenduojha99" target="_blank">
+                        <span class="iconify" data-icon="cib:hackerrank" data-width="34" data-height="34"></span>
+                    </a>
+
+                    &nbsp;
+                    <a href="https://www.codechef.com/users/n_ojha" target="_blank">
+                        <span class="iconify" data-icon="simple-icons:codechef" data-width="32" data-height="32"></span>
+                    </a>
+
+                    &nbsp;
+                    <a href="https://codeforces.com/profile/n_ojha" target="_blank">
+                        <span class="iconify" data-icon="simple-icons:codeforces" data-width="32"
+                            data-height="32"></span>
+                    </a>
+
+                    &nbsp;
+                    <a href="https://www.hackerearth.com/@nabyenduojha99" target="_blank">
+                        <span class="iconify" data-icon="simple-icons:hackerearth" data-width="32"
+                            data-height="32"></span>
+                    </a>
+
+                    &nbsp;
+                    <a href="https://stackoverflow.com/users/20977268/nabyendu" target="_blank">
+                        <span class="iconify" data-icon="mdi:stack-overflow" data-width="34" data-height="34"></span>
+                    </a>
+
+                    &nbsp;
+                    <a href="https://github.com/drikonmyar" target="_blank">
+                        <span class="iconify" data-icon="simple-icons:github" data-width="32" data-height="32"></span>
+                    </a>
+                    &nbsp;
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <footer>
+            <span class="counter-container"><i class="fa-regular fa-eye"></i>&nbsp;&nbsp;<span
+                    class="website-counter"></span></span>
+            <span>Created By <span class="footer-anim"><a href="https://nojha.in/"
+                        data-replace="nojha.in with ♥"><span>Nabyendu Ojha</span></a></span> | <span
+                    class="far fa-copyright"></span>
+                <span id="year"></span>
+                All rights reserved.</span>
+            <span class="dummy-span">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </footer>
+    </div>
+
+    <!-- Popup Chat Window -->
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <span>Nabyendu's chat</span>
+            <button id="closeChatBtn">×</button>
+        </div>
+        <div class="chat-body">
+            <div id="chatMessages" class="messages"></div>
+            <div class="input-container">
+                <input type="text" id="userInput" placeholder="Type a message...">
+                <button id="sendMessageBtn" class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                <!-- Send Icon -->
+            </div>
+        </div>
+    </div>
+
+    <!-- audio files -->
+    <audio id="messageSound" src="audios/chat-received.mp3"></audio>
+    <audio id="successSound" src="audios/success.mp3"></audio>
+    <audio id="errorSound" src="audios/error.mp3"></audio>
+
+
+    <!-- Load Lucide Icons -->
+    <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="./script.js"></script>
+
+    <script src="./js/bootstrap.min.js"></script>
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script> -->
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9aOE5gjdurLGqR9JZzwzFMpn5v15m25Y",
+            authDomain: "portfolio-nabyendu.firebaseapp.com",
+            projectId: "portfolio-nabyendu",
+            storageBucket: "portfolio-nabyendu.firebasestorage.app",
+            messagingSenderId: "540684889169",
+            appId: "1:540684889169:web:7851fe6c53937351165c70",
+            measurementId: "G-61JNBKQP18"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Function to update visit count
+        async function updateVisitCount() {
+            const docRef = doc(db, "websiteStats", "visitCount");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                await updateDoc(docRef, { count: docSnap.data().count + 1 });
+                document.querySelector(".website-counter").textContent = docSnap.data().count + 1;
+            } else {
+                await setDoc(docRef, { count: 1 });
+                document.querySelector(".website-counter").textContent = 1;
+            }
+        }
+
+        // Automatically sign in the user anonymously
+        signInAnonymously(auth)
+            .then(() => console.log("Signed in as anonymous user"))
+            .catch((error) => console.error("Authentication error:", error));
+
+        // Detect when the user is signed in and update visit count
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                updateVisitCount();  // User is authenticated, update visit count
+            }
+        });
+
+        // Function to initialize the page
+        function initializePage() {
+            preload(); // Call existing function
+        }
+
+        // Attach function to window to make it accessible globally
+        window.initializePage = initializePage;
+    </script>
+
+</body>
+
+</html>
