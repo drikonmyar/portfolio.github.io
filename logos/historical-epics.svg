@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Historical Epics Icon</title>
+  <desc id="desc">All-black icon combining an ancient temple and cinema reel</desc>
+  <g fill="#000000">
+    <path d="M76 166h360l-30-46H106z"/>
+    <rect x="84" y="172" width="36" height="174" rx="9"/>
+    <rect x="156" y="172" width="36" height="174" rx="9"/>
+    <rect x="228" y="172" width="36" height="174" rx="9"/>
+    <rect x="300" y="172" width="36" height="174" rx="9"/>
+    <rect x="372" y="172" width="36" height="174" rx="9"/>
+    <rect x="66" y="350" width="380" height="24" rx="10"/>
+    <path fill-rule="evenodd" d="M376 54a68 68 0 1 1 0 136a68 68 0 0 1 0-136Zm0 44a24 24 0 1 0 0 48a24 24 0 0 0 0-48Zm-40-14a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm80 0a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm-80 62a10 10 0 1 0 0 20a10 10 0 0 0 0-20Zm80 0a10 10 0 1 0 0 20a10 10 0 0 0 0-20Z"/>
+    <path fill-rule="evenodd" d="M66 388h380c8 0 14 6 14 14v38c0 8-6 14-14 14H66c-8 0-14-6-14-14v-38c0-8 6-14 14-14Zm24 14v14h22v-14H90Zm0 24v14h22v-14H90Zm310-24v14h22v-14h-22Zm0 24v14h22v-14h-22Z"/>
+  </g>
+</svg>

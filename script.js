@@ -2,108 +2,17 @@ const messageSound = document.getElementById("messageSound");
 const successSound = document.getElementById("successSound");
 const errorSound = document.getElementById("errorSound");
 
-var preloader = document.getElementById("anim");
+const preloader = document.getElementById("preloader");
+const siteHeader = document.querySelector(".site-header");
 
-function preload() {
-    setTimeout(function () { preloader.style.display = 'none'; }, 1500);
+const navToggle = document.getElementById("navToggle");
+const siteNav = document.getElementById("siteNav");
+const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 
-}
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+const viewerCountNode = document.getElementById("viewerCount");
 
-// feedback form submission
-
-function sendEmail() {
-    Email.send({
-        SecureToken: "447fa0a6-6dba-4968-ad69-0638c418358e", // Secure Token provided by SMTPJS for direct emailing
-        To: 'nabyenduojha99@gmail.com', // Replace with your email
-        From: "nabyenduojha@gmail.com",
-        Subject: "New Message Enquiry",
-        Body: `
-            <b>Name: </b>${document.getElementById("form-name").value} <br>
-            <b>Email: </b>${document.getElementById("form-email").value} <br>
-            <b>Subject: </b>${document.getElementById("form-subject").value} <br>
-            <b>Message: </b>${document.getElementById("form-message").value}
-        `
-    }).then(message => {
-        if (message === 'OK') {
-            successSound.play();
-            alert("Message sent successfully");
-        } else {
-            errorSound.play();
-            alert("Some error occurred");
-        }
-    });
-}
-
-
-// // website refresh auto-counter starts
-
-// var counterContainer = document.querySelector(".website-counter");
-// var visitCount = localStorage.getItem("page_view");
-
-// if (visitCount) {
-//     visitCount = Number(visitCount) + 1;
-//     localStorage.setItem("page_view", visitCount);
-// } else {
-//     visitCount = 994;
-//     localStorage.setItem("page_view", visitCount);
-// }
-// counterContainer.innerHTML = visitCount;
-
-// // auto-counter ends
-
-
-
-// Go to top starts
-
-mybutton = document.getElementById("topBtn");
-const headerSection = document.querySelector(".header");
-
-window.onscroll = function () { scrollFunction() };
-
-function scrollFunction() {
-    if (headerSection) {
-        if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-            headerSection.classList.add("shadow-nav");
-        } else {
-            headerSection.classList.remove("shadow-nav");
-        }
-    }
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-    } else {
-        mybutton.style.display = "none";
-    }
-}
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-// Go to top ends
-
-
-
-// Initialize Lucide icons
-// lucide.createIcons();
-
-
-
-// ai logic starts
-
-// Variable to store additional text from the file
-let additionalText = "";
-
-// Fetch additional text from the text file
-async function loadAdditionalText() {
-    try {
-        const response = await fetch('ai-instruction.txt'); // Read the additional text file
-        additionalText = await response.text();  // Get the string content from the text file
-    } catch (error) {
-        console.error('Error loading additional text:', error);
-    }
-}
-
-// DOM Elements
 const openChatBtn = document.getElementById("openChatBtn");
 const closeChatBtn = document.getElementById("closeChatBtn");
 const chatPopup = document.getElementById("chatPopup");
@@ -111,143 +20,318 @@ const sendMessageBtn = document.getElementById("sendMessageBtn");
 const userInput = document.getElementById("userInput");
 const chatMessages = document.getElementById("chatMessages");
 
-let isFirstClick = true;
+let additionalText = "";
+let greeted = false;
 
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-        openChatBtn.click(); // Simulate a click on the AI Assist button
-    }, 3000); // 3-second delay for preloader
-});
-
-function openChatWindow() {
-    chatPopup.style.display = "block";
-
-    if (isFirstClick) {
-        isFirstClick = false;
-
-        // Show "Typing..." message
-        const typingMessage = document.createElement("div");
-        typingMessage.classList.add("message", "bot-message");
-        typingMessage.innerHTML = `<span class="text">Typing...</span>`;
-        chatMessages.appendChild(typingMessage);
-
-        // Delay before showing the actual message
-        setTimeout(() => {
-            typingMessage.innerHTML = `<span class="text">Hello! 👋 How can I help you today?</span>`;
-            messageSound.play().catch(error => console.log("Autoplay blocked:", error));
-        }, 0); // 0-second delay
+function setYear() {
+    const yearNode = document.getElementById("year");
+    if (yearNode) {
+        yearNode.textContent = new Date().getFullYear();
     }
 }
 
-// Click event handler for manual opening
-openChatBtn.addEventListener("click", openChatWindow);
+async function setViewerCount() {
+    if (!viewerCountNode) return;
 
-// Close the chat popup
-closeChatBtn.addEventListener("click", () => {
-    chatPopup.style.display = "none";
-});
+    viewerCountNode.textContent = "Loading...";
 
-// Send message to the chat when the send button is clicked
-sendMessageBtn.addEventListener("click", async () => {
-    await sendMessage();
-});
+    const setCountText = (value) => {
+        viewerCountNode.textContent = Number(value).toLocaleString("en-US");
+    };
 
-// Send message when Enter is pressed
-userInput.addEventListener("keydown", async (event) => {
-    if (event.key === "Enter" && userInput.value.trim() !== "") {
-        event.preventDefault();  // Prevent form submission if in a form
-        await sendMessage();
-    }
-});
-
-// Function to send the message
-async function sendMessage() {
-    const userMessage = userInput.value.trim();
-    if (userMessage) {
-        loadAdditionalText();
-        // Display the user's message with shadow effect
-        const userMessageElement = document.createElement("div");
-        userMessageElement.classList.add("message", "user-message");
-        userMessageElement.innerHTML = `<span class="text">${userMessage}</span>`;
-        chatMessages.appendChild(userMessageElement);
-
-        // Clear input field
-        userInput.value = "";
-
-        // Simulate API call to OpenRouter for a response
-        await getBotResponse(additionalText + userMessage);
-    }
-}
-
-const API_KEY = "AIzaSyBXUTkccSLg1eLYk4ccvzFHNp0Fp7mG0aM"; // Replace with your actual API key
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${API_KEY}`;
-
-// Function to make API call and get bot response using Gemini API
-async function getBotResponse(userMessage) {
-    const errorText = "Sorry, I am offline now. Please mail me at nabyenduojha99@gmail.com";
-    const responseElement = document.createElement("div");
-    responseElement.classList.add("message", "bot-message");
-    responseElement.innerHTML = `<span class="text">Typing...</span>`;
-    chatMessages.appendChild(responseElement);
+    const getLocalFallbackCount = () => {
+        const storageKey = "page_view";
+        let visitCount = Number(localStorage.getItem(storageKey));
+        if (!Number.isFinite(visitCount) || visitCount <= 0) {
+            visitCount = 994;
+        } else {
+            visitCount += 1;
+        }
+        localStorage.setItem(storageKey, String(visitCount));
+        return visitCount;
+    };
 
     try {
-        // Make API call to Gemini API
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                contents: [{ parts: [{ text: userMessage }] }]
-            })
-        });
+        const [{ initializeApp, getApp, getApps }, { getFirestore, doc, getDoc, setDoc, updateDoc }, { getAuth, signInAnonymously }] =
+            await Promise.all([
+                import("https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"),
+                import("https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"),
+                import("https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js")
+            ]);
 
-        const data = await response.json();
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9aOE5gjdurLGqR9JZzwzFMpn5v15m25Y",
+            authDomain: "portfolio-nabyendu.firebaseapp.com",
+            projectId: "portfolio-nabyendu",
+            storageBucket: "portfolio-nabyendu.firebasestorage.app",
+            messagingSenderId: "540684889169",
+            appId: "1:540684889169:web:7851fe6c53937351165c70",
+            measurementId: "G-61JNBKQP18"
+        };
 
-        // Extract the bot's response
-        const botResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || errorText;
+        const appName = "viewer-counter-app";
+        const app = getApps().some((existingApp) => existingApp.name === appName)
+            ? getApp(appName)
+            : initializeApp(firebaseConfig, appName);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
 
-        // Update the bot's message with the response
-        responseElement.querySelector(".text").textContent = botResponse;
+        await signInAnonymously(auth);
+
+        const docRef = doc(db, "websiteStats", "visitCount");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const current = Number(docSnap.data().count) || 0;
+            const next = current + 1;
+            await updateDoc(docRef, { count: next });
+            setCountText(next);
+        } else {
+            await setDoc(docRef, { count: 1 });
+            setCountText(1);
+        }
     } catch (error) {
-        console.error("Error:", error);
-        responseElement.querySelector(".text").textContent = errorText;
-    } finally {
-        messageSound.play();
+        console.warn("Firebase counter unavailable, using local fallback counter.", error);
+        try {
+            setCountText(getLocalFallbackCount());
+        } catch (fallbackError) {
+            console.error("Could not set viewer count.", fallbackError);
+            viewerCountNode.textContent = "1";
+        }
     }
+}
 
-    // Scroll to the latest message
+function hidePreloader() {
+    if (!preloader) return;
+    setTimeout(() => {
+        preloader.classList.add("hidden");
+    }, 650);
+}
+
+function toggleHeaderShadow() {
+    const scrolled = window.scrollY > 8;
+    if (siteHeader) {
+        siteHeader.classList.toggle("is-scrolled", scrolled);
+    }
+}
+
+function closeNavMenu() {
+    if (!siteNav || !navToggle) return;
+    siteNav.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+}
+
+function setupNavigation() {
+    if (!siteNav || !navToggle) return;
+
+    navToggle.addEventListener("click", () => {
+        const isOpen = siteNav.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            closeNavMenu();
+        });
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!siteNav.contains(event.target) && !navToggle.contains(event.target)) {
+            closeNavMenu();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 860) {
+            closeNavMenu();
+        }
+    });
+}
+
+function setupActiveNavHighlight() {
+    const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+    if (!sections.length || !navLinks.length) return;
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                const id = entry.target.getAttribute("id");
+                navLinks.forEach((link) => {
+                    const isActive = link.getAttribute("href") === `#${id}`;
+                    link.classList.toggle("active", isActive);
+                });
+            });
+        },
+        {
+            root: null,
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: 0.01
+        }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+}
+
+function setupContactForm() {
+    if (!contactForm || !formStatus) return;
+
+    contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("form-name")?.value.trim() || "";
+        const email = document.getElementById("form-email")?.value.trim() || "";
+        const subject = document.getElementById("form-subject")?.value.trim() || "Portfolio enquiry";
+        const message = document.getElementById("form-message")?.value.trim() || "";
+
+        if (!name || !email || !message) {
+            formStatus.textContent = "Please complete all fields before sending.";
+            errorSound?.play().catch(() => { });
+            return;
+        }
+
+        const body = [
+            `Name: ${name}`,
+            `Email: ${email}`,
+            "",
+            message
+        ].join("\n");
+
+        const mailtoUrl = `mailto:nabyenduojha99@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailtoUrl;
+        formStatus.textContent = "Opening your mail app. Thanks for reaching out.";
+        successSound?.play().catch(() => { });
+        contactForm.reset();
+    });
+}
+
+async function loadAdditionalText() {
+    try {
+        const response = await fetch("ai-instruction.txt");
+        additionalText = await response.text();
+    } catch (error) {
+        additionalText = "";
+        console.error("Could not load profile context:", error);
+    }
+}
+
+function appendMessage(text, type) {
+    if (!chatMessages) return;
+
+    const node = document.createElement("div");
+    node.classList.add("message", type === "user" ? "user-message" : "bot-message");
+    node.textContent = text;
+    chatMessages.appendChild(node);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// ai logic ends
+function inferBotResponse(question) {
+    const q = question.toLowerCase();
 
-// section header highlight while scroll starts
-
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-item a");
-
-    function changeActiveNav() {
-        let scrollY = window.pageYOffset;
-
-        sections.forEach((section) => {
-            const sectionTop = section.offsetTop - 50; // Adjust for navbar height
-            const sectionHeight = section.clientHeight;
-            const sectionId = section.getAttribute("id");
-
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                navLinks.forEach((link) => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href") === `#${sectionId}`) {
-                        link.classList.add("active");
-                    }
-                });
-            }
-        });
+    if (q.includes("resume") || q.includes("cv")) {
+        return "You can download the resume from the hero section or use this link: https://nojha.in/pdfs/Resume_NabyenduOjha.pdf";
     }
 
-    window.addEventListener("scroll", changeActiveNav);
+    if (q.includes("contact") || q.includes("email") || q.includes("reach")) {
+        return "You can reach Nabyendu at nabyenduojha99@gmail.com or via the contact form.";
+    }
+
+    if (q.includes("skill") || q.includes("tech") || q.includes("stack")) {
+        return "Core stack: Java, Spring Boot, SQL, Kafka, Docker, Kubernetes, Jenkins, AWS, and testing with JUnit.";
+    }
+
+    if (q.includes("experience") || q.includes("infosys") || q.includes("work")) {
+        return "Nabyendu is a Software Engineer at Infosys with 3+ years of backend development experience.";
+    }
+
+    if (q.includes("achievement") || q.includes("rank") || q.includes("leetcode")) {
+        return "Highlights include AIR 143 in CodeKaze 2024, AIR 299 in CodeKaze 2023, and 700+ solved LeetCode problems.";
+    }
+
+    if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
+        return "Hi. Ask me about skills, experience, projects, certifications, or contact details.";
+    }
+
+    if (q.includes("project")) {
+        return "The projects section contains curated archives across web, Java, Python, cloud, Android, and more.";
+    }
+
+    if (additionalText && additionalText.toLowerCase().includes("profession")) {
+        return "I can help with concise profile details. Ask specific questions like 'skills', 'experience', 'resume', or 'achievements'.";
+    }
+
+    return "I can answer quick profile questions. Try: skills, experience, resume, achievements, or contact.";
+}
+
+function openChatWindow() {
+    if (!chatPopup) return;
+
+    chatPopup.classList.add("open");
+    userInput?.focus();
+
+    if (!greeted) {
+        greeted = true;
+        appendMessage("Hello. I can answer profile questions about Nabyendu. What would you like to know?", "bot");
+        messageSound?.play().catch(() => { });
+    }
+}
+
+function setupChat() {
+    if (!openChatBtn || !chatPopup || !sendMessageBtn || !userInput || !chatMessages || !closeChatBtn) return;
+
+    openChatBtn.addEventListener("click", openChatWindow);
+
+    closeChatBtn.addEventListener("click", () => {
+        chatPopup.classList.remove("open");
+    });
+
+    sendMessageBtn.addEventListener("click", async () => {
+        await sendChatMessage();
+    });
+
+    userInput.addEventListener("keydown", async (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            await sendChatMessage();
+        }
+    });
+}
+
+async function sendChatMessage() {
+    const text = userInput?.value.trim();
+    if (!text) return;
+
+    appendMessage(text, "user");
+    userInput.value = "";
+
+    const typing = document.createElement("div");
+    typing.classList.add("message", "bot-message", "typing-indicator");
+    typing.textContent = "Typing...";
+    chatMessages.appendChild(typing);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    await new Promise((resolve) => setTimeout(resolve, 420));
+
+    const response = inferBotResponse(text);
+    typing.classList.remove("typing-indicator");
+    typing.textContent = response;
+    messageSound?.play().catch(() => { });
+}
+
+window.addEventListener("load", () => {
+    setYear();
+    setViewerCount();
+    hidePreloader();
+    toggleHeaderShadow();
+    loadAdditionalText();
 });
 
-// section header highlight while scroll ends
+window.addEventListener("scroll", toggleHeaderShadow);
+
+setupNavigation();
+setupActiveNavHighlight();
+setupContactForm();
+setupChat();
