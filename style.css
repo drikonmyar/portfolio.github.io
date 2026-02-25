@@ -1442,9 +1442,11 @@ img {
     position: relative;
     overflow: hidden;
     padding: 0.95rem;
-    border: 1px solid #d2e1f7;
+    border: 1px solid #d4e2f8;
     border-radius: 15px;
-    background: linear-gradient(160deg, #ffffff, #f3f8ff);
+    background:
+        radial-gradient(circle at 90% -10%, rgba(191, 219, 254, 0.24), transparent 36%),
+        linear-gradient(158deg, #ffffff, #f3f8ff);
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     min-height: 0;
     display: grid;
@@ -1476,10 +1478,51 @@ img {
     box-shadow: 0 16px 32px rgba(15, 23, 42, 0.13);
 }
 
+.training-card-spotlight {
+    border-color: #f6d7ab;
+    background:
+        radial-gradient(circle at 90% -8%, rgba(251, 191, 36, 0.2), transparent 36%),
+        linear-gradient(150deg, #fffaf1, #fff6e8);
+    padding-top: 0.96rem;
+}
+
+.training-card.training-card-spotlight::before {
+    background: linear-gradient(90deg, #f59e0b, #f97316);
+}
+
+.training-card-spotlight:hover {
+    border-color: #f3bd66;
+    box-shadow: 0 16px 34px rgba(146, 64, 14, 0.16);
+}
+
+.training-chip {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    padding: 0.12rem 0.48rem;
+    border-radius: 999px;
+    border: 1px solid #f6d7ab;
+    background: #ffedd5;
+    color: #9a3412;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.training-card-spotlight .training-chip {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.54rem;
+    z-index: 2;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.56rem;
+}
+
 .training-card h3 {
     margin: 0;
     font-family: 'Sora', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     line-height: 1.3;
     color: #0f172a;
 }
@@ -1487,8 +1530,8 @@ img {
 .training-card p {
     margin: 0;
     color: #64748b;
-    font-size: 0.8rem;
-    line-height: 1.45;
+    font-size: 0.79rem;
+    line-height: 1.42;
 }
 
 .training-card a {
@@ -1513,6 +1556,59 @@ img {
     border-color: #a8c6f6;
     background: #dceefe;
     color: #0f4f91;
+}
+
+.training-archive-card {
+    margin-top: 0.95rem;
+    padding: 0.82rem 0.9rem 0.88rem;
+    border: 1px solid #d7e4f9;
+    border-radius: 14px;
+    background:
+        radial-gradient(circle at 92% -18%, rgba(191, 219, 254, 0.24), transparent 44%),
+        linear-gradient(155deg, #ffffff, #f3f8ff);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.training-archive-card h3 {
+    margin: 0;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.95rem;
+    color: #0f172a;
+}
+
+.training-archive-card p {
+    margin: 0.24rem 0 0;
+    color: #64748b;
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+.training-archive-tags {
+    margin-top: 0.62rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+}
+
+.training-archive-tags a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.16rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid #d1e1fa;
+    background: #eaf3ff;
+    color: #0f4f91;
+    font-size: 0.66rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.training-archive-tags a:hover {
+    border-color: #9ec4f8;
+    background: #dbeafe;
+    color: #1d4ed8;
 }
 
 .section-skills {
@@ -3147,6 +3243,40 @@ img {
         padding: 0.16rem 0.42rem;
     }
 
+    .training-chip {
+        font-size: 0.58rem;
+        padding: 0.12rem 0.42rem;
+    }
+
+    .training-card-spotlight {
+        padding-top: 0.9rem;
+    }
+
+    .training-card-spotlight .training-chip {
+        top: 0.46rem;
+        right: 0.5rem;
+        font-size: 0.54rem;
+        padding: 0.09rem 0.35rem;
+    }
+
+    .training-archive-card {
+        margin-top: 0.82rem;
+        padding: 0.72rem 0.74rem 0.78rem;
+    }
+
+    .training-archive-card p {
+        font-size: 0.79rem;
+    }
+
+    .training-archive-tags {
+        gap: 0.34rem;
+    }
+
+    .training-archive-tags a {
+        font-size: 0.61rem;
+        padding: 0.15rem 0.44rem;
+    }
+
     .skills-intro {
         padding: 0.68rem 0.74rem;
     }
@@ -3170,6 +3300,7 @@ img {
 
     .training-card {
         min-height: 0;
+        padding: 0.84rem;
     }
 
     .about-card {
