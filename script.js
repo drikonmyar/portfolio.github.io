@@ -36,6 +36,7 @@ const PROFILE_KB = {
     website: "https://nojha.in",
     headline: "Software Engineer • Backend Developer",
     summary: "Backend engineer focused on Java, Spring Boot, clean architecture, and reliable delivery.",
+    totalExperience: "4+ years",
     currentRole: "Assistant Manager at Deloitte (May 2025 - Present)",
     location: "Kolkata, India",
     contactEmail: "nabyenduojha99@gmail.com",
@@ -169,6 +170,10 @@ const CHAT_TOKEN_ALIASES = {
     hobbies: "interest",
     hobby: "interest",
     projects: "project",
+    website: "website",
+    site: "website",
+    domain: "website",
+    url: "website",
     trainings: "training",
     where: "location",
     based: "location",
@@ -199,6 +204,10 @@ const CHAT_INTENT_RULES = {
     projects: {
         keywords: ["project", "archive", "github", "portfolio", "work"],
         phrases: ["selected work", "project archive", "project links"]
+    },
+    website: {
+        keywords: ["website", "site", "domain", "url", "link", "portfolio"],
+        phrases: ["official site", "official website", "your website", "site name", "website name", "portfolio link"]
     },
     certifications: {
         keywords: ["certification", "certificate", "training", "internship", "course", "udemy", "coursera", "hackerrank"],
@@ -491,6 +500,7 @@ function buildKnowledgeIndex() {
         `Website: ${PROFILE_KB.website}`,
         `Headline: ${PROFILE_KB.headline}`,
         `Summary: ${PROFILE_KB.summary}`,
+        `Total experience: ${PROFILE_KB.totalExperience}`,
         `Current role: ${PROFILE_KB.currentRole}`,
         `Location: ${PROFILE_KB.location}`,
         `Contact email: ${PROFILE_KB.contactEmail}`,
@@ -740,6 +750,140 @@ function getGeneralKnowledgeFallback(question) {
     return "";
 }
 
+function isWebsiteQuery(question) {
+    const normalized = normalizeChatText(question);
+    const terms = ["website", "site", "domain", "url", "link"];
+    return terms.some((term) => hasWholeWord(normalized, term));
+}
+
+function getWebsiteGuardReply(question) {
+    const normalized = normalizeChatText(question);
+    const baseVariants = [
+        `Official website is ${PROFILE_KB.website}.`,
+        `You can access the portfolio at ${PROFILE_KB.website}.`,
+        `Primary site/domain is ${PROFILE_KB.website}.`
+    ];
+
+    if (normalized.includes("old")) {
+        const oldUiUrl = `${PROFILE_KB.website.replace(/\/$/, "")}/old`;
+        return pickReplyVariant("website_guard_old", [
+            `Main site: ${PROFILE_KB.website}. Old UI: ${oldUiUrl}.`,
+            `Use ${PROFILE_KB.website} for new UI and ${oldUiUrl} for the old UI.`
+        ]);
+    }
+
+    return pickReplyVariant("website_guard", baseVariants);
+}
+
+function isExperienceDurationQuery(question) {
+    const normalized = normalizeChatText(question);
+    const hasExperience = normalized.includes("experience");
+    const hasYearCue = normalized.includes("year") || normalized.includes("years") || normalized.includes("yr");
+    const hasDurationCue = normalized.includes("how many") || normalized.includes("how long") ||
+        normalized.includes("total") || normalized.includes("overall") ||
+        normalized.includes("how much") || normalized.includes("exact");
+    return hasExperience && (hasYearCue || hasDurationCue);
+}
+
+function isExperienceQuery(question) {
+    const normalized = normalizeChatText(question);
+    const cues = [
+        "experience", "career", "role", "position",
+        "infosys", "deloitte", "working", "worked", "professional"
+    ];
+    return cues.some((cue) => hasWholeWord(normalized, cue));
+}
+
+function hasCorrectExperienceDuration(text) {
+    if (!text) return false;
+    return (
+        /\b4\+?\s*(?:year|years|yr)\b/i.test(text) ||
+        /\bfour\+?\s*(?:year|years)\b/i.test(text)
+    );
+}
+
+function isGenericExperienceReply(text) {
+    const normalized = normalizeChatText(text);
+    if (!normalized) return true;
+    return (
+        /\b(?:has|is|with)\s+4\+?\s*(?:year|years|yr)\b/i.test(text) &&
+        normalized.split(" ").length <= 14
+    );
+}
+
+function isUncertainExperienceReply(text) {
+    if (!text) return true;
+    return /\b(i\s*(?:do\s*not|don't)\s*know|not\s*aware|not\s*sure|unknown|not\s*mentioned|cannot\s*confirm|can't\s*confirm|exact\s+.*not)\b/i.test(text);
+}
+
+function getExperienceGuardReply(question) {
+    const normalized = normalizeChatText(question);
+    const mentionsCurrentRole = normalized.includes("current") || normalized.includes("now") || normalized.includes("present");
+    const asksOnlyCount = normalized.includes("how many") || normalized.includes("total") || normalized.includes("overall");
+
+    if (mentionsCurrentRole) {
+        return pickReplyVariant("experience_guard_current", [
+            `${PROFILE_KB.totalExperience} overall experience, currently serving as Assistant Manager at Deloitte.`,
+            `Current role is Assistant Manager at Deloitte, with ${PROFILE_KB.totalExperience} total industry experience.`,
+            `He has ${PROFILE_KB.totalExperience} of experience and is now working as Assistant Manager at Deloitte.`
+        ]);
+    }
+
+    if (asksOnlyCount) {
+        return pickReplyVariant("experience_guard_count", [
+            `Nabyendu has ${PROFILE_KB.totalExperience} of professional experience (Dec 2021 to present).`,
+            `Total experience is ${PROFILE_KB.totalExperience}.`,
+            `Overall industry experience: ${PROFILE_KB.totalExperience}.`
+        ]);
+    }
+
+    return pickReplyVariant("experience_guard_full", [
+        `Nabyendu has ${PROFILE_KB.totalExperience} of experience, progressing from Infosys to Assistant Manager at Deloitte.`,
+        `${PROFILE_KB.totalExperience} total experience across Infosys and Deloitte backend engineering roles.`,
+        `He brings ${PROFILE_KB.totalExperience} of professional experience with a path from Infosys to Deloitte.`
+    ]);
+}
+
+function extractDomains(text) {
+    if (!text) return [];
+    const matches = text.match(/(?:https?:\/\/)?(?:www\.)?[a-z0-9.-]+\.[a-z]{2,}/gi) || [];
+    return matches.map((item) => item.toLowerCase());
+}
+
+function enforceCriticalProfileFacts(userText, assistantText) {
+    if (!assistantText) return assistantText;
+
+    if (isWebsiteQuery(userText)) {
+        const officialDomain = PROFILE_KB.website.replace(/^https?:\/\//i, "").toLowerCase();
+        const mentionedDomains = extractDomains(assistantText);
+        const hasOfficialDomain = mentionedDomains.some((domain) => domain.includes(officialDomain));
+        const hasWrongDomain = mentionedDomains.some((domain) => !domain.includes(officialDomain));
+
+        if (hasWrongDomain || !hasOfficialDomain) {
+            return getWebsiteGuardReply(userText);
+        }
+
+        return assistantText;
+    }
+
+    const asksExperienceYears = isExperienceDurationQuery(userText);
+    const asksExperienceGeneral = isExperienceQuery(userText);
+
+    if (asksExperienceYears || asksExperienceGeneral) {
+        const mustOverride =
+            isUncertainExperienceReply(assistantText) ||
+            (asksExperienceYears && !hasCorrectExperienceDuration(assistantText)) ||
+            (asksExperienceYears && isGenericExperienceReply(assistantText));
+
+        if (mustOverride) {
+            return getExperienceGuardReply(userText);
+        }
+        return assistantText;
+    }
+
+    return assistantText;
+}
+
 function isGroqConfigured() {
     return Boolean(CHAT_API_ENDPOINT);
 }
@@ -770,9 +914,12 @@ function buildAssistantSystemPrompt() {
         "2) For portfolio questions, prioritize portfolio facts below.",
         "3) For general knowledge questions, answer normally like a general AI assistant.",
         "4) If unsure, say you are not sure instead of inventing.",
+        `5) Official website/domain is exactly ${PROFILE_KB.website}. Never replace it with any other URL.`,
+        `6) Total professional experience is ${PROFILE_KB.totalExperience}.`,
         "",
         "Portfolio facts:",
         `- Name: Nabyendu Ojha`,
+        `- Total experience: ${PROFILE_KB.totalExperience}`,
         `- Current role: ${getCurrentRoleSummary()}`,
         `- Contact email: ${getContactEmail()}`,
         `- Skills: ${formatList(skills)}`,
@@ -862,11 +1009,13 @@ async function fetchGroqReply(userText) {
         throw new Error("Groq returned an empty response.");
     }
 
+    const correctedAssistantText = enforceCriticalProfileFacts(userText, assistantText);
+
     chatHistory.push({ role: "user", content: userText });
-    chatHistory.push({ role: "assistant", content: assistantText });
+    chatHistory.push({ role: "assistant", content: correctedAssistantText });
     trimChatHistory();
 
-    return assistantText;
+    return correctedAssistantText;
 }
 
 function inferBotResponse(question) {
@@ -921,9 +1070,9 @@ function inferBotResponse(question) {
             `Tech focus is backend-heavy, with tools like ${skillSummary}.`
         ],
         experience: [
-            `${getCurrentRoleSummary()}. Earlier roles include ${formatList(experienceRoles.slice(0, 3))}.`,
-            `Current role: ${getCurrentRoleSummary()}. Prior progression: ${formatList(experienceRoles.slice(0, 3))}.`,
-            `Professional path moves from ${formatList(experienceRoles.slice(0, 3))} to ${getCurrentRoleSummary()}.`
+            `${PROFILE_KB.totalExperience} of experience. ${getCurrentRoleSummary()}. Earlier roles include ${formatList(experienceRoles.slice(0, 3))}.`,
+            `Current role: ${getCurrentRoleSummary()}. Total experience: ${PROFILE_KB.totalExperience}. Prior progression: ${formatList(experienceRoles.slice(0, 3))}.`,
+            `Professional path moves from ${formatList(experienceRoles.slice(0, 3))} to ${getCurrentRoleSummary()}, with ${PROFILE_KB.totalExperience} overall experience.`
         ],
         achievements: [
             `Recent highlights include ${formatList(achievements.slice(0, 3))}.`,
@@ -934,6 +1083,11 @@ function inferBotResponse(question) {
             `Selected Work Archives currently feature ${projectCount} categorized project folders with direct links.`,
             `There are ${projectCount} project archives spanning backend, web, cloud, mobile, and more.`,
             `Projects are organized into ${projectCount} archives across engineering, software, and creative work.`
+        ],
+        website: [
+            `Official website is ${PROFILE_KB.website}.`,
+            `You can access the portfolio at ${PROFILE_KB.website}.`,
+            `Primary website/domain: ${PROFILE_KB.website}.`
         ],
         certifications: [
             `Training has ${certificateCount} certifications. Key ones include ${formatList(certificationNames.slice(0, 6))}.`,
