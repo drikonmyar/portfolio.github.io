@@ -178,7 +178,12 @@ function setupActiveNavHighlight() {
 function setupContactForm() {
     if (!contactForm || !formStatus) return;
 
-    contactForm.addEventListener("submit", (event) => {
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const submitLabel = submitButton?.querySelector("span");
+    const defaultLabel = submitLabel?.textContent || "Send Message";
+    const endpoint = "https://formsubmit.co/ajax/nabyenduojha99@gmail.com";
+
+    contactForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const name = document.getElementById("form-name")?.value.trim() || "";
@@ -192,19 +197,51 @@ function setupContactForm() {
             return;
         }
 
-        const body = [
-            `Name: ${name}`,
-            `Email: ${email}`,
-            "",
-            message
-        ].join("\n");
+        submitButton?.setAttribute("disabled", "true");
+        if (submitLabel) submitLabel.textContent = "Sending...";
+        formStatus.textContent = "Sending message...";
 
-        const mailtoUrl = `mailto:nabyenduojha99@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const payload = {
+            name,
+            email,
+            subject,
+            message,
+            _captcha: "false"
+        };
 
-        window.location.href = mailtoUrl;
-        formStatus.textContent = "Opening your mail app. Thanks for reaching out.";
-        successSound?.play().catch(() => { });
-        contactForm.reset();
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: JSON.stringify(payload),
+                signal: controller.signal
+            });
+
+            const result = await response.json().catch(() => ({}));
+            const success = result.success === "true" || result.success === true;
+
+            if (!response.ok || !success) {
+                throw new Error(result.message || "Message could not be sent.");
+            }
+
+            formStatus.textContent = "Message sent successfully. I will get back to you soon.";
+            successSound?.play().catch(() => { });
+            contactForm.reset();
+        } catch (error) {
+            console.error("Contact form submission failed:", error);
+            formStatus.textContent = "Could not send message right now. Please try again shortly.";
+            errorSound?.play().catch(() => { });
+        } finally {
+            clearTimeout(timeout);
+            submitButton?.removeAttribute("disabled");
+            if (submitLabel) submitLabel.textContent = defaultLabel;
+        }
     });
 }
 
