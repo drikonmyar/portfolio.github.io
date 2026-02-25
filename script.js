@@ -20,8 +20,211 @@ const sendMessageBtn = document.getElementById("sendMessageBtn");
 const userInput = document.getElementById("userInput");
 const chatMessages = document.getElementById("chatMessages");
 
-let additionalText = "";
+const GROQ_MODEL = "llama-3.1-8b-instant";
+const CHAT_API_ENDPOINT = "https://secret-from-api.vercel.app/api/chat";
+const MAX_CHAT_HISTORY_MESSAGES = 12;
+const CHAT_API_TIMEOUT_MS = 12000;
+
 let greeted = false;
+let lastDetectedIntent = "";
+const chatHistory = [];
+
+const lastReplyIndexByIntent = Object.create(null);
+
+const PROFILE_KB = {
+    name: "Nabyendu Ojha",
+    website: "https://nojha.in",
+    headline: "Software Engineer • Backend Developer",
+    summary: "Backend engineer focused on Java, Spring Boot, clean architecture, and reliable delivery.",
+    currentRole: "Assistant Manager at Deloitte (May 2025 - Present)",
+    location: "Kolkata, India",
+    contactEmail: "nabyenduojha99@gmail.com",
+    resumeLink: "https://nojha.in/pdfs/Resume_NabyenduOjha.pdf",
+    skills: [
+        "Java", "Spring Boot", "Maven", "PostgreSQL", "MySQL", "MongoDB", "Python", "C++",
+        "HTML", "CSS", "JavaScript", "React", "GraphQL", "Kafka", "Docker", "Kubernetes",
+        "Jenkins", "Git", "AWS", "Jira", "SonarQube", "Swagger", "Rancher", "Elastic Logs",
+        "Hibernate", "JUnit", "XL Deploy"
+    ],
+    interests: ["Chess", "Geopolitics", "Historical Epics", "Swimming", "Badminton"],
+    education: [
+        {
+            institute: "Jalpaiguri Govt. Engg. College",
+            degree: "B.Tech in Civil Engineering",
+            meta: "2021 • CGPA 8.38"
+        },
+        {
+            institute: "Mohiary Kundu Chowdhury Institution",
+            degree: "Higher Secondary (10+2)",
+            meta: "2017 • 86.20%"
+        },
+        {
+            institute: "Ramakrishna Mission Vidyabhavan",
+            degree: "Secondary (10th)",
+            meta: "2015 • 89.71%"
+        }
+    ],
+    professionalPath: [
+        { role: "Systems Engineer Trainee", company: "Infosys", duration: "Dec 2021 - Feb 2022" },
+        { role: "Systems Engineer", company: "Infosys", duration: "Feb 2022 - Jan 2024" },
+        { role: "Senior Systems Engineer", company: "Infosys", duration: "Jan 2024 - May 2025" },
+        { role: "Assistant Manager", company: "Deloitte", duration: "May 2025 - Present" }
+    ],
+    deliverables: [
+        "Built REST APIs with CRUD, file upload, dashboard retrieval, bulk updates, and record expiry.",
+        "Scheduled Spring Batch jobs for periodic database refresh and dependable background processing.",
+        "Maintained 80%+ test coverage using JUnit and Mockito for stable releases.",
+        "Resolved SonarQube blocker, critical, major, and minor issues for quality governance.",
+        "Built CI/CD pipelines with Jenkins and deployed across environments using XL Deploy.",
+        "Integrated complex SQL query logic directly into application workflows.",
+        "Implemented Spring Security with JWT, OAuth2, and role-based access control.",
+        "Created Swagger docs and Javadocs for clear API contracts and faster onboarding."
+    ],
+    infosysHighlights: [
+        "Developed REST APIs for file upload, dashboard visibility, unitary and bulk updates, and expiry workflows.",
+        "Built microservices through Jenkins pipelines with single and multi-parameter execution.",
+        "Built Spring Batch jobs for 2-minute interval database updates.",
+        "Integrated external APIs using @FeignClient and maintained API docs with Swagger/Javadocs."
+    ],
+    deloitteHighlights: [
+        "Working in agile delivery with sprint planning, stand-ups, and retrospectives.",
+        "Contributing to integration and process automation for identity management systems.",
+        "Implemented SMTP alerts and notification emails for create/update events.",
+        "Collaborating with cross-functional teams to improve backend workflow efficiency and compliance."
+    ],
+    achievements: [
+        { rank: "3rd Position", title: "Deloitte Innovation Shark Tank", meta: "2025" },
+        { rank: "AIR 143", title: "CodeKaze", meta: "2024" },
+        { rank: "1st Rank", title: "Infosys Code Jam", meta: "2023" },
+        { rank: "Global Rank 2617", title: "TCS CodeVita", meta: "2022" },
+        { rank: "Finalist", title: "Infosys Makeathon Edition 14", meta: "Innovation" },
+        { rank: "AIR 299", title: "CodeKaze", meta: "2023" },
+        { rank: "5-Star Rating", title: "HackerRank", meta: "Problem Solving" },
+        { rank: "Certified Software Engineer", title: "HackerRank", meta: "Certification" },
+        { rank: "900+ Problems Solved", title: "LeetCode", meta: "DSA" },
+        { rank: "60+ Projects Completed", title: "GitHub", meta: "Portfolio Work" }
+    ],
+    projectArchives: [
+        "Civil Projects", "Civil - CAD 3D", "BCCI - CAD 3D", "JGEC - CAD 3D", "Burj Khalifa - CAD 3D",
+        "SAP Projects", "Python Projects", "Web Projects", "Java Projects", "IoT Projects",
+        "Android Projects", "Data Science Projects", "Cloud Projects", "C++ Projects",
+        "Presentations", "Pencil Sketches"
+    ],
+    certificationsPrimary: [
+        { name: "Rest API", provider: "HackerRank", period: "Jan 2025" },
+        { name: "Problem Solving", provider: "HackerRank", period: "Oct 2024" },
+        { name: "Java", provider: "HackerRank", period: "Sep 2024" },
+        { name: "Spring Boot", provider: "Coding Ninjas", period: "Oct 2023 - Feb 2024" },
+        { name: "Front End | Full Stack Web Development", provider: "Coding Ninjas", period: "Aug 2023 - Oct 2023" },
+        { name: "Full Stack: Spring Boot + Angular", provider: "Udemy", period: "Feb 2023 - May 2023" },
+        { name: "Data Structures", provider: "Coding Ninjas", period: "Jun 2022 - Oct 2022" },
+        { name: "Java Fundamentals", provider: "Coding Ninjas", period: "May 2022 - Jun 2022" },
+        { name: "Google IT Support", provider: "Coursera", period: "Aug 2021 - Feb 2022" },
+        { name: "Python Programming", provider: "Internshala", period: "Apr 2020 - May 2020" },
+        { name: "Structural Engg + Python", provider: "IIT Kharagpur", period: "Jun 2019" },
+        { name: "Advance Excel", provider: "Internshala", period: "Jun 2018 - Jul 2018" }
+    ],
+    certificationsArchive: [
+        "HyperWorks (CAE)",
+        "RCC: Basics & Advanced",
+        "STAAD.Pro",
+        "AutoCAD 3D",
+        "Building Analysis",
+        "AutoCAD 2D"
+    ]
+};
+
+let knowledgeIndexCache = [];
+
+const CHAT_TOKEN_ALIASES = {
+    technologies: "tech",
+    technology: "tech",
+    technical: "tech",
+    stack: "skills",
+    stacks: "skills",
+    skillset: "skills",
+    tools: "skills",
+    framework: "skills",
+    frameworks: "skills",
+    worked: "experience",
+    working: "experience",
+    career: "experience",
+    job: "experience",
+    jobs: "experience",
+    professional: "experience",
+    achievements: "achievement",
+    awards: "achievement",
+    award: "achievement",
+    ranks: "achievement",
+    ranking: "achievement",
+    certificates: "certification",
+    certs: "certification",
+    courses: "certification",
+    course: "certification",
+    internships: "certification",
+    internship: "certification",
+    interested: "interest",
+    inetersted: "interest",
+    intersted: "interest",
+    hobbies: "interest",
+    hobby: "interest",
+    projects: "project",
+    trainings: "training",
+    where: "location",
+    based: "location",
+    city: "location"
+};
+
+const CHAT_INTENT_RULES = {
+    resume: {
+        keywords: ["resume", "cv", "profile", "download"],
+        phrases: ["download resume", "share resume", "resume link", "cv link"]
+    },
+    contact: {
+        keywords: ["contact", "email", "reach", "connect", "message", "mail"],
+        phrases: ["how to contact", "reach out", "get in touch"]
+    },
+    skills: {
+        keywords: ["skill", "skills", "tech", "skills", "tools", "framework", "stack"],
+        phrases: ["tech stack", "technical stack", "what do you use"]
+    },
+    experience: {
+        keywords: ["experience", "work", "infosys", "deloitte", "role", "position", "years"],
+        phrases: ["work experience", "professional experience", "current role", "where working"]
+    },
+    achievements: {
+        keywords: ["achievement", "rank", "leetcode", "hackerrank", "codekaze", "award", "finalist"],
+        phrases: ["key achievements", "top achievements", "competitive programming"]
+    },
+    projects: {
+        keywords: ["project", "archive", "github", "portfolio", "work"],
+        phrases: ["selected work", "project archive", "project links"]
+    },
+    certifications: {
+        keywords: ["certification", "certificate", "training", "internship", "course", "udemy", "coursera", "hackerrank"],
+        phrases: ["certification details", "show certificates", "training section"]
+    },
+    education: {
+        keywords: ["education", "college", "school", "degree", "btech", "academic"],
+        phrases: ["education background", "academic background"]
+    },
+    interests: {
+        keywords: ["interest", "interested", "hobby", "outside", "personal", "chess", "swimming", "geopolitics"],
+        phrases: ["outside engineering", "free time", "personal interests", "interested in"]
+    },
+    location: {
+        keywords: ["location", "city", "india", "kolkata", "based"],
+        phrases: ["where based", "current location"]
+    },
+    greeting: {
+        keywords: ["hello", "hi", "hey", "yo", "namaste"],
+        phrases: ["good morning", "good evening", "good afternoon"]
+    },
+    thanks: {
+        keywords: ["thanks", "thank", "thx", "appreciate"],
+        phrases: ["thank you"]
+    }
+};
 
 function setYear() {
     const yearNode = document.getElementById("year");
@@ -245,14 +448,110 @@ function setupContactForm() {
     });
 }
 
-async function loadAdditionalText() {
-    try {
-        const response = await fetch("ai-instruction.txt");
-        additionalText = await response.text();
-    } catch (error) {
-        additionalText = "";
-        console.error("Could not load profile context:", error);
+function collectPrimaryCertifications(limit = 20) {
+    return PROFILE_KB.certificationsPrimary
+        .slice(0, limit)
+        .map((item) => `${item.name} (${item.provider} • ${item.period})`);
+}
+
+function collectPrimaryCertificationNames(limit = 20) {
+    return PROFILE_KB.certificationsPrimary
+        .slice(0, limit)
+        .map((item) => item.name);
+}
+
+function collectArchiveCertifications(limit = 20) {
+    return PROFILE_KB.certificationsArchive.slice(0, limit);
+}
+
+function getEducationSummary(limit = 3) {
+    return PROFILE_KB.education
+        .slice(0, limit)
+        .map((item) => {
+            const summary = `${item.institute} - ${item.degree}`;
+            return item.meta ? `${summary} (${item.meta})` : summary;
+        });
+}
+
+function getContactEmail() {
+    return PROFILE_KB.contactEmail;
+}
+
+function getResumeLink() {
+    return PROFILE_KB.resumeLink;
+}
+
+function getCurrentRoleSummary() {
+    return PROFILE_KB.currentRole;
+}
+
+function buildKnowledgeIndex() {
+    const lines = [
+        `Name: ${PROFILE_KB.name}`,
+        `Website: ${PROFILE_KB.website}`,
+        `Headline: ${PROFILE_KB.headline}`,
+        `Summary: ${PROFILE_KB.summary}`,
+        `Current role: ${PROFILE_KB.currentRole}`,
+        `Location: ${PROFILE_KB.location}`,
+        `Contact email: ${PROFILE_KB.contactEmail}`,
+        `Resume: ${PROFILE_KB.resumeLink}`,
+        `Project archives count: ${PROFILE_KB.projectArchives.length}`,
+        `Primary certifications count: ${PROFILE_KB.certificationsPrimary.length}`,
+        `Archive certifications count: ${PROFILE_KB.certificationsArchive.length}`
+    ];
+
+    PROFILE_KB.professionalPath.forEach((step) => {
+        lines.push(`Role: ${step.role} at ${step.company} (${step.duration})`);
+    });
+
+    PROFILE_KB.deliverables.forEach((item) => {
+        lines.push(`Delivery: ${item}`);
+    });
+
+    PROFILE_KB.infosysHighlights.forEach((item) => {
+        lines.push(`Infosys: ${item}`);
+    });
+
+    PROFILE_KB.deloitteHighlights.forEach((item) => {
+        lines.push(`Deloitte: ${item}`);
+    });
+
+    PROFILE_KB.achievements.forEach((item) => {
+        lines.push(`Achievement: ${item.rank} | ${item.title} | ${item.meta}`);
+    });
+
+    PROFILE_KB.projectArchives.forEach((item) => {
+        lines.push(`Project archive: ${item}`);
+    });
+
+    PROFILE_KB.certificationsPrimary.forEach((item) => {
+        lines.push(`Certification: ${item.name} | ${item.provider} | ${item.period}`);
+    });
+
+    PROFILE_KB.certificationsArchive.forEach((item) => {
+        lines.push(`Archive certification: ${item}`);
+    });
+
+    PROFILE_KB.skills.forEach((item) => {
+        lines.push(`Skill: ${item}`);
+    });
+
+    PROFILE_KB.interests.forEach((item) => {
+        lines.push(`Interest: ${item}`);
+    });
+
+    getEducationSummary(6).forEach((item) => {
+        lines.push(`Education: ${item}`);
+    });
+
+    return lines;
+}
+
+function getKnowledgeCorpus() {
+    if (!knowledgeIndexCache.length) {
+        knowledgeIndexCache = buildKnowledgeIndex();
     }
+    return knowledgeIndexCache.join("\n");
 }
 
 function appendMessage(text, type) {
@@ -265,42 +564,441 @@ function appendMessage(text, type) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+function normalizeChatText(text) {
+    return text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function tokenizeChatText(text) {
+    return normalizeChatText(text)
+        .split(" ")
+        .filter(Boolean)
+        .map((token) => CHAT_TOKEN_ALIASES[token] || token);
+}
+
+function formatList(items) {
+    const list = items.filter(Boolean);
+    if (!list.length) return "";
+    if (list.length === 1) return list[0];
+    if (list.length === 2) return `${list[0]} and ${list[1]}`;
+    return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
+}
+
+function pickReplyVariant(intent, variants) {
+    if (!variants.length) return "";
+
+    if (variants.length === 1) {
+        lastReplyIndexByIntent[intent] = 0;
+        return variants[0];
+    }
+
+    const previousIndex = lastReplyIndexByIntent[intent];
+    let index = Math.floor(Math.random() * variants.length);
+
+    if (index === previousIndex) {
+        index = (index + 1) % variants.length;
+    }
+
+    lastReplyIndexByIntent[intent] = index;
+    return variants[index];
+}
+
+function hasWholeWord(text, word) {
+    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`\\b${escaped}\\b`).test(text);
+}
+
+function detectChatIntent(question) {
+    const normalized = normalizeChatText(question);
+    const tokens = tokenizeChatText(question);
+    const tokenSet = new Set(tokens);
+    const scores = {};
+
+    Object.entries(CHAT_INTENT_RULES).forEach(([intent, rules]) => {
+        let score = 0;
+
+        (rules.phrases || []).forEach((phrase) => {
+            if (normalized.includes(phrase)) score += 3;
+        });
+
+        (rules.keywords || []).forEach((keyword) => {
+            if (tokenSet.has(keyword) || hasWholeWord(normalized, keyword)) score += 2;
+        });
+
+        scores[intent] = score;
+    });
+
+    const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    const [primaryIntent, primaryScore] = sorted[0] || ["fallback", 0];
+
+    const followUpPattern = /\b(more|detail|details|elaborate|expand|continue|again|same|that one|that)\b/;
+    if (primaryScore <= 1 && lastDetectedIntent && followUpPattern.test(normalized)) {
+        return lastDetectedIntent;
+    }
+
+    if (primaryScore <= 0) {
+        return "fallback";
+    }
+
+    return primaryIntent;
+}
+
+function getContextLine(question) {
+    const corpus = getKnowledgeCorpus();
+    if (!corpus) return "";
+
+    const lines = corpus
+        .split(/\n+/)
+        .map((line) => line.trim())
+        .filter((line) => line.length > 20);
+
+    if (!lines.length) return "";
+
+    const stopWords = new Set(["what", "which", "about", "with", "from", "into", "that", "this", "have", "your", "you", "for"]);
+    const queryTokens = new Set(
+        tokenizeChatText(question).filter((token) => token.length > 2 && !stopWords.has(token))
+    );
+
+    if (!queryTokens.size) return "";
+
+    let bestLine = "";
+    let bestScore = 0;
+
+    lines.forEach((line) => {
+        const lineTokens = new Set(tokenizeChatText(line));
+        let score = 0;
+        queryTokens.forEach((token) => {
+            if (lineTokens.has(token)) score += 1;
+        });
+        if (score > bestScore) {
+            bestScore = score;
+            bestLine = line;
+        }
+    });
+
+    return bestScore >= 2 ? bestLine : "";
+}
+
+function getTopContextLines(question, limit = 3) {
+    const corpus = getKnowledgeCorpus();
+    if (!corpus) return [];
+
+    const lines = corpus
+        .split(/\n+/)
+        .map((line) => line.trim())
+        .filter((line) => line.length > 20);
+
+    if (!lines.length) return [];
+
+    const stopWords = new Set([
+        "what", "which", "about", "with", "from", "into", "that", "this", "have", "your", "you", "for",
+        "are", "was", "were", "is", "am", "the", "and", "how", "can", "could", "would", "should", "please"
+    ]);
+    const queryTokens = tokenizeChatText(question).filter((token) => token.length > 2 && !stopWords.has(token));
+    if (!queryTokens.length) return [];
+
+    const scored = lines
+        .map((line) => {
+            const lineTokens = new Set(tokenizeChatText(line));
+            let score = 0;
+            queryTokens.forEach((token) => {
+                if (lineTokens.has(token)) score += 2;
+                else if (line.toLowerCase().includes(token)) score += 1;
+            });
+            return { line, score };
+        })
+        .filter((item) => item.score > 0)
+        .sort((a, b) => b.score - a.score || a.line.length - b.line.length);
+
+    const results = [];
+    const seen = new Set();
+    for (const item of scored) {
+        if (results.length >= limit) break;
+        if (seen.has(item.line)) continue;
+        seen.add(item.line);
+        results.push(item.line);
+    }
+
+    return results;
+}
+
+function getGeneralKnowledgeFallback(question) {
+    const normalized = normalizeChatText(question);
+    const asksForIndiaPM = (normalized.includes("prime minister") || hasWholeWord(normalized, "pm")) && normalized.includes("india");
+    if (asksForIndiaPM) {
+        return "The Prime Minister of India is Narendra Modi (as of February 2026).";
+    }
+
+    const asksForIndiaPresident = normalized.includes("president") && normalized.includes("india");
+    if (asksForIndiaPresident) {
+        return "The President of India is Droupadi Murmu (as of February 2026).";
+    }
+
+    return "";
+}
+
+function isGroqConfigured() {
+    return Boolean(CHAT_API_ENDPOINT);
+}
+
+function trimChatHistory() {
+    if (chatHistory.length <= MAX_CHAT_HISTORY_MESSAGES) return;
+    chatHistory.splice(0, chatHistory.length - MAX_CHAT_HISTORY_MESSAGES);
+}
+
+function buildAssistantSystemPrompt() {
+    const skills = PROFILE_KB.skills.slice(0, 20);
+    const interests = PROFILE_KB.interests.slice(0, 8);
+    const education = getEducationSummary(3);
+    const achievements = PROFILE_KB.achievements
+        .slice(0, 8)
+        .map((item) => `${item.rank} | ${item.title} | ${item.meta}`);
+    const primaryCertifications = collectPrimaryCertifications(24);
+    const archiveCertifications = collectArchiveCertifications(24);
+    const projectCount = PROFILE_KB.projectArchives.length;
+    const certificateCount = PROFILE_KB.certificationsPrimary.length;
+    const primaryCertificationsSnippet = primaryCertifications.join(" ; ").slice(0, 1800);
+    const archiveCertificationsSnippet = archiveCertifications.join(" ; ").slice(0, 1200);
+
+    return [
+        "You are Nabyendu's AI Assistant on a portfolio website.",
+        "Behavior rules:",
+        "1) Be concise, helpful, and accurate.",
+        "2) For portfolio questions, prioritize portfolio facts below.",
+        "3) For general knowledge questions, answer normally like a general AI assistant.",
+        "4) If unsure, say you are not sure instead of inventing.",
+        "",
+        "Portfolio facts:",
+        `- Name: Nabyendu Ojha`,
+        `- Current role: ${getCurrentRoleSummary()}`,
+        `- Contact email: ${getContactEmail()}`,
+        `- Skills: ${formatList(skills)}`,
+        `- Interests: ${formatList(interests)}`,
+        `- Education: ${formatList(education)}`,
+        `- Key achievements: ${achievements.join(" ; ")}`,
+        `- Project archives count: ${projectCount}`,
+        `- Certification count: ${certificateCount}`,
+        primaryCertificationsSnippet ? `- Primary certifications: ${primaryCertificationsSnippet}` : "",
+        archiveCertificationsSnippet ? `- Civil/CAD certification archive: ${archiveCertificationsSnippet}` : ""
+    ]
+        .filter(Boolean)
+        .join("\n");
+}
+
+function extractGroqResponseText(data) {
+    const message = data?.choices?.[0]?.message?.content;
+
+    if (typeof message === "string") {
+        return message.trim();
+    }
+
+    if (Array.isArray(message)) {
+        const merged = message
+            .map((item) => {
+                if (typeof item === "string") return item;
+                if (item?.type === "text" && typeof item.text === "string") return item.text;
+                return "";
+            })
+            .join(" ")
+            .trim();
+        return merged;
+    }
+
+    return "";
+}
+
+async function fetchGroqReply(userText) {
+    if (!isGroqConfigured()) {
+        throw new Error("Chat API endpoint is not configured.");
+    }
+
+    const systemPrompt = buildAssistantSystemPrompt();
+    const messages = [
+        { role: "system", content: systemPrompt },
+        ...chatHistory.slice(-MAX_CHAT_HISTORY_MESSAGES),
+        { role: "user", content: userText }
+    ];
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), CHAT_API_TIMEOUT_MS);
+
+    let response;
+    try {
+        response = await fetch(CHAT_API_ENDPOINT, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: GROQ_MODEL,
+                messages,
+                temperature: 0.8,
+                top_p: 0.9,
+                max_tokens: 350
+            }),
+            signal: controller.signal
+        });
+    } catch (error) {
+        if (error?.name === "AbortError") {
+            throw new Error(`Chat API timed out after ${Math.round(CHAT_API_TIMEOUT_MS / 1000)}s.`);
+        }
+        throw error;
+    } finally {
+        clearTimeout(timeout);
+    }
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+        const errMsg = data?.error?.message || `Groq request failed with ${response.status}`;
+        throw new Error(errMsg);
+    }
+
+    const assistantText = extractGroqResponseText(data);
+    if (!assistantText) {
+        throw new Error("Groq returned an empty response.");
+    }
+
+    chatHistory.push({ role: "user", content: userText });
+    chatHistory.push({ role: "assistant", content: assistantText });
+    trimChatHistory();
+
+    return assistantText;
+}
+
 function inferBotResponse(question) {
-    const q = question.toLowerCase();
+    const intent = detectChatIntent(question);
+    lastDetectedIntent = intent;
 
-    if (q.includes("resume") || q.includes("cv")) {
-        return "You can download the resume from the hero section or use this link: https://nojha.in/pdfs/Resume_NabyenduOjha.pdf";
+    const email = getContactEmail();
+    const resumeLink = getResumeLink();
+    const skills = PROFILE_KB.skills;
+    const skillSummary = formatList(skills.slice(0, 10));
+    const experienceRoles = PROFILE_KB.professionalPath.map((item) => item.role);
+    const achievements = PROFILE_KB.achievements
+        .slice(0, 4)
+        .map((item) => `${item.rank} in ${item.title} (${item.meta})`);
+    const projectCount = PROFILE_KB.projectArchives.length;
+    const certificateCount = PROFILE_KB.certificationsPrimary.length;
+    const certificationNames = collectPrimaryCertificationNames(20);
+    const certificationMetaList = collectPrimaryCertifications(20);
+    const interests = PROFILE_KB.interests;
+    const education = getEducationSummary(3);
+    const contextHint = getContextLine(question);
+    const generalKnowledgeReply = getGeneralKnowledgeFallback(question);
+
+    if (generalKnowledgeReply) {
+        return generalKnowledgeReply;
     }
 
-    if (q.includes("contact") || q.includes("email") || q.includes("reach")) {
-        return "You can reach Nabyendu at nabyenduojha99@gmail.com or via the contact form.";
+    const responseMap = {
+        greeting: [
+            "Hi. Ask me anything about skills, experience, projects, certifications, or contact details.",
+            "Hey. I can help with quick profile answers: experience, stack, achievements, projects, and resume.",
+            "Hello. Ask your question in any format, and I will map it to the right profile detail."
+        ],
+        thanks: [
+            "Glad to help. If you want, ask me next about experience depth, stack details, or certifications.",
+            "Anytime. I can also summarize role-wise experience or key achievements in one answer.",
+            "You're welcome. I can help with resume, skills, projects, achievements, or contact next."
+        ],
+        resume: [
+            `You can download the resume directly here: ${resumeLink}`,
+            `Resume link: ${resumeLink}. You can also find it in the hero section.`,
+            `Use this direct resume PDF: ${resumeLink}`
+        ],
+        contact: [
+            `You can reach out at ${email}, or send a note via the Message me form.`,
+            `Best way to connect: ${email}. The contact form also sends directly.`,
+            `Contact email is ${email}. You can also use the form in the contact section.`
+        ],
+        skills: [
+            `Core stack includes ${skillSummary}.`,
+            `Primary backend stack: ${skillSummary}.`,
+            `Tech focus is backend-heavy, with tools like ${skillSummary}.`
+        ],
+        experience: [
+            `${getCurrentRoleSummary()}. Earlier roles include ${formatList(experienceRoles.slice(0, 3))}.`,
+            `Current role: ${getCurrentRoleSummary()}. Prior progression: ${formatList(experienceRoles.slice(0, 3))}.`,
+            `Professional path moves from ${formatList(experienceRoles.slice(0, 3))} to ${getCurrentRoleSummary()}.`
+        ],
+        achievements: [
+            `Recent highlights include ${formatList(achievements.slice(0, 3))}.`,
+            `Top achievements: ${formatList(achievements.slice(0, 3))}.`,
+            `Competitive highlights include ${formatList(achievements.slice(0, 3))}.`
+        ],
+        projects: [
+            `Selected Work Archives currently feature ${projectCount} categorized project folders with direct links.`,
+            `There are ${projectCount} project archives spanning backend, web, cloud, mobile, and more.`,
+            `Projects are organized into ${projectCount} archives across engineering, software, and creative work.`
+        ],
+        certifications: [
+            `Training has ${certificateCount} certifications. Key ones include ${formatList(certificationNames.slice(0, 6))}.`,
+            `Certifications include ${formatList(certificationMetaList.slice(0, 5))}, with certificate links in the section.`,
+            `In Certifications and Internships, examples are ${formatList(certificationNames.slice(0, 6))} and more.`
+        ],
+        education: [
+            `Education foundation includes ${formatList(education)}.`,
+            `Academic path includes ${formatList(education)}.`,
+            `Education highlights: ${formatList(education)}.`
+        ],
+        interests: [
+            `Outside engineering, interests include ${formatList(interests)}.`,
+            `Personal pursuits include ${formatList(interests)}.`,
+            `Beyond work, focus areas include ${formatList(interests)}.`
+        ],
+        location: [
+            "Location listed in the contact section is Kolkata, India.",
+            "Based in Kolkata, India.",
+            "Current location: Kolkata, India."
+        ],
+        fallback: [
+            "I can answer profile questions on skills, experience, certifications, projects, achievements, and contact.",
+            "Try asking about current role, tech stack, certifications, project archives, or resume link.",
+            "Ask in any style. I can map it to profile topics like experience, skills, achievements, or contact."
+        ]
+    };
+
+    const variants = responseMap[intent] || responseMap.fallback;
+    let response = pickReplyVariant(intent, variants);
+
+    if (intent === "fallback" && contextHint) {
+        const cleanedHint = contextHint.replace(/^[A-Za-z ]+:\s*/, "");
+        response = `${response} Example from profile: ${cleanedHint}`;
     }
 
-    if (q.includes("skill") || q.includes("tech") || q.includes("stack")) {
-        return "Core stack: Java, Spring Boot, SQL, Kafka, Docker, Kubernetes, Jenkins, AWS, and testing with JUnit.";
+    return response;
+}
+
+function buildLocalFallbackReply(question) {
+    const intent = detectChatIntent(question);
+    if (intent !== "fallback") {
+        return inferBotResponse(question);
     }
 
-    if (q.includes("experience") || q.includes("infosys") || q.includes("work")) {
-        return "Nabyendu is a Software Engineer at Infosys with 3+ years of backend development experience.";
+    const generalKnowledgeReply = getGeneralKnowledgeFallback(question);
+    if (generalKnowledgeReply) {
+        return generalKnowledgeReply;
     }
 
-    if (q.includes("achievement") || q.includes("rank") || q.includes("leetcode")) {
-        return "Highlights include AIR 143 in CodeKaze 2024, AIR 299 in CodeKaze 2023, and 700+ solved LeetCode problems.";
+    const contextLines = getTopContextLines(question, 3);
+
+    if (contextLines.length) {
+        const cleaned = contextLines
+            .map((line) => line.replace(/^[A-Za-z ]+:\s*/, "").replace(/\s+/g, " ").trim())
+            .filter(Boolean);
+
+        if (cleaned.length === 1) {
+            return cleaned[0];
+        }
+
+        return `${cleaned[0]} Also, ${cleaned[1]}`;
     }
 
-    if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
-        return "Hi. Ask me about skills, experience, projects, certifications, or contact details.";
-    }
-
-    if (q.includes("project")) {
-        return "The projects section contains curated archives across web, Java, Python, cloud, Android, and more.";
-    }
-
-    if (additionalText && additionalText.toLowerCase().includes("profession")) {
-        return "I can help with concise profile details. Ask specific questions like 'skills', 'experience', 'resume', or 'achievements'.";
-    }
-
-    return "I can answer quick profile questions. Try: skills, experience, resume, achievements, or contact.";
+    return inferBotResponse(question);
 }
 
 function openChatWindow() {
@@ -350,9 +1048,26 @@ async function sendChatMessage() {
     chatMessages.appendChild(typing);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    await new Promise((resolve) => setTimeout(resolve, 420));
+    const typingDelayMs = 320 + Math.floor(Math.random() * 420);
+    await new Promise((resolve) => setTimeout(resolve, typingDelayMs));
 
-    const response = inferBotResponse(text);
+    let response = "";
+    try {
+        response = await fetchGroqReply(text);
+    } catch (error) {
+        console.warn("Chat API request failed:", error);
+        try {
+            response = buildLocalFallbackReply(text);
+        } catch (fallbackError) {
+            console.error("Local fallback failed:", fallbackError);
+            response = "I could not respond right now. Please try again in a moment.";
+        }
+    }
+
+    if (!response || !String(response).trim()) {
+        response = "I could not generate a response right now. Please try again.";
+    }
+
     typing.classList.remove("typing-indicator");
     typing.textContent = response;
     messageSound?.play().catch(() => { });
@@ -363,7 +1078,6 @@ window.addEventListener("load", () => {
     setViewerCount();
     hidePreloader();
     toggleHeaderShadow();
-    loadAdditionalText();
 });
 
 window.addEventListener("scroll", toggleHeaderShadow);
