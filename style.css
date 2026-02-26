@@ -2052,7 +2052,11 @@ img {
 }
 
 .interest-card.interest-card-epics img {
-    padding: 0.56rem;
+    padding: 0;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+    transform-origin: center;
 }
 
 .interest-card.interest-card-geopolitics img {
@@ -3335,7 +3339,8 @@ img {
     }
 
     .interest-card.interest-card-epics img {
-        padding: 0.5rem;
+        transform: none;
+        padding: 0;
     }
 
     .interest-card.interest-card-geopolitics img {
