@@ -13,7 +13,7 @@ function preload() {
 
 function sendEmail() {
     Email.send({
-        SecureToken: "447fa0a6-6dba-4968-ad69-0638c418358e", // Secure Token provided by SMTPJS for direct emailing
+        SecureToken: "", // Secure Token provided by SMTPJS for direct emailing
         To: 'nabyenduojha99@gmail.com', // Replace with your email
         From: "nabyenduojha@gmail.com",
         Subject: "New Message Enquiry",
@@ -179,7 +179,7 @@ async function sendMessage() {
     }
 }
 
-const API_KEY = "AIzaSyBXUTkccSLg1eLYk4ccvzFHNp0Fp7mG0aM"; // Replace with your actual API key
+const API_KEY = ""; // Replace with actual API key
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${API_KEY}`;
 
 // Function to make API call and get bot response using Gemini API
