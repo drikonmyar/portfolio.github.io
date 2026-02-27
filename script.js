@@ -11,7 +11,7 @@ const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
-const viewerCountNode = document.getElementById("viewerCount");
+// const viewerCountNode = document.getElementById("viewerCount"); // Viewer counter disabled
 
 const openChatBtn = document.getElementById("openChatBtn");
 const closeChatBtn = document.getElementById("closeChatBtn");
@@ -242,6 +242,7 @@ function setYear() {
     }
 }
 
+/*
 async function setViewerCount() {
     if (!viewerCountNode) return;
 
@@ -312,6 +313,7 @@ async function setViewerCount() {
         }
     }
 }
+*/
 
 function hidePreloader() {
     if (!preloader) return;
@@ -1229,7 +1231,7 @@ async function sendChatMessage() {
 
 window.addEventListener("load", () => {
     setYear();
-    setViewerCount();
+    // setViewerCount(); // Viewer counter disabled
     hidePreloader();
     toggleHeaderShadow();
 });

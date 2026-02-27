@@ -35,21 +35,21 @@ function sendEmail() {
 }
 
 
-// // website refresh auto-counter starts
+// website local visit counter starts (localStorage only; no external calls)
+const counterContainer = document.querySelector(".website-counter");
+const visitStorageKey = "old_ui_visit_count";
 
-// var counterContainer = document.querySelector(".website-counter");
-// var visitCount = localStorage.getItem("page_view");
-
-// if (visitCount) {
-//     visitCount = Number(visitCount) + 1;
-//     localStorage.setItem("page_view", visitCount);
-// } else {
-//     visitCount = 994;
-//     localStorage.setItem("page_view", visitCount);
-// }
-// counterContainer.innerHTML = visitCount;
-
-// // auto-counter ends
+if (counterContainer) {
+    let visitCount = Number(localStorage.getItem(visitStorageKey));
+    if (!Number.isFinite(visitCount) || visitCount < 1) {
+        visitCount = 1;
+    } else {
+        visitCount += 1;
+    }
+    localStorage.setItem(visitStorageKey, String(visitCount));
+    counterContainer.textContent = visitCount.toLocaleString("en-US");
+}
+// website local visit counter ends
 
 
 
