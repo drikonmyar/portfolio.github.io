@@ -115,7 +115,7 @@ const PROFILE_KB = {
         "Presentations", "Pencil Sketches"
     ],
     certificationsPrimary: [
-        { name: "Rest API", provider: "HackerRank", period: "Jan 2025" },
+        { name: "REST API", provider: "HackerRank", period: "Jan 2025" },
         { name: "Problem Solving", provider: "HackerRank", period: "Oct 2024" },
         { name: "Java", provider: "HackerRank", period: "Sep 2024" },
         { name: "Spring Boot", provider: "Coding Ninjas", period: "Oct 2023 - Feb 2024" },
