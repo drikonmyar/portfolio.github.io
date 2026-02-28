@@ -1203,10 +1203,18 @@ function positionChatPopupNearToggle() {
     const verticalGap = 12;
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
+    const visualViewport = window.visualViewport;
+    const viewportLeft = visualViewport ? visualViewport.offsetLeft : 0;
+    const viewportTop = visualViewport ? visualViewport.offsetTop : 0;
+    const viewportWidth = visualViewport ? visualViewport.width : window.innerWidth;
+    const viewportHeight = visualViewport ? visualViewport.height : window.innerHeight;
+    const viewportRight = viewportLeft + viewportWidth;
+    const viewportBottom = viewportTop + viewportHeight;
+
     const buttonRect = openChatBtn.getBoundingClientRect();
     const navbarBottom = siteHeader ? Math.max(0, siteHeader.getBoundingClientRect().bottom) : 0;
-    const minTop = Math.max(viewportMargin, Math.ceil(navbarBottom) + viewportMargin);
-    const availableHeight = Math.floor(window.innerHeight - minTop - viewportMargin);
+    const minTop = Math.max(viewportTop + viewportMargin, Math.ceil(navbarBottom) + viewportMargin);
+    const availableHeight = Math.floor(viewportBottom - minTop - viewportMargin);
     if (availableHeight > 0) {
         chatPopup.style.maxHeight = `${availableHeight}px`;
     } else {
@@ -1219,10 +1227,11 @@ function positionChatPopupNearToggle() {
 
     if (!popupWidth || !popupHeight) return;
 
-    const isLeftSide = buttonRect.left + buttonRect.width / 2 < window.innerWidth / 2;
-    const maxLeft = window.innerWidth - popupWidth - viewportMargin;
-    const maxTop = window.innerHeight - popupHeight - viewportMargin;
-    const safeMaxLeft = Math.max(viewportMargin, maxLeft);
+    const isLeftSide = buttonRect.left + buttonRect.width / 2 < viewportLeft + viewportWidth / 2;
+    const minLeft = viewportLeft + viewportMargin;
+    const maxLeft = viewportRight - popupWidth - viewportMargin;
+    const maxTop = viewportBottom - popupHeight - viewportMargin;
+    const safeMaxLeft = Math.max(minLeft, maxLeft);
     const safeMaxTop = Math.max(minTop, maxTop);
 
     const preferredTop = buttonRect.top - popupHeight - verticalGap;
@@ -1235,7 +1244,7 @@ function positionChatPopupNearToggle() {
     chatPopup.style.bottom = "auto";
 
     const preferredLeft = isLeftSide ? buttonRect.left : (buttonRect.right - popupWidth);
-    const left = clamp(preferredLeft, viewportMargin, safeMaxLeft);
+    const left = clamp(preferredLeft, minLeft, safeMaxLeft);
     chatPopup.style.left = `${Math.round(left)}px`;
     chatPopup.style.right = "auto";
 
