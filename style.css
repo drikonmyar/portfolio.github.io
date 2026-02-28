@@ -2351,6 +2351,7 @@ img {
 }
 
 .contact-form {
+    position: relative;
     background:
         radial-gradient(circle at 100% 0%, rgba(186, 230, 253, 0.25), transparent 36%),
         linear-gradient(155deg, #ffffff, #f4f9ff);
@@ -2423,6 +2424,15 @@ img {
 .contact-form button:hover {
     transform: translateY(-1px);
     box-shadow: 0 14px 28px rgba(37, 99, 235, 0.32);
+}
+
+.contact-honeypot {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 #formStatus {

@@ -397,6 +397,11 @@ function setupContactForm() {
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const submitLabel = submitButton?.querySelector("span");
     const defaultLabel = submitLabel?.textContent || "Send Message";
+    const honeypotField = contactForm.querySelector('input[name="_honey"]');
+    const minTimeToSubmitMs = 1500;
+    const minIntervalBetweenSubmitsMs = 15000;
+    const formLoadedAt = Date.now();
+    let lastSubmitAt = 0;
     const endpoint = "https://formsubmit.co/ajax/nabyenduojha99@gmail.com";
 
     contactForm.addEventListener("submit", async (event) => {
@@ -413,6 +418,26 @@ function setupContactForm() {
             return;
         }
 
+        const honeypotValue = honeypotField?.value.trim() || "";
+        if (honeypotValue) {
+            formStatus.textContent = "Could not send message right now. Please try again shortly.";
+            errorSound?.play().catch(() => { });
+            return;
+        }
+
+        if (Date.now() - formLoadedAt < minTimeToSubmitMs) {
+            formStatus.textContent = "Please wait a moment before sending.";
+            errorSound?.play().catch(() => { });
+            return;
+        }
+
+        if (Date.now() - lastSubmitAt < minIntervalBetweenSubmitsMs) {
+            formStatus.textContent = "Please wait before sending another message.";
+            errorSound?.play().catch(() => { });
+            return;
+        }
+        lastSubmitAt = Date.now();
+
         submitButton?.setAttribute("disabled", "true");
         if (submitLabel) submitLabel.textContent = "Sending...";
         formStatus.textContent = "Sending message...";
@@ -422,7 +447,8 @@ function setupContactForm() {
             email,
             subject,
             message,
-            _captcha: "false"
+            _honey: honeypotValue,
+            _captcha: "true"
         };
 
         const controller = new AbortController();

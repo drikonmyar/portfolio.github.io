@@ -854,6 +854,11 @@
                             <textarea name="message" id="form-message" rows="5" placeholder="Write your message"
                                 required></textarea>
 
+                            <div class="contact-honeypot" aria-hidden="true">
+                                <label for="form-company">Company</label>
+                                <input type="text" id="form-company" name="_honey" tabindex="-1" autocomplete="off">
+                            </div>
+
                             <button type="submit"><i class="fa-solid fa-paper-plane"></i><span>Send
                                     Message</span></button>
                             <p id="formStatus" aria-live="polite"></p>
