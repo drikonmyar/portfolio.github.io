@@ -3613,6 +3613,18 @@ body.chat-open .chat-toggle span {
         height: min(336px, calc(100svh - var(--header-height) - 1.4rem));
     }
 
+    .chat-popup,
+    .chat-popup.open {
+        transition: none !important;
+        transform: translate3d(0, 0, 0) scale(1);
+        filter: none;
+    }
+
+    .chat-toggle,
+    body.chat-open .chat-toggle {
+        transition: none !important;
+    }
+
     .chat-header {
         padding: 0.62rem 0.72rem;
     }
