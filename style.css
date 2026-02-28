@@ -1940,6 +1940,19 @@ img {
     filter: saturate(1.06);
 }
 
+.project-card img.project-logo-inset {
+    padding: 8%;
+}
+
+.project-card img.project-logo-inset-light {
+    padding: 3%;
+}
+
+.project-card img.project-logo-no-bg {
+    background: linear-gradient(150deg, #f6f9ff, #edf4ff);
+    mix-blend-mode: multiply;
+}
+
 .project-card.project-card-compact-image img {
     width: 64%;
     height: 64%;
