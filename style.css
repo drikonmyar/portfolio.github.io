@@ -364,6 +364,23 @@ img {
     line-height: 1.62;
 }
 
+.hero-name-inline {
+    display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.03em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #0f172a;
+    letter-spacing: 0.005em;
+    white-space: nowrap;
+    padding: 0.04em 0.34em 0.08em;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 183, 3, 0.26), rgba(251, 133, 0, 0.22));
+    border: 1px solid rgba(251, 133, 0, 0.26);
+    box-shadow: 0 3px 10px rgba(251, 133, 0, 0.14);
+}
+
 .hero-highlights {
     margin-top: 1rem;
     display: flex;
