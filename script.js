@@ -24,10 +24,12 @@ const GROQ_MODEL = "llama-3.1-8b-instant";
 const CHAT_API_ENDPOINT = "https://secret-from-api.vercel.app/api/chat";
 const MAX_CHAT_HISTORY_MESSAGES = 12;
 const CHAT_API_TIMEOUT_MS = 12000;
+const CHAT_TOGGLE_REAPPEAR_DELAY_MS = 220;
 
 let greeted = false;
 let lastDetectedIntent = "";
 const chatHistory = [];
+let chatToggleVisibilityTimeoutId = null;
 
 const lastReplyIndexByIntent = Object.create(null);
 
@@ -1160,7 +1162,17 @@ function buildLocalFallbackReply(question) {
 function openChatWindow() {
     if (!chatPopup) return;
 
+    window.clearTimeout(chatToggleVisibilityTimeoutId);
+    document.body.classList.add("chat-open");
+    positionChatPopupNearToggle();
+    setChatPopupMotionVector();
     chatPopup.classList.add("open");
+    requestAnimationFrame(() => {
+        if (chatPopup.classList.contains("open")) {
+            positionChatPopupNearToggle();
+            setChatPopupMotionVector();
+        }
+    });
     userInput?.focus();
 
     if (!greeted) {
@@ -1170,14 +1182,247 @@ function openChatWindow() {
     }
 }
 
+function closeChatWindow() {
+    if (!chatPopup) return;
+
+    positionChatPopupNearToggle();
+    setChatPopupMotionVector();
+    chatPopup.classList.remove("open");
+    window.clearTimeout(chatToggleVisibilityTimeoutId);
+    chatToggleVisibilityTimeoutId = window.setTimeout(() => {
+        if (!chatPopup.classList.contains("open")) {
+            document.body.classList.remove("chat-open");
+        }
+    }, CHAT_TOGGLE_REAPPEAR_DELAY_MS);
+}
+
+function positionChatPopupNearToggle() {
+    if (!chatPopup || !openChatBtn) return;
+
+    const viewportMargin = 12;
+    const verticalGap = 12;
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const buttonRect = openChatBtn.getBoundingClientRect();
+    const popupRect = chatPopup.getBoundingClientRect();
+    const popupWidth = chatPopup.offsetWidth || popupRect.width || 0;
+    const popupHeight = chatPopup.offsetHeight || popupRect.height || 0;
+
+    if (!popupWidth || !popupHeight) return;
+
+    const isLeftSide = buttonRect.left + buttonRect.width / 2 < window.innerWidth / 2;
+    const navbarBottom = siteHeader ? Math.max(0, siteHeader.getBoundingClientRect().bottom) : 0;
+    const minTop = Math.max(viewportMargin, Math.ceil(navbarBottom) + viewportMargin);
+    const maxLeft = window.innerWidth - popupWidth - viewportMargin;
+    const maxTop = window.innerHeight - popupHeight - viewportMargin;
+    const safeMaxLeft = Math.max(viewportMargin, maxLeft);
+    const safeMaxTop = Math.max(minTop, maxTop);
+
+    const preferredTop = buttonRect.top - popupHeight - verticalGap;
+    const belowTop = buttonRect.bottom + verticalGap;
+    const canFitAbove = preferredTop >= minTop;
+    const canFitBelow = belowTop <= safeMaxTop;
+    const chosenTop = canFitAbove ? preferredTop : (canFitBelow ? belowTop : preferredTop);
+    const top = clamp(chosenTop, minTop, safeMaxTop);
+    chatPopup.style.top = `${Math.round(top)}px`;
+    chatPopup.style.bottom = "auto";
+
+    const preferredLeft = isLeftSide ? buttonRect.left : (buttonRect.right - popupWidth);
+    const left = clamp(preferredLeft, viewportMargin, safeMaxLeft);
+    chatPopup.style.left = `${Math.round(left)}px`;
+    chatPopup.style.right = "auto";
+
+    if (isLeftSide) {
+        chatPopup.classList.add("chat-popup-left");
+        chatPopup.classList.remove("chat-popup-right");
+    } else {
+        chatPopup.classList.add("chat-popup-right");
+        chatPopup.classList.remove("chat-popup-left");
+    }
+}
+
+function setChatPopupMotionVector() {
+    if (!chatPopup || !openChatBtn) return;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const buttonRect = openChatBtn.getBoundingClientRect();
+    const popupWidth = chatPopup.offsetWidth;
+    const popupHeight = chatPopup.offsetHeight;
+
+    if (!popupWidth || !popupHeight) return;
+
+    const popupRect = chatPopup.getBoundingClientRect();
+    const leftFromStyle = Number.parseFloat(chatPopup.style.left);
+    const topFromStyle = Number.parseFloat(chatPopup.style.top);
+    const popupLeft = Number.isFinite(leftFromStyle) ? leftFromStyle : popupRect.left;
+    const popupTop = Number.isFinite(topFromStyle) ? topFromStyle : popupRect.top;
+
+    const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+    const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+    const popupCenterX = popupLeft + popupWidth / 2;
+    const popupCenterY = popupTop + popupHeight / 2;
+
+    const translateX = clamp((buttonCenterX - popupCenterX) * 0.22, -44, 44);
+    const translateY = clamp((buttonCenterY - popupCenterY) * 0.28, -64, 64);
+    const scaleFromButton = Math.max(buttonRect.width / popupWidth, buttonRect.height / popupHeight);
+    const startScale = clamp(scaleFromButton * 1.2, 0.82, 0.95);
+
+    chatPopup.style.setProperty("--chat-enter-x", `${translateX.toFixed(2)}px`);
+    chatPopup.style.setProperty("--chat-enter-y", `${translateY.toFixed(2)}px`);
+    chatPopup.style.setProperty("--chat-enter-scale", startScale.toFixed(3));
+}
+
+function setupDraggableChatToggle() {
+    if (!openChatBtn) return () => false;
+
+    const viewportMargin = 8;
+    const dragThresholdPx = 6;
+    const computedRight = Number.parseFloat(window.getComputedStyle(openChatBtn).right);
+    const edgeOffsetPx = Number.isFinite(computedRight) ? computedRight : 20;
+    const horizontalMargin = Math.max(viewportMargin, edgeOffsetPx);
+
+    let activePointerId = null;
+    let startPointerX = 0;
+    let startPointerY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+    let hasDragged = false;
+    let suppressClickUntil = 0;
+    let currentSide = "right";
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const getButtonRect = () => openChatBtn.getBoundingClientRect();
+    const getMinTopBound = () => {
+        const headerBottom = siteHeader ? Math.max(0, siteHeader.getBoundingClientRect().bottom) : 0;
+        return Math.max(viewportMargin, Math.ceil(headerBottom) + viewportMargin);
+    };
+
+    const applyDragPosition = (left, top) => {
+        const rect = getButtonRect();
+        const maxLeft = Math.max(horizontalMargin, window.innerWidth - rect.width - horizontalMargin);
+        const minTop = getMinTopBound();
+        const maxTop = Math.max(minTop, window.innerHeight - rect.height - viewportMargin);
+        const clampedLeft = clamp(left, horizontalMargin, maxLeft);
+        const clampedTop = clamp(top, minTop, maxTop);
+
+        openChatBtn.style.left = `${clampedLeft}px`;
+        openChatBtn.style.top = `${clampedTop}px`;
+        openChatBtn.style.right = "auto";
+        openChatBtn.style.bottom = "auto";
+    };
+
+    const snapToSide = (side, top) => {
+        const rect = getButtonRect();
+        const minTop = getMinTopBound();
+        const maxTop = Math.max(minTop, window.innerHeight - rect.height - viewportMargin);
+        const clampedTop = clamp(top, minTop, maxTop);
+        currentSide = side === "left" ? "left" : "right";
+
+        openChatBtn.style.top = `${clampedTop}px`;
+        openChatBtn.style.bottom = "auto";
+        if (currentSide === "left") {
+            openChatBtn.style.left = `${edgeOffsetPx}px`;
+            openChatBtn.style.right = "auto";
+        } else {
+            openChatBtn.style.right = `${edgeOffsetPx}px`;
+            openChatBtn.style.left = "auto";
+        }
+
+        if (chatPopup?.classList.contains("open")) {
+            positionChatPopupNearToggle();
+        }
+    };
+
+    const onPointerDown = (event) => {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+
+        const rect = getButtonRect();
+        activePointerId = event.pointerId;
+        startPointerX = event.clientX;
+        startPointerY = event.clientY;
+        startLeft = rect.left;
+        startTop = rect.top;
+        hasDragged = false;
+
+        openChatBtn.setPointerCapture?.(activePointerId);
+    };
+
+    const onPointerMove = (event) => {
+        if (event.pointerId !== activePointerId) return;
+
+        const deltaX = event.clientX - startPointerX;
+        const deltaY = event.clientY - startPointerY;
+        const movedEnough = Math.hypot(deltaX, deltaY) >= dragThresholdPx;
+        if (!hasDragged && !movedEnough) return;
+
+        hasDragged = true;
+        openChatBtn.classList.add("dragging");
+        event.preventDefault();
+
+        applyDragPosition(startLeft + deltaX, startTop + deltaY);
+    };
+
+    const endDrag = (event) => {
+        if (event.pointerId !== activePointerId) return;
+
+        if (openChatBtn.hasPointerCapture?.(activePointerId)) {
+            openChatBtn.releasePointerCapture(activePointerId);
+        }
+
+        activePointerId = null;
+        openChatBtn.classList.remove("dragging");
+
+        if (hasDragged) {
+            const rect = getButtonRect();
+            const side = rect.left + rect.width / 2 < window.innerWidth / 2 ? "left" : "right";
+            snapToSide(side, rect.top);
+            suppressClickUntil = Date.now() + 250;
+        }
+
+        hasDragged = false;
+    };
+
+    const onResize = () => {
+        if (!openChatBtn.style.top) return;
+        const rect = getButtonRect();
+        snapToSide(currentSide, rect.top);
+    };
+
+    openChatBtn.addEventListener("pointerdown", onPointerDown);
+    openChatBtn.addEventListener("pointermove", onPointerMove);
+    openChatBtn.addEventListener("pointerup", endDrag);
+    openChatBtn.addEventListener("pointercancel", endDrag);
+    openChatBtn.addEventListener("lostpointercapture", () => {
+        if (!hasDragged && activePointerId === null) return;
+        const rect = getButtonRect();
+        const side = rect.left + rect.width / 2 < window.innerWidth / 2 ? "left" : "right";
+        snapToSide(side, rect.top);
+        suppressClickUntil = Date.now() + 250;
+        activePointerId = null;
+        hasDragged = false;
+        openChatBtn.classList.remove("dragging");
+    });
+
+    window.addEventListener("resize", onResize);
+
+    return () => Date.now() < suppressClickUntil;
+}
+
 function setupChat() {
     if (!openChatBtn || !chatPopup || !sendMessageBtn || !userInput || !chatMessages || !closeChatBtn) return;
 
-    openChatBtn.addEventListener("click", openChatWindow);
+    const isDragClickSuppressed = setupDraggableChatToggle();
 
-    closeChatBtn.addEventListener("click", () => {
-        chatPopup.classList.remove("open");
+    openChatBtn.addEventListener("click", (event) => {
+        if (isDragClickSuppressed()) {
+            event.preventDefault();
+            return;
+        }
+        openChatWindow();
     });
+
+    closeChatBtn.addEventListener("click", closeChatWindow);
 
     sendMessageBtn.addEventListener("click", async () => {
         await sendChatMessage();
@@ -1187,6 +1432,13 @@ function setupChat() {
         if (event.key === "Enter") {
             event.preventDefault();
             await sendChatMessage();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (chatPopup.classList.contains("open")) {
+            positionChatPopupNearToggle();
+            setChatPopupMotionVector();
         }
     });
 }

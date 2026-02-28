@@ -2568,6 +2568,7 @@ img {
     display: flex;
     align-items: center;
     gap: 0.56rem;
+    white-space: nowrap;
     font: inherit;
     font-weight: 700;
     color: #eaf4ff;
@@ -2580,7 +2581,15 @@ img {
         0 20px 36px rgba(15, 23, 42, 0.3);
     backdrop-filter: blur(8px);
     overflow: hidden;
-    transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+    touch-action: none;
+    will-change: transform, opacity, box-shadow, filter;
+    transition:
+        transform 0.34s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.34s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.28s ease,
+        opacity 0.26s ease,
+        filter 0.26s ease,
+        visibility 0s linear 0s;
 }
 
 .chat-toggle::before {
@@ -2615,12 +2624,15 @@ img {
     background: rgba(15, 23, 42, 0.24);
     border: 1px solid rgba(255, 255, 255, 0.35);
     font-size: 1rem;
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
 }
 
 .chat-toggle span {
     font-size: 0.92rem;
     letter-spacing: 0.02em;
     text-shadow: 0 1px 6px rgba(15, 23, 42, 0.35);
+    white-space: nowrap;
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
 }
 
 .chat-toggle:hover {
@@ -2635,12 +2647,36 @@ img {
     transform: translateY(-1px) scale(0.98);
 }
 
+.chat-toggle.dragging {
+    cursor: grabbing;
+    transform: none;
+}
+
 .chat-toggle:focus-visible {
     outline: none;
     box-shadow:
         0 0 0 3px rgba(125, 211, 252, 0.46),
         0 18px 40px rgba(14, 165, 233, 0.34),
         0 26px 52px rgba(15, 23, 42, 0.32);
+}
+
+body.chat-open .chat-toggle {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px) scale(0.88);
+    filter: blur(1px) saturate(0.86);
+    transition:
+        transform 0.28s cubic-bezier(0.33, 1, 0.68, 1),
+        opacity 0.22s ease,
+        filter 0.22s ease,
+        visibility 0s linear 0.22s;
+}
+
+body.chat-open .chat-toggle i,
+body.chat-open .chat-toggle span {
+    transform: translateY(2px);
+    opacity: 0.55;
 }
 
 @keyframes chat-sheen {
@@ -2670,6 +2706,9 @@ img {
 }
 
 .chat-popup {
+    --chat-enter-x: 0px;
+    --chat-enter-y: 22px;
+    --chat-enter-scale: 0.93;
     position: fixed;
     right: 1.25rem;
     bottom: 5.65rem;
@@ -2688,10 +2727,25 @@ img {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(14px) scale(0.96);
+    transform: translate3d(var(--chat-enter-x), var(--chat-enter-y), 0) scale(var(--chat-enter-scale));
     transform-origin: bottom right;
-    transition: opacity 0.26s ease, transform 0.26s ease, visibility 0.26s ease;
+    transition:
+        opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0s linear 0.42s,
+        filter 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: blur(7px) saturate(118%);
     backdrop-filter: blur(10px) saturate(140%);
+    will-change: transform, opacity, filter;
+}
+
+.chat-popup.chat-popup-left {
+    transform-origin: bottom left;
+}
+
+.chat-popup.chat-popup-right {
+    transform-origin: bottom right;
 }
 
 .chat-popup::before {
@@ -2718,8 +2772,9 @@ img {
         linear-gradient(transparent 95%, rgba(56, 189, 248, 0.08) 95%),
         linear-gradient(90deg, transparent 95%, rgba(56, 189, 248, 0.06) 95%);
     background-size: 100% 18px, 18px 100%;
-    opacity: 0.22;
+    opacity: 0.14;
     z-index: 0;
+    transition: opacity 0.34s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .chat-popup>* {
@@ -2731,7 +2786,16 @@ img {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0) saturate(140%);
+    box-shadow:
+        0 26px 56px rgba(15, 23, 42, 0.46),
+        0 16px 36px rgba(37, 99, 235, 0.28);
+    transition-delay: 0s;
+}
+
+.chat-popup.open::after {
+    opacity: 0.22;
 }
 
 @keyframes chat-frame-flow {
