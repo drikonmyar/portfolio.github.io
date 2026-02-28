@@ -1204,6 +1204,15 @@ function positionChatPopupNearToggle() {
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
     const buttonRect = openChatBtn.getBoundingClientRect();
+    const navbarBottom = siteHeader ? Math.max(0, siteHeader.getBoundingClientRect().bottom) : 0;
+    const minTop = Math.max(viewportMargin, Math.ceil(navbarBottom) + viewportMargin);
+    const availableHeight = Math.floor(window.innerHeight - minTop - viewportMargin);
+    if (availableHeight > 0) {
+        chatPopup.style.maxHeight = `${availableHeight}px`;
+    } else {
+        chatPopup.style.maxHeight = "none";
+    }
+
     const popupRect = chatPopup.getBoundingClientRect();
     const popupWidth = chatPopup.offsetWidth || popupRect.width || 0;
     const popupHeight = chatPopup.offsetHeight || popupRect.height || 0;
@@ -1211,8 +1220,6 @@ function positionChatPopupNearToggle() {
     if (!popupWidth || !popupHeight) return;
 
     const isLeftSide = buttonRect.left + buttonRect.width / 2 < window.innerWidth / 2;
-    const navbarBottom = siteHeader ? Math.max(0, siteHeader.getBoundingClientRect().bottom) : 0;
-    const minTop = Math.max(viewportMargin, Math.ceil(navbarBottom) + viewportMargin);
     const maxLeft = window.innerWidth - popupWidth - viewportMargin;
     const maxTop = window.innerHeight - popupHeight - viewportMargin;
     const safeMaxLeft = Math.max(viewportMargin, maxLeft);
@@ -1413,6 +1420,12 @@ function setupChat() {
     if (!openChatBtn || !chatPopup || !sendMessageBtn || !userInput || !chatMessages || !closeChatBtn) return;
 
     const isDragClickSuppressed = setupDraggableChatToggle();
+    const repositionOpenChat = () => {
+        if (chatPopup.classList.contains("open")) {
+            positionChatPopupNearToggle();
+            setChatPopupMotionVector();
+        }
+    };
 
     openChatBtn.addEventListener("click", (event) => {
         if (isDragClickSuppressed()) {
@@ -1435,12 +1448,10 @@ function setupChat() {
         }
     });
 
-    window.addEventListener("resize", () => {
-        if (chatPopup.classList.contains("open")) {
-            positionChatPopupNearToggle();
-            setChatPopupMotionVector();
-        }
-    });
+    window.addEventListener("resize", repositionOpenChat);
+    window.addEventListener("orientationchange", repositionOpenChat);
+    window.visualViewport?.addEventListener("resize", repositionOpenChat);
+    window.visualViewport?.addEventListener("scroll", repositionOpenChat);
 }
 
 async function sendChatMessage() {
