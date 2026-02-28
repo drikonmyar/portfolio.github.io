@@ -8,6 +8,7 @@ const siteHeader = document.querySelector(".site-header");
 const navToggle = document.getElementById("navToggle");
 const siteNav = document.getElementById("siteNav");
 const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+const brandLink = document.querySelector(".brand");
 
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
@@ -360,6 +361,16 @@ function setupNavigation() {
     window.addEventListener("resize", () => {
         if (window.innerWidth > 860) {
             closeNavMenu();
+        }
+    });
+
+    brandLink?.addEventListener("click", (event) => {
+        event.preventDefault();
+        closeNavMenu();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (window.location.hash !== "#home") {
+            window.history.replaceState(null, "", "#home");
         }
     });
 }
