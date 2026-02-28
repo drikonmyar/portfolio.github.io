@@ -605,12 +605,42 @@ function getKnowledgeCorpus() {
     return knowledgeIndexCache.join("\n");
 }
 
+function escapeHtml(text) {
+    return String(text ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function formatBotMessage(text) {
+    return escapeHtml(text)
+        .replace(/\r\n?/g, "\n")
+        .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+        .replace(/__(.+?)__/g, "<strong>$1</strong>")
+        .replace(/\*\*/g, "")
+        .replace(/__/g, "")
+        .replace(/\n/g, "<br>");
+}
+
+function setMessageContent(node, text, type) {
+    if (!node) return;
+
+    if (type === "bot") {
+        node.innerHTML = formatBotMessage(text);
+        return;
+    }
+
+    node.textContent = String(text ?? "");
+}
+
 function appendMessage(text, type) {
     if (!chatMessages) return;
 
     const node = document.createElement("div");
     node.classList.add("message", type === "user" ? "user-message" : "bot-message");
-    node.textContent = text;
+    setMessageContent(node, text, type);
     chatMessages.appendChild(node);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -1534,7 +1564,7 @@ async function sendChatMessage() {
     }
 
     typing.classList.remove("typing-indicator");
-    typing.textContent = response;
+    setMessageContent(typing, response, "bot");
     messageSound?.play().catch(() => { });
 }
 
