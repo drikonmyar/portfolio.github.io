@@ -2303,7 +2303,7 @@ img {
     paint-order: stroke fill;
     stroke-dasharray: 1280;
     stroke-dashoffset: 1280;
-    animation: signature-draw 6.8s ease-in-out infinite;
+    animation: signature-draw 6.8s ease-in-out 1 forwards;
 }
 
 .signature-stroke {
@@ -2314,7 +2314,7 @@ img {
     stroke-dasharray: 650;
     stroke-dashoffset: 650;
     opacity: 0.82;
-    animation: signature-underline 6.8s ease-in-out infinite;
+    animation: signature-underline 6.8s ease-in-out 1 forwards;
 }
 
 @keyframes signature-draw {
