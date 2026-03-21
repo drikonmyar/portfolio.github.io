@@ -2550,10 +2550,10 @@ img {
     z-index: 935;
     border: 1px solid rgba(125, 211, 252, 0.38);
     border-radius: 999px;
-    padding: 0.52rem 1rem 0.52rem 0.58rem;
+    padding: 0.28rem 1rem 0.28rem 0.46rem;
     display: flex;
     align-items: center;
-    gap: 0.56rem;
+    gap: 0.46rem;
     white-space: nowrap;
     font: inherit;
     font-weight: 700;
@@ -2601,23 +2601,28 @@ img {
     animation: chat-ping 1.8s infinite;
 }
 
-.chat-toggle i {
-    width: 1.95rem;
-    height: 1.95rem;
-    border-radius: 50%;
+.chat-toggle-avatar {
+    width: 2.45rem;
+    height: 2.45rem;
     display: grid;
     place-items: center;
-    background: rgba(15, 23, 42, 0.24);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    font-size: 1rem;
+    flex: 0 0 auto;
     transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
 }
 
-.chat-toggle span {
+.chat-toggle-avatar svg {
+    width: 2.2rem;
+    height: 2.2rem;
+    display: block;
+    filter: drop-shadow(0 2px 5px rgba(15, 23, 42, 0.18));
+}
+
+.chat-toggle-label {
     font-size: 0.92rem;
     letter-spacing: 0.02em;
     text-shadow: 0 1px 6px rgba(15, 23, 42, 0.35);
     white-space: nowrap;
+    transform: translateX(-0.24rem);
     transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
 }
 
@@ -2659,9 +2664,13 @@ body.chat-open .chat-toggle {
         visibility 0s linear 0.22s;
 }
 
-body.chat-open .chat-toggle i,
-body.chat-open .chat-toggle span {
+body.chat-open .chat-toggle .chat-toggle-avatar {
     transform: translateY(2px);
+    opacity: 0.55;
+}
+
+body.chat-open .chat-toggle-label {
+    transform: translate(-0.24rem, 2px);
     opacity: 0.55;
 }
 
