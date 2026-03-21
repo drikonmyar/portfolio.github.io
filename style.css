@@ -81,47 +81,6 @@ img {
     }
 }
 
-#preloader {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #fff8e6, #e8f8ff);
-    display: grid;
-    place-items: center;
-    z-index: 1200;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
-}
-
-#preloader.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader-shell {
-    text-align: center;
-    color: var(--ink);
-}
-
-.loader-square {
-    width: 42px;
-    height: 42px;
-    margin: 0 auto 12px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--brand), var(--accent));
-    animation: spin-pop 1.2s ease-in-out infinite;
-}
-
-@keyframes spin-pop {
-
-    0%,
-    100% {
-        transform: rotate(0deg) scale(1);
-    }
-
-    50% {
-        transform: rotate(180deg) scale(0.8);
-    }
-}
-
 .site-header {
     position: sticky;
     top: 0;

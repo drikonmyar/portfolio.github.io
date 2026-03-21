@@ -2,7 +2,6 @@ const messageSound = document.getElementById("messageSound");
 const successSound = document.getElementById("successSound");
 const errorSound = document.getElementById("errorSound");
 
-const preloader = document.getElementById("preloader");
 const siteHeader = document.querySelector(".site-header");
 
 const navToggle = document.getElementById("navToggle");
@@ -317,13 +316,6 @@ async function setViewerCount() {
     }
 }
 */
-
-function hidePreloader() {
-    if (!preloader) return;
-    setTimeout(() => {
-        preloader.classList.add("hidden");
-    }, 650);
-}
 
 function toggleHeaderShadow() {
     const scrolled = window.scrollY > 8;
@@ -1571,7 +1563,6 @@ async function sendChatMessage() {
 window.addEventListener("load", () => {
     setYear();
     // setViewerCount(); // Viewer counter disabled
-    hidePreloader();
     toggleHeaderShadow();
 });
 
