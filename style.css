@@ -1899,6 +1899,40 @@ img {
     filter: saturate(1.06);
 }
 
+.project-logo-icon {
+    width: 86%;
+    height: 86%;
+    padding: 0;
+    margin: auto;
+    align-self: center;
+    justify-self: center;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #deebfb;
+    background: linear-gradient(150deg, #f6f9ff, #edf4ff);
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.project-card:hover .project-logo-icon {
+    transform: translateY(-1px);
+    filter: saturate(1.06);
+}
+
+.project-logo-icon i {
+    font-size: 4.75rem;
+    line-height: 1;
+}
+
+.project-logo-icon-spring i {
+    color: #6db33f;
+}
+
+.project-logo-icon-react i {
+    color: #61dafb;
+}
+
 .project-card img.project-logo-inset {
     padding: 8%;
 }
