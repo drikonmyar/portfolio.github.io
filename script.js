@@ -35,14 +35,14 @@ const lastReplyIndexByIntent = Object.create(null);
 
 const PROFILE_KB = {
     name: "Nabyendu Ojha",
-    website: "https://nojha.in",
+    website: "https://nabyenduojha.vercel.app",
     headline: "Software Engineer • Backend Developer",
     summary: "Backend engineer focused on Java, Spring Boot, clean architecture, and reliable delivery.",
     totalExperience: "4+ years",
     currentRole: "Assistant Manager at Deloitte (May 2025 - Present)",
     location: "Kolkata, India",
     contactEmail: "nabyenduojha99@gmail.com",
-    resumeLink: "https://nojha.in/pdfs/Resume_NabyenduOjha.pdf",
+    resumeLink: "https://nabyenduojha.vercel.app/pdfs/Resume_NabyenduOjha.pdf",
     skills: [
         "Java", "Spring Boot", "Maven", "PostgreSQL", "MySQL", "MongoDB", "Python", "C++",
         "HTML", "CSS", "JavaScript", "React", "GraphQL", "Kafka", "Docker", "Kubernetes",
